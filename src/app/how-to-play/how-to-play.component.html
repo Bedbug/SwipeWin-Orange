@@ -4,23 +4,20 @@
     margin-right: auto;">
   <img class="icon" src="assets/icons/icon-check.svg" alt=""/>
   <div class="item">
-    Subscribe to Swipe & Win, play the game and claim the Prizes.
+    Subscribe to Swipe & Win,<br> play the game and claim the Prizes.
   </div>
   <img class="icon" src="assets/icons/icon-swipe.svg" alt=""/>
   <div class="item">
-    Answer questions by swiping photos left or right or by pressing  the corresponding button.</div>
+    Answer questions by swiping <br>photos left.</div>
   <img class="icon" src="assets/icons/icon-timer.svg" alt=""/>
   <div class="item">
-    You have 45 seconds to answer as many question as possible.</div>
+    You have 45 seconds to answer<br> as many question as possible.</div>
   <img class="icon" src="assets/icons/icon-5s.svg" alt=""/>
   <div class="item">
-    Be careful! For each wrong answer you lose 5 seconds.</div>
-  <img class="icon" src="assets/icons/icon-banknotes.svg" alt=""/>
-  <div class="item">
-   Every correct special question awards Cashback instantly.</div>
+    Be careful! For each wrong answer<br> you lose 5 seconds.</div>
   <img class="icon" src="assets/icons/icon-prize.svg" alt=""/>
   <div class="item">
-    Want to improve your score? Buy additional games</div>
+    Want to improve your score?<br> Buy additional games</div>
   
 </div>
 </div>
@@ -31,7 +28,7 @@
   <button *ngIf="_gamesPlayed >= 3 && !isActive" class="uk-button uk-button-default play-button uk-width-1-1" (click)="startGame()">Play for 0.50$</button>
   <button *ngIf="_gamesPlayed > 0 && _gamesPlayed < 3  && !isActive" class="uk-button uk-button-default play-button uk-width-1-1" (click)="startGame()" >Play for 0.50$</button>
   <button *ngIf="_gamesPlayed == 0 && !isActive" class="uk-button uk-button-default play-button uk-width-1-1" (click)="startGame()" >Play</button>
-  <div class="message-container">
+  <!-- <div class="message-container">
     <span *ngIf="isActive">1st day free – then 0.50$ /day</span>
     <br>
     <p *ngIf="isActive">By clicking Subscription you confirm that you<br><a  [routerLink]="['/info']" style="color:white; text-decoration: underline;">have read and agreed to the game rules.</a>
@@ -40,8 +37,8 @@
      <br>
      <br>
 <br><br>   
-    <!--<p>Услуга оказывается МТС совместно с партнером «ДжЮ Груп»</p>-->
-  </div>
+    <p>Услуга оказывается МТС совместно с партнером «ДжЮ Груп»</p>-->
+  <!-- </div> -->
 </div>
 <!--<div class="main-footer uk-container" >-->
 <!--  Служба поддержки:  111777 (бесплатно) или отправьте письмо на support@gu-group.ru-->

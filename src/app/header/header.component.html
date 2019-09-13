@@ -68,15 +68,7 @@
                         </div>
                   </a>
                 </li>
-                <li>
-                  <a 
-                  [routerLink]="['/cashback']"
-                  class="nav-list-button" (click)="closeOffcanvas()">
-                      <div class="nav-list-box uk-flex">
-                        <img class="nav-list-icon" src="assets/icons/cashback.svg" alt=""><span>Cashback Prizes</span>
-                        </div>
-                  </a>
-                </li>
+                
                 <li>
                   <a
                     [routerLink]="['/faq']"
@@ -91,19 +83,28 @@
                   [routerLink]="['/info']"
                   class="nav-list-button" (click)="closeOffcanvas()">
                       <div class="nav-list-box last-item uk-flex">
-                        <img class="nav-list-icon" src="assets/icons/info.svg" alt=""><span>Rules</span>
+                        <img class="nav-list-icon" src="assets/icons/info.svg" alt=""><span>Terms & Conditions</span>
                       </div>
                   </a>
                 </li>
+                <li>
+                    <a 
+                    [routerLink]="['/cashback']"
+                    class="nav-list-button" (click)="closeOffcanvas()">
+                        <div class="nav-list-box uk-flex">
+                          <img class="nav-list-icon" src="assets/icons/language.svg" alt=""><span>Language</span>
+                          </div>
+                    </a>
+                  </li>
               </ul>
-              <div class="offcanvas-footer" >
+              <!-- <div class="offcanvas-footer" >
                   <p style="padding-left: 22px">Support: 1234 (toll free) or <a href="mailto:support.mts@gu-group.ru" class="uk-button-link" style="text-decoration:underline">support@gugroup.com</a>
                     
                     <br>18+ | © 2019 GU Group. All rights reserved.
 
                   </p>
                  
-               </div>
+               </div> -->
             </div>
           </div>
         </div>

@@ -27,37 +27,38 @@
   <div class="results uk-text-center uk-child-width-1-3 uk-grid-collapse uk-grid-divider" uk-grid>
     <div>
       <div class="number">
-        {{totalGamesCount || '-'}}
+        {{bestResultToday || '0'}}
       </div>
       <div class="text">
-        Total Games
+        Points
       </div>
     </div>
     <div>
       <div class="number">
-        {{bestResultAllTime || '-'}}
+        {{totalGamesCount || '0'}}
       </div>
-      <div class="text">Best Score Ever</div>
+      <div class="text">Games played</div>
     </div>
     <div>
       <div class="number">
-        {{bestResultToday || '-'}}
+        {{bestResultAllTime || '0'}}
+        
       </div>
-      <div class="text">Best Score Today</div>
+      <div class="text">Best Score</div>
     </div>
   </div>
-  <div class="cashback"  uk-grid routerLink="/cashback">
-    <div class="uk-width-expand label">Cashback</div>
-    <div class="uk-width-auto amount">{{_cashBackAmount}} $<span uk-icon="chevron-right"></span></div>
+  <div class="cashback"  >
+    <!-- <div class="uk-width-expand label">Cashback</div>
+    <div class="uk-width-auto amount">{{_cashBackAmount}} $<span uk-icon="chevron-right"></span></div> -->
   </div>
   <div class="days-summary" uk-grid routerLink="/cashback">
     <div class="uk-width-expand label">Days on service</div>
     <!--Games in the game-->
-    <div class="uk-width-auto">{{_daysInGame}}</div>
+    <div class="uk-width-auto" style="font-size: 20px;font-weight: bold;color: #ff6600;">{{_daysInGame}}</div>
   </div>
   <div class="buttons-container uk-container uk-text-center">
     <!--Go to Settings-->
-    <app-button [secondary]="true" (click)="showSettingsView()">Settings</app-button>
+    <button class="uk-button uk-button-default play-button uk-width-1-1" (click)="showSettingsView()">Settings</button>
   </div>
   <br>
   <br>

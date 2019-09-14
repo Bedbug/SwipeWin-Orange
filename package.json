@@ -21,6 +21,7 @@
     "@angular/http": "^6.1.0",
     "@angular/platform-browser": "^6.1.0",
     "@angular/platform-browser-dynamic": "^6.1.0",
+    "@angular/pwa": "^0.803.4",
     "@angular/router": "^6.1.0",
     "ajv": "^6.9.1",
     "angular-http-server": "^1.9.0",

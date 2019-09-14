@@ -6,7 +6,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
-import { environment } from 'src/environments/environment';
+// import { environment } from 'src/environments/environment';
 import { HomeComponent } from './home/home.component';
 import { WinnersComponent } from './winners/winners.component';
 import { FaqComponent } from './faq/faq.component';
@@ -49,6 +49,8 @@ import { FreetimeresultComponent } from './freetimegame/freetimeresult/freetimer
 import { LoginComponent } from './login/login.component';
 import { CookieService } from 'ngx-cookie-service';
 import { DeviceDetectorModule } from 'ngx-device-detector';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 const appRoutes: Routes = [
 {
@@ -160,7 +162,8 @@ imports: [
     GravatarModule,
     Ng2ImgMaxModule,
     DeviceDetectorModule.forRoot(),
-    LottieAnimationViewModule.forRoot()
+    LottieAnimationViewModule.forRoot(),
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
 ],
 providers: [
     SessionService,

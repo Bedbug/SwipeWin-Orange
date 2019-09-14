@@ -154,6 +154,10 @@ export class SettingsComponent implements OnInit {
     this.router.navigate(['/profile']);
   }
   
+  goHome() {
+    this.router.navigate(['home']);
+  }
+  
   logOut() {
     console.log("LoggingOut!");
     const allCookies: {} = this.cookieService.getAll();

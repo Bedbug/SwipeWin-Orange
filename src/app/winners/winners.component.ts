@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {  DataService } from  '../data.service';
+import { Router } from '@angular/router';
 import {  Observable } from 'rxjs';
  
 @Component({
@@ -17,7 +18,7 @@ export class WinnersComponent implements OnInit {
   
   
   
-  constructor(private data: DataService) { }
+  constructor(private data: DataService, private router: Router,) { }
  
   
   doAlert(){
@@ -70,6 +71,10 @@ export class WinnersComponent implements OnInit {
         }
       );
       
+  }
+
+  goHome() {
+    this.router.navigate(['home']);
   }
 
   formatDate(stringDate){

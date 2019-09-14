@@ -42,18 +42,19 @@
   }
   thead {
     th {
-      font-size: 17px;
+      font-size: 25px;
       font-weight: bold;
       font-style: normal;
       font-stretch: normal;
       line-height: normal;
       letter-spacing: normal;
-      color: #ffffff;
+      color: #ff6600;
       text-transform: none;
+      text-align: center;
     }
   }
   td {
-    background-color: #ffffff;
+    // background-color: #ffffff;
     font-size: 17px;
     font-weight: normal;
     font-style: normal;
@@ -86,7 +87,35 @@
     }
   }
 }
+.uk-table-divider > tr:not(:first-child), .uk-table-divider > :not(:first-child) > tr, .uk-table-divider > :first-child > tr:not(:first-child) {
+  border-top: 1px solid #000000;
+}
 
+.info-text {
+  border-radius: 25px;
+    // box-shadow: 0 2px 20px 0 rgba(60, 61, 64, 0.1), 0 2px 4px 0 rgba(55, 55, 56, 0.2);
+    background-color: #1d1d1d;
+    font-size: 14px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.43;
+    letter-spacing: normal;
+    color: #ffffff;
+    padding: 15px;
+    margin: 16px;
+  .info-header {
+    font-size: 17px;
+    font-weight: bold;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    color: #001424;
+    margin-top: 23px;
+  }
+
+}
 
 @media (min-width: 768px) and  (min-height: 981px){
   .main-footer{

@@ -1,8 +1,8 @@
 .button {
-  border-radius: 17px;
+  border-radius: 20px;
   margin-bottom: 12px;
   border:none;
-  font-size: 16px;
+  font-size: 20px;
   font-weight: bold;
   font-style: normal;
   font-stretch: normal;
@@ -12,8 +12,8 @@
   min-height:44px;
   text-transform: none;
   &_secondary {
-    background-image: linear-gradient(to bottom, #ffffff, #fcfcfc 19%, #efefef 41%, #f0f0f0 88%, #ffffff);
-    color: #001424;
+    background-image: linear-gradient(to bottom, #ff6600, #ff6600 19%, #ff6600 41%, #ff6600 88%, #ff6600);
+    color: #ffffff;
   }
   &_primary {
     // box-shadow: 0 9px 18px 0 rgba(89, 247, 74, 0.2);
@@ -33,6 +33,7 @@
     &_white {
       color: white;
       margin-bottom: 12px;
+      text-decoration:underline;
     }
   }
   &_outlined {

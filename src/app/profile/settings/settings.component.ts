@@ -88,7 +88,7 @@ export class SettingsComponent implements OnInit {
       // wanna inform the user here?
       //this._cashback = this.sessionService.cashback;
       // Initiate user authentication
-      this.dataService.authenticateRedirect();
+      // this.dataService.authenticateRedirect();
     }
     else {
       this.token = this.sessionService.token;

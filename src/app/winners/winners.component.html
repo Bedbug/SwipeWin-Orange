@@ -1,56 +1,22 @@
 
 <div class="winners-component">
-<!--  <div class="buttons-container uk-container uk-text-center">-->
-<!--  <div class="period-selector">-->
-<!--    <div class="uk-button-group uk-width-1-1">-->
-<!--      <div class="uk-button uk-width-1-2 " (click)="doAlert()" [ngClass]="showDay ? 'active' : ''">За сегодня</div>-->
-<!--      <div class="uk-button uk-width-1-2" (click)="doAlert()" [ngClass]="!showDay ? 'active' : ''">За месяц</div>-->
-<!--    </div>-->
-<!--  </div>-->
-<!--</div>-->
-<div class="buttons-container uk-container">
+
+<div class="buttons-container uk-container info-text">
   <table class="uk-table uk-table-divider">
     <thead>
       <tr >
-        <th style="width:33%">Date</th>
-        <th style="width:34%">Winner</th>
-        <th style="width:33%">Prize</th>
+        <th style="width:50%">Prize</th>
+        <th style="width:50%">Date</th>
       </tr>
     </thead>
     <tr *ngFor = "let winner of dailyWinners$; let i = index" [hidden]="!showDay || !dailyWinners$">
-      <td>{{winner.winDate}}</td>
-      <td>{{winner.msisdn}} - {{winner.username}}</td>
       <td>{{winner.winSum}}</td>
+      <td>{{winner.winDate}}</td>
     </tr>
-    <!--<tr *ngFor = "let winner of monthlyWinners$; let i = index" [hidden]="showDay || !monthlyWinners$">-->
-    <!--  <td>{{winner.winDate}}</td>-->
-    <!--  <td>{{winner.msisdn}} - {{winner.username}}</td>-->
-    <!--</tr>-->
+    
   </table>
+  
 </div>
-
-  <!--// Dailly-->
-  <!--<div class="buttons-container uk-container uk-text-center">-->
-  <!--  <button class="uk-button uk-button-default uk-width-1-1 more-button" (click)="sliceNum = sliceNum + 5" [hidden]="!dailyWinners$ || !showDay || dailyWinners$.length < 5 ">Показать-->
-  <!--    еще</button>-->
-  <!--</div>-->
-  <!--<div class="buttons-container uk-container uk-text-center">-->
-  <!--  <button class="uk-button uk-button-default uk-width-1-1 more-button" (click)="sliceNum = sliceNum - 5" [hidden]="!dailyWinners$ || !showDay || dailyWinners$.length < 5 ">Show Less</button>-->
-  <!--</div>-->
-  <!--// Monthly-->
-  <!--<div class="buttons-container uk-container uk-text-center">-->
-  <!--  <button class="uk-button uk-button-default uk-width-1-1 more-button" (click)="sliceNum = sliceNum + 5" [hidden]="!monthlyWinners$ || showDay || monthlyWinners$.length < 5 ">Показать-->
-  <!--    еще</button>-->
-  <!--</div>-->
-  <!--<div class="buttons-container uk-container uk-text-center">-->
-  <!--  <button class="uk-button uk-button-default uk-width-1-1 more-button" (click)="sliceNum = sliceNum - 5" [hidden]="!monthlyWinners$ || showDay || monthlyWinners$.length < 5 ">Show Less</button>-->
-  <!--</div>-->
+<app-button [secondary]="true" class="btn" (click)="goHome()">Go Back</app-button>
 </div>
- <!--<tr *ngFor = "let winner of monthlyWinners$  | slice:0:sliceNum; let i=index" [hidden]="!showDay">-->
-<!-- <div class="main-footer uk-container" >-->
-<!--  Служба поддержки:  111777 (бесплатно) или отправьте письмо на support@gu-group.ru-->
-<!--Услуга оказывается МТС совместно с партнером "ДжЮ Груп". Акция проходит под контролем независимого наблюдателя-->
-<!--    <p style="padding-left: 22px">Support: 1234 (toll free) or <a href="mailto:support.mts@gu-group.ru" class="uk-button-link" style="text-decoration:underline">support@gugroup.com</a>-->
-<!--    <br>18+ | © 2019 GU Group. All rights reserved.-->
-<!--    </p>-->
-<!--</div>-->
+ 

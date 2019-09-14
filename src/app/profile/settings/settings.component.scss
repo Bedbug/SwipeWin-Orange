@@ -19,17 +19,18 @@
 
   }
   .active {
-    background-color: #fff;
+    background-color: #ff6600;
     color: #001424;
     font-weight: bold;
     label {
-      color: black;
+      color: rgb(255, 255, 255);
       
     }
   }
   .label {
     color: #ffffff;
     text-align: left;
+    font-weight: bold;
   }
 
   .uk-button {
@@ -37,8 +38,9 @@
     font-size: 16px;
     line-height: 1.25;
     text-align: center;
-    color: #ffffff;
-    padding: 12px;
+    color: #ff6600;
+    padding: 5px;
+    font-weight: bold;
   }
   label {
     width: 50%;
@@ -129,4 +131,12 @@
     line-height: 1.43;
     color: #6e7782;
   }
+}
+
+.button_secondary{
+  font-weight: bold;
+}
+.button_secondary[_ngcontent-c3] {
+  background-image: linear-gradient(to bottom, #ffffff, #fcfcfc 19%, #efefef 41%, #f0f0f0 88%, #ffffff);
+  color: #ffffff;
 }

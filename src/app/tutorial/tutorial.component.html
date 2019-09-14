@@ -75,7 +75,7 @@
             </div>
             <h3>Swipe Left or Right</h3>
             <div class="item__description">
-              <p>Answer questions by swiping photos left or right <br>or<br> by pressing  the corresponding button.</p>
+              <p>All you have to do is Swipe right<br>for Yes or left for No</p>
             </div>
           </div>
         </li>
@@ -84,20 +84,9 @@
             <div class="item__image">
               <img src="assets/icons/icon-timer.svg" alt="">
             </div>
-            <h3>Game Time</h3>
+            <h3>55 seconds per game</h3>
             <div class="item__description">
-              <p>You have 45 seconds to answer as many questions as possible. For each wrong answer you lose 5 seconds.</p>
-            </div>
-          </div>
-        </li>
-        <li>
-          <div class="item">
-            <div class="item__image">
-              <img src="assets/icons/icon-prize.svg" alt="">
-            </div>
-            <h3>Special Prizes</h3>
-            <div class="item__description">
-              <p>During each game you come across special questions. Answer correctly and get instant Cashback prizes!</p>
+              <p>Remember: Every wrong question<br>decreases the time 5 seconds</p>
             </div>
           </div>
         </li>
@@ -106,31 +95,30 @@
             <div class="item__image">
               <img src="assets/icons/score.svg" alt="">
             </div>
-            <h3>Play More</h3>
+            <h3>Gather points</h3>
             <div class="item__description">
-              <p>Want to improve your score? Buy additional games.</p>
+              <p>Build up points and you can be the<br>next Orange Swipe & Win winner<br>Enter via the app & get extra points</p>
             </div>
           </div>
         </li>
         <li>
           <div class="item">
             <div class="item__image">
-              <img src="assets/images/coins.svg" alt="">
+              <img src="assets/icons/icon-prize.svg" alt="">
             </div>
-            <h3>Prizes</h3>
+            <h3>55,000 EGP are waiting</h3>
             <div class="item__description">
-              <p>Daily Prize: 10,000$ ! 
-                Monthly Prize: 100,000$ !
-                The player with the best result of the day wins the day’s prize!</p>
+              <p>The top-scorer of the month wins</p>
             </div>
           </div>
         </li>
+        
       </ul>
       <ul class="uk-slideshow-nav uk-dotnav uk-flex-center "></ul>
     </div>
   <div class="buttons-container uk-container uk-text-center" style="max-width:600px" >
     <!--<app-button [primary]="true">Далее</app-button>-->
-    <app-button [primary]="true"(click)="changeTutorialFlag()">Skip</app-button>
+    <app-button [secondary]="true"(click)="changeTutorialFlag()">Skip</app-button>
   </div>
   </div>
  

@@ -59,10 +59,10 @@
   <div class="buttons-container uk-container uk-text-center">
     <!--Toggle Unsubscribe-->
     
-    <app-button [secondary]="true" class="btn" (click)="sendMail()">Help</app-button>
+    <!-- <app-button [secondary]="true" class="btn" (click)="sendMail()">Help</app-button> -->
     <app-button [secondary]="true" class="btn" (click)="saveData()" >Save</app-button>
-    <app-button [link_button]="true" [link_button_white]="true" (click)="logOut()" >Log Out</app-button>
-    <app-button [link_button]="true" [link_button_white]="true" class="btn unsubscribe" uk-toggle="target: #unsubscribe">Unsubscribe</app-button>
+    <app-button [link_button]="true" [link_button_white]="true" (click)="logOut()" style="text-decoration:underline">Log Out</app-button>
+    <!-- <app-button [link_button]="true" [link_button_white]="true" class="btn unsubscribe" uk-toggle="target: #unsubscribe">Unsubscribe</app-button> -->
   </div>
   
   <!--Toggled Modal-->
@@ -72,13 +72,12 @@
     </div>
   </div>
 </div>
-<div class="main-footer uk-container" >
-<!--  Служба поддержки:  111777 (бесплатно) или отправьте письмо на support@gu-group.ru-->
-<!--Услуга оказывается МТС совместно с партнером "ДжЮ Груп". Акция проходит под контролем независимого наблюдателя-->
+<!-- <div class="main-footer uk-container" >
+
    <p>Support: 1234 (toll free) or <a href="mailto:support.mts@gu-group.ru" class="uk-button-link" style="text-decoration:underline">support@gugroup.com</a>
       <br>18+   |      © 2019 GU Group. All rights reserved.
     </p>
-</div>
+</div> -->
   
   <!--<div id="error" class="uk-flex-top" uk-modal>-->
   <!--  <div class="uk-modal-dialog uk-modal-body uk-margin-auto-vertical">-->

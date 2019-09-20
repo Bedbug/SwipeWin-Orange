@@ -32,7 +32,7 @@
     box-sizing: border-box;
     margin: 5px auto 15px;
     $border: 5px;
-    background: #fff;
+    background: #1d1d1d;
     background-clip: padding-box; /* !importanté */
     border: solid $border transparent; /* !importanté */
     border-radius: 50%;
@@ -43,7 +43,7 @@
       z-index: -1;
       margin: -$border; /* !importanté */
       border-radius: inherit; /* !importanté */
-      background: linear-gradient(to top, #ffd363, #ffe791);
+      background: linear-gradient(to top, #ff6600, #ff6600);
     }
     &__number {
       font-size: 26px;

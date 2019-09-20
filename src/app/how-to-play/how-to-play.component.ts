@@ -50,4 +50,8 @@ export class HowToPlayComponent implements OnInit {
     this.router.navigate(['home']);
   }
 
+  goHome() {
+    this.router.navigate(['home']);
+  }
+
 }

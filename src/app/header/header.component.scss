@@ -1,6 +1,6 @@
 .header{
   position: fixed;
-  z-index: 99999999;
+  z-index: 100;
   width: 100%;
   .uk-navbar-container{
     background: black;
@@ -125,16 +125,16 @@
     
 }
 #offcanvas-nav .nav-list-box span {
-    padding-top: 18px;
+    padding-top: 15px;
+    padding-left: 15px;
 }
 
 #offcanvas-nav .nav-list-box {
-  /*border-width: thin; */
-  border-bottom: 1px solid rgb(0, 0, 0) !important;
-  padding: 20px;
-  padding-right: 0;
-  margin-left: 14px;
-  padding-left: 7px;
+  border-bottom: 1px solid black !important;
+    padding: 15px;
+    padding-right: 0;
+    margin-left: 14px;
+    padding-left: 7px;
 }
 
 .mts-logo{
@@ -147,3 +147,11 @@
     padding-right: 1rem;
   }
 }
+
+#offcanvas-nav .nav-list-icon {
+  width: 25px;
+  vertical-align: sub;
+  margin-right: 10px;
+  padding-top: 2px;
+}
+

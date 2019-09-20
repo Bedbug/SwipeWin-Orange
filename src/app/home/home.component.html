@@ -2,7 +2,7 @@
   <img src="assets/images/gulogo.svg" alt="">
 </div> -->
 
-<div class="slideshow-container" *ngIf="!showLogin" uk-slideshow="animation: fade; min-height: 200; max-height: 600; autoplay: true; autoplay-interval: 1000; pause-on-hover: false;" >
+<div class="slideshow-container" *ngIf="!showLogin" uk-slideshow="animation: fade; min-height: 400; max-height: 600; autoplay: true; autoplay-interval: 1000; pause-on-hover: false;" >
 
   <div class="uk-position-relative uk-visible-toggle uk-light" tabindex="-1">
     
@@ -12,16 +12,15 @@
       <li class="list-wrapper">
         <!-- <img src="assets/images/lights.png" alt="" uk-cover> -->
       <div class="uk-position-center uk-position-small uk-text-center uk-light">
-        <h3 class="uk-margin">Answer
-          <br>
-          <span class="yellow-text">
-            Yes or No,
-          </span>
-  <br>
-  as fast as possible to claim the prizes!</h3>
+          <div class="vector">
+              <img class="icon" style="width: 300px;" src="assets/icons/prize.png" alt=""/>
+            </div>
+        
+        <span style="font-weight: bold; font-size: 30px; color: white;">55,000 EGP in Cash</span><br>
+        <span style=" font-size: 20px; color: white;">every month</span>
       </div>
       </li>
-      <li class="list-wrapper">
+      <!-- <li class="list-wrapper">
         <div class="uk-position-center uk-position-small uk-text-center uk-light">
           <div class="vector">
             <img src="assets/images/coin-1.svg" alt="">
@@ -61,7 +60,7 @@
             </div>
           </div>
         </div>
-      </li>
+      </li> -->
     </ul>
 
     <ul class="uk-slideshow-nav uk-dotnav uk-flex-center "></ul>
@@ -130,14 +129,14 @@
   </div> -->
 </div>
 
-<div *ngIf="isHasCashback">
+<!-- <div *ngIf="isHasCashback">
     <h4 class="title">Cashback Won</h4>
     <div class="cashback" uk-grid routerLink="/cashback">
       <div class="uk-width-expand label">Cashback</div>
       <div class="uk-width-auto amount">100$ <span uk-icon="chevron-right"></span></div>
     </div>
     
-  </div>
+  </div> -->
 <!-- <div class="main-footer uk-container">
     <span>1st day free then 0.50$ /day</span>
     <br>
@@ -151,7 +150,7 @@
   <!--<a  [routerLink]="['/info']" style="color: white;font-weight: bold;text-decoration: underline; ">Правила игры</a>-->
   <!-- <a  (click)="playGame($event)" style="color: white;font-weight: bold;text-decoration: underline; ">Already Subscriber</a>
 </div> -->
-<div class="main-footer uk-container" *ngIf="isSubscribed && !showLogin" style="text-align: center;position: absolute;bottom: 0px;width: -webkit-fill-available; font-size: 15px;">
+<div class="main-footer uk-container" *ngIf="isSubscribed && !showLogin" style="text-align: center;">
   1st day free then 2 pounds /day
   <br>
   <p>

@@ -24,8 +24,8 @@
     <p class="hint" *ngIf="cashbackAmount == 0">Prize of the day 10,000 $</p>
     
     <!--If there are available games to buy play another game-->
-    <app-button [outlined]="true" *ngIf="_gamesPlayed < 3" class="uk-modal-close" (click)="startGame()" >Play Again</app-button>
-    <app-button [primary]="true"   class="uk-modal-close" (click)="goHomeWithLogin()" >Subscribe</app-button>
+    <app-button [secondary]="true" *ngIf="_gamesPlayed < 3" class="uk-modal-close" (click)="startGame()" >Play Again</app-button>
+    <!-- <app-button [primary]="true"   class="uk-modal-close" (click)="goHomeWithLogin()" >Subscribe</app-button> -->
     <div class="message-container" style="text-align: center;">
       <span>1st day free then 0.50$ /day</span>
       <!--<br>-->

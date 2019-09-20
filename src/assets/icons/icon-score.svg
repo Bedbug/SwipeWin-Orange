@@ -60,11 +60,11 @@
        y2="100%"
        id="linearGradient-1">
       <stop
-         stop-color="#00CAC9"
+         stop-color="#ff6600"
          offset="0%"
          id="stop6" />
       <stop
-         stop-color="#00C6C0"
+         stop-color="#ff6600"
          offset="100%"
          id="stop8" />
     </linearGradient>
@@ -75,11 +75,11 @@
        y2="100%"
        id="linearGradient-2">
       <stop
-         stop-color="#00BFCA"
+         stop-color="#ff6600"
          offset="0%"
          id="stop11" />
       <stop
-         stop-color="#009BAB"
+         stop-color="#ff6600"
          offset="100%"
          id="stop13" />
     </linearGradient>
@@ -90,11 +90,11 @@
        y2="3.061617e-15%"
        id="linearGradient-3">
       <stop
-         stop-color="#F7921A"
+         stop-color="#ff6600"
          offset="0%"
          id="stop16" />
       <stop
-         stop-color="#FFBA60"
+         stop-color="#ff6600"
          offset="100%"
          id="stop18" />
     </linearGradient>
@@ -105,11 +105,11 @@
        y2="100%"
        id="linearGradient-4">
       <stop
-         stop-color="#00BFCA"
+         stop-color="#ff6600"
          offset="0%"
          id="stop21" />
       <stop
-         stop-color="#009BAB"
+         stop-color="#ff6600"
          offset="100%"
          id="stop23" />
     </linearGradient>

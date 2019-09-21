@@ -79,7 +79,7 @@
 6. if not, alert that he has reached maximum. -->
 
 <!-- WI-FI LOGIN -->
-<div class="buttons-container uk-container uk-text-center" *ngIf="!AutoLogin && !openVerify" tabindex="-1">
+<div class="buttons-container uk-container uk-text-center" *ngIf="!AutoLogin && !openVerify && !loggedin" tabindex="-1">
  
   <div class="buttons-container uk-container uk-text-center"  >
     
@@ -96,13 +96,7 @@
     
     <div class="buttons-container uk-container uk-text-center">
       <button class="uk-button uk-button-default play-button uk-width-1-1" (click)="CheckN(number.value)">Subscribe/Login</button> 
-    </div>
-    <!-- <div class="message-container">
-      <p style="color:white;">By clicking the Log in button you confirm that you<br> <a  [routerLink]="['/info']" style="color:white; text-decoration: underline;">have read and agreed to the game rules.</a>
-      </p>
-      
-    </div> -->
-    
+    </div>   
   </div>
   </div>
 <!--END OF WIFI LOGIN-->
@@ -124,18 +118,11 @@
               <input #pin class="uk-input " type="{{passType}}" placeholder="....">
           </div>
       </div>
-      <!-- <div class="uk-margin">
-          <div class="uk-inline uk-width-1-1">
-              <span class="uk-form-icon" uk-icon="icon: lock"></span>
-              <input #pass class="uk-input uk-border-rounded" type="text" placeholder="password">
-              
-          </div>
-      </div> -->
     </form>
     
     <div class="buttons-container uk-container uk-text-center">
-      <button class="uk-button uk-button-default play-button uk-width-1-1" *ngIf="_isSubscribed" (click)="verify(pin.value)">Login</button> 
-      <button class="uk-button uk-button-default play-button uk-width-1-1" *ngIf="_isSubscribed == false" (click)="verify(pin.value)">Subscribe</button>
+      <button class="uk-button uk-button-default play-button uk-width-1-1" *ngIf="_isSubscribed" (click)="VerifyLogPin(pin.value)">Login</button> 
+      <button class="uk-button uk-button-default play-button uk-width-1-1" *ngIf="_isSubscribed == false" (click)="VerifySubPin(pin.value)">Subscribe</button>
     </div>
     <div class="message-container" style="margin-top: 30px;">
       <p style="color:rgb(0, 0, 0); font-weight: bold; font-size: 20px;"><a  [routerLink]="['/info']" style="color:rgb(255, 255, 255); text-decoration: underline;">Resend PIN</a>
@@ -146,6 +133,31 @@
   </div>
   </div>
 <!--END OF OTP-->
+
+<!--PLAY BUTTONS-->
+<div class="buttons-container uk-container uk-text-center" *ngIf="loggedin" tabindex="-1">
+  <!-- <div class="message-container" style="margin-top: 100px">
+    <p style="font-size: 22px;color: rgb(255, 255, 255);text-align: center;">Please enter the 4-digit PIN code received to your mobile</p>
+    
+  </div> -->
+  <div class="buttons-container uk-container uk-text-center"  style="max-width: 595px; margin-bottom: 50px;">
+    
+    <!-- <h4 style="color:white;">Insert your phone number and password to login</h4> -->
+    
+    
+    <div class="buttons-container uk-container uk-text-center">
+      <button class="uk-button uk-button-default play-button uk-width-1-1" *ngIf="_isSubscribed" (click)="VerifyLogPin(pin.value)">Play now</button> 
+      <button class="uk-button uk-button-default play-button uk-width-1-1" *ngIf="_isSubscribed == false" (click)="VerifySubPin(pin.value)">Buy a new round</button>
+    </div>
+    <!-- <div class="message-container" style="margin-top: 30px;">
+      <p style="color:rgb(0, 0, 0); font-weight: bold; font-size: 20px;"><a  [routerLink]="['/info']" style="color:rgb(255, 255, 255); text-decoration: underline;">Resend PIN</a>
+      </p>
+      
+    </div> -->
+    
+  </div>
+  </div>
+<!--END OF PLAY BUTTONS-->
 
 <!-- <div class="buttons-container uk-container uk-text-center" *ngIf="!showLogin">
   <button class="uk-button uk-button-default demo-button uk-width-1-1" (click)="playDemoGame($event)">Play Demo Game</button> 

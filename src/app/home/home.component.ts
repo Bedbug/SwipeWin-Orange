@@ -5,6 +5,10 @@ import { LocalizationService } from '../localization.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import UIkit from 'uikit';
+import { createPipeInstance } from '@angular/core/src/view/provider';
+import { debug } from 'util';
+
+// import * as libphonenumber from 'google-libphonenumber';
 
 @Component({
   selector: 'app-home',
@@ -12,11 +16,12 @@ import UIkit from 'uikit';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-    loginOn: number;
+  loginOn: number;
   AutoLogin: boolean;
   openVerify: boolean;
   lblShow:boolean = true;
   passType: string = "password";
+  loggedin: boolean;
   
   // get this form the User object
   get isHasCashback(): boolean {
@@ -138,6 +143,7 @@ export class HomeComponent implements OnInit {
       // Check AutoLogin or NOt
       this.AutoLogin = false;
       this.openVerify = false;
+      this.loggedin = false;
   }
   
   public playGame($event) {
@@ -184,18 +190,32 @@ export class HomeComponent implements OnInit {
   // Check MSISDN FOR:
   // REGISTERED
   // VALID ORANGE USER
-  CheckN( num: number) {
+  CheckN( num: string) {
     
     console.log("MSISDN: "+num);
     // Check if user is registered, send Pin to Smartlink
     this._isSubscribed = false;
     console.log("USER IS SUBED: " + this._isSubscribed);
     // If not, check if valid orange User
-
+    
     // If yes send pin to smartlink
-
+    this.CreatePin();
     // Open Pin Validation
     this.openVerify = true;
+  }
+
+  CreatePin() {
+    console.log("Creating PIN!");
+  }
+
+  VerifySubPin(pin:string) {
+    console.log("Verify PIN & subscribe User!");
+    this.openVerify = false;
+    this.loggedin = true;
+  }
+
+  VerifyLogPin(pin:string) {
+    console.log("Verify PIN & login User!");
   }
 
   OpenPass(){
@@ -232,9 +252,6 @@ export class HomeComponent implements OnInit {
       // this.router.navigate(['demogame']);
       this.router.navigate(['demogame']);
     }
-    
-  
-    
   }
 
 }

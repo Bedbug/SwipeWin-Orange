@@ -13,6 +13,10 @@ import UIkit from 'uikit';
 })
 export class HomeComponent implements OnInit {
     loginOn: number;
+  AutoLogin: boolean;
+  openVerify: boolean;
+  lblShow:boolean = true;
+  passType: string = "password";
   
   // get this form the User object
   get isHasCashback(): boolean {
@@ -24,7 +28,7 @@ export class HomeComponent implements OnInit {
     return this._isSubscribed;
   }
 
-  private _isSubscribed = true;
+  public _isSubscribed = true;
   private _isHasCashback = false;
   public demoGamesPlayed = 0;
   public errorMsg = "";
@@ -61,62 +65,42 @@ export class HomeComponent implements OnInit {
     
     ) {}
     
-  handleAnimation(anim: any) {
-        this.anim = anim;
-    }
-
-    stop() {
-        this.anim.stop();
-    }
-
-    play() {
-        this.anim.play();
-    }
-
-    pause() {
-        this.anim.pause();
-    }
-
-    setSpeed(speed: number) {
-        this.animationSpeed = speed;
-        this.anim.setSpeed(speed);
-    }
   
   ngOnInit() {
     
-    this.lottieConfig = {
-            path: 'assets/logoanim.json',
-            renderer: 'svg',
-            autoplay: true,
-            loop: false,
-            rendererSettings: {
-              progressiveLoad:true,
-              preserveAspectRatio: 'xMidYMid meet',
-              imagePreserveAspectRatio: 'xMidYMid meet',
-              title: 'TEST TITLE',
-              description: 'TEST DESCRIPTION',
-          }
-        };
+    // this.lottieConfig = {
+    //         path: 'assets/logoanim.json',
+    //         renderer: 'svg',
+    //         autoplay: true,
+    //         loop: false,
+    //         rendererSettings: {
+    //           progressiveLoad:true,
+    //           preserveAspectRatio: 'xMidYMid meet',
+    //           imagePreserveAspectRatio: 'xMidYMid meet',
+    //           title: 'TEST TITLE',
+    //           description: 'TEST DESCRIPTION',
+    //       }
+    //     };
     
     // Get Login On From LocalStorage
-    this.loginOn = 0;
-    this.loginOn = +localStorage.getItem('loginOn');
+    // this.loginOn = 0;
+    // this.loginOn = +localStorage.getItem('loginOn');
     
-    if(this.loginOn != 1) console.log("Login is Off");
-    if(this.loginOn == 1) {
-     this.showLogin = true;
-      console.log("Login is On");
-    }
-    // This Resets Every time the demo games played
-    // localStorage.setItem('demoGamesPlayed', "0");
-    this.lastDemoPlayed = new Date( (localStorage.getItem('lastDemoPlayed')) );
-    console.log("Last Time Played: "+this.lastDemoPlayed);
-    console.log("Now: "+this.now);
+    // if(this.loginOn != 1) console.log("Login is Off");
+    // if(this.loginOn == 1) {
+    //  this.showLogin = true;
+    //   console.log("Login is On");
+    // }
+    // // This Resets Every time the demo games played
+    // // localStorage.setItem('demoGamesPlayed', "0");
+    // this.lastDemoPlayed = new Date( (localStorage.getItem('lastDemoPlayed')) );
+    // console.log("Last Time Played: "+this.lastDemoPlayed);
+    // console.log("Now: "+this.now);
       
-    let hours = Math.abs((this.now.getTime() - this.lastDemoPlayed.getTime()) / 3600000)
-    if( hours > 1) localStorage.setItem('demoGamesPlayed', "0");
+    // let hours = Math.abs((this.now.getTime() - this.lastDemoPlayed.getTime()) / 3600000)
+    // if( hours > 1) localStorage.setItem('demoGamesPlayed', "0");
     
-    console.log("Substract Dates: " + hours);
+    // console.log("Substract Dates: " + hours);
     // Check if we have any errorCode in the url, coming from another angular state
     this.activatedRoute.queryParams.subscribe(params => {
           const errorCode = params["errorCode"];
@@ -150,6 +134,10 @@ export class HomeComponent implements OnInit {
         this.localizationService.init(this.sessionService.gameSettings.localization);
       },
       err => {});
+
+      // Check AutoLogin or NOt
+      this.AutoLogin = false;
+      this.openVerify = false;
   }
   
   public playGame($event) {
@@ -191,6 +179,32 @@ export class HomeComponent implements OnInit {
     // Run or Go to returnHome
     this.router.navigate(['/auth-callback'], { queryParams: { code: user } });
     localStorage.setItem('loginOn', "0");
+  }
+
+  // Check MSISDN FOR:
+  // REGISTERED
+  // VALID ORANGE USER
+  CheckN( num: number) {
+    
+    console.log("MSISDN: "+num);
+    // Check if user is registered, send Pin to Smartlink
+    this._isSubscribed = false;
+    console.log("USER IS SUBED: " + this._isSubscribed);
+    // If not, check if valid orange User
+
+    // If yes send pin to smartlink
+
+    // Open Pin Validation
+    this.openVerify = true;
+  }
+
+  OpenPass(){
+    this.lblShow = !this.lblShow;
+    console.log("Hide/Show Password: " + this.lblShow);
+    if(this.lblShow)
+      this.passType = "password";
+    else
+      this.passType = "test";
   }
   
   // Check the number of games played in demo mode

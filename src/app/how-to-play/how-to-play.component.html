@@ -1,5 +1,5 @@
 <div class="header_title">
-  <span class="inside_text">How to play</span>
+  <span class="inside_text">{{ 'HOW.HOW' | translate }}</span>
 </div>
 
 <div class="buttons-container uk-container uk-text-center">
@@ -7,27 +7,21 @@
     margin-left: auto;
     margin-right: auto;">
   <img class="icon" src="assets/icons/icon-check.svg" alt=""/>
-  <div class="item">
-    Subscribe to Swipe & Win,<br> play the game and claim the Prizes.
-  </div>
+  <div class="item">{{ 'HOW.MES_01' | translate }}<br>{{ 'HOW.MES_01b' | translate }}</div>
   <img class="icon" src="assets/icons/icon-swipe.svg" alt=""/>
-  <div class="item">
-    Answer questions by swiping <br>photos left.</div>
+  <div class="item">{{ 'HOW.MES_02' | translate }}<br>{{ 'HOW.MES_02b' | translate }}</div>
   <img class="icon" src="assets/icons/icon-timer.svg" alt=""/>
-  <div class="item">
-    You have 45 seconds to answer<br> as many question as possible.</div>
+  <div class="item">{{ 'HOW.MES_03' | translate }}<br>{{ 'HOW.MES_03b' | translate }}</div>
   <img class="icon" src="assets/icons/icon-5s.svg" alt=""/>
-  <div class="item">
-    Be careful! For each wrong answer<br> you lose 5 seconds.</div>
+  <div class="item">{{ 'HOW.MES_04' | translate }}<br>{{ 'HOW.MES_04b' | translate }}</div>
   <img class="icon" src="assets/icons/icon-prize.svg" alt=""/>
-  <div class="item">
-    Want to improve your score?<br> Buy additional games</div>
+  <div class="item">{{ 'HOW.MES_05' | translate }}<br>{{ 'HOW.MES_05b' | translate }}</div>
   
 </div>
 </div>
 <div class="buttons-container uk-container uk-text-center">
  
-  <button class="uk-button uk-button-default play-button uk-width-1-1" *ngIf="isActive" (click)="goHome()">Go Back</button>
+  <button class="uk-button uk-button-default play-button uk-width-1-1" *ngIf="isActive" (click)="goHome()">{{ 'HOW.BACK' | translate }}</button>
   <!--<button class="uk-button uk-button-default play-button uk-width-1-1" style="background-image: linear-gradient(to bottom, #ffffff, #c3c3c3 16%, #acacac 84%, #c5c5c5);" *ngIf="!isActive" >Подписаться</button>-->
   <!-- <button *ngIf="_gamesPlayed >= 3 && !isActive" class="uk-button uk-button-default play-button uk-width-1-1" (click)="startGame()">Play for 0.50$</button>
   <button *ngIf="_gamesPlayed > 0 && _gamesPlayed < 3  && !isActive" class="uk-button uk-button-default play-button uk-width-1-1" (click)="startGame()" >Play for 0.50$</button>

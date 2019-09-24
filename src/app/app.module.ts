@@ -37,7 +37,7 @@ import { Ng2PhaserDirective } from './ng2-phaser.directive';
 import { DemogameComponent } from './demogame/demogame.component';
 import { ResultdemoComponent } from './game/resultdemo/resultdemo.component';
 import { Globals } from './globals';
-import { LottieAnimationViewModule } from 'ng-lottie';
+// import { LottieAnimationViewModule } from 'ng-lottie';
 // import { PhaserModule } from 'phaser-component-library';
 //import { NG2_PHASER } from 'ang2-phaser/ng2phaser';
 // Import your AvatarModule
@@ -51,6 +51,18 @@ import { CookieService } from 'ngx-cookie-service';
 import { DeviceDetectorModule } from 'ngx-device-detector';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
+
+// Translate
+
+import { HttpClient} from '@angular/common/http';
+import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
+import {TranslateHttpLoader} from '@ngx-translate/http-loader';
+
+
+// AoT requires an exported function for factories
+export function HttpLoaderFactory(http: HttpClient) {
+    return new TranslateHttpLoader(http);
+}
 
 const appRoutes: Routes = [
 {
@@ -155,6 +167,13 @@ path: 'history', component: HistoryComponent
 ],
 imports: [
     BrowserModule,
+    TranslateModule.forRoot({
+        loader: {
+            provide: TranslateLoader,
+            useFactory: HttpLoaderFactory,
+            deps: [HttpClient]
+        }
+    }),
     RouterModule.forRoot(appRoutes),
     HttpClientModule,
     StorageServiceModule,
@@ -162,7 +181,7 @@ imports: [
     GravatarModule,
     Ng2ImgMaxModule,
     DeviceDetectorModule.forRoot(),
-    LottieAnimationViewModule.forRoot(),
+    // LottieAnimationViewModule.forRoot(),
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
 ],
 providers: [

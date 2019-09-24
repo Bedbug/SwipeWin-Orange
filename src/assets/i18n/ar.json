@@ -1,0 +1,74 @@
+{
+    "BURGER": {
+        "HOME": "--",
+        "PROFILE": "--",
+        "HOW": "--",
+        "PRIZES": "--",
+        "WINNERS": "--",
+        "FAQ": "--",
+        "TERMS": "--",
+        "LANG": "--"
+    },
+    "PROFILE": {
+        "PROFILE": "--",
+        "POINTS": "--",
+        "PLAYED": "--",
+        "BEST": "--",
+        "DAYS": "--",
+        "SETTINGS": "--",
+        "BACK": "--"
+    },
+    "SETT": {
+        "SETT": "--",
+        "UPLOAD": "--",
+        "SEX": "--",
+        "NAME": "--",
+        "MALE": "--",
+        "FEMALE": "--",
+        "AGE": "--",
+        "SAVE":"--",
+        "LOGOUT":"--"
+    },
+    "HOW": {
+        "HOW": "--",
+        "MES_01": "--",
+        "MES_01b": "--",
+        "MES_02": "--",
+        "MES_02b": "--",
+        "MES_03": "--",
+        "MES_03b": "--",
+        "MES_04": "--",
+        "MES_04b": "--",
+        "MES_05": "--",
+        "MES_05b": "--",
+        "BACK": "--"
+    },
+    "PRIZES": {
+        "PRIZES": "--",
+        "MES_01": "--",
+        "MES_02": "--",
+        "BACK": "--"
+    },
+    "WINNERS": {
+        "WINNERS": "--",
+        "PRIZE": "--",
+        "DATE": "--",
+        "BACK": "--"
+    },
+
+
+
+
+
+
+    "MESSAGES": {
+        "MESSAGE_01": "--",
+        "MESSAGE_02": "--",
+        "MESSAGE_03": "--",
+        "MESSAGE_04": "--",
+        "MESSAGE_05": "--",
+        "MESSAGE_06": "--",
+        "MESSAGE_07": "--"
+    }
+  }
+  

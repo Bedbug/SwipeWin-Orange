@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { filter } from 'rxjs/operators';
 import { SessionService } from '../session.service';
 import { Router } from '@angular/router';
+import {TranslateService} from '@ngx-translate/core';
 
 declare const UIkit: any;
 
@@ -15,16 +16,13 @@ export class HeaderComponent implements OnInit {
 
   url: string;
   pushed = false;
+  alignAllLeft = true;
 
   public mobileMenuState = false;
   public menuIconPath = 'menu';
 
-  constructor(
-    private session: SessionService, 
-    private router: Router
-    // private router: Router,
-    // private activatedRoute: ActivatedRoute
-  ) {
+  constructor(private session: SessionService, private router: Router,public translate: TranslateService) 
+  {
     // this.url = router.url;
   }
 
@@ -72,10 +70,20 @@ export class HeaderComponent implements OnInit {
      if (!this.session.token) {
       // Redirect him to Home
       this.router.navigate(['/home']);
-    } else {
-      this.router.navigate(['/returnhome']);
-    }
-    
+      } else {
+        this.router.navigate(['/returnhome']);
+      }
+   }
+
+   changeLanguage() {
+     this.alignAllLeft = !this.alignAllLeft;
+    //  const browserLang = this.translate.getBrowserLang();
+    //  console.log(browserLang);
+    //  this.translate.use(browserLang.match(/en|ar/) ? browserLang : 'en');
+    if(this.alignAllLeft)
+      this.translate.use("en");
+      else
+      this.translate.use("ar");
    }
 
 }

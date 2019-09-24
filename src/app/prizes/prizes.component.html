@@ -1,6 +1,6 @@
 
 <div class="header_title">
-  <span class="inside_text">Prizes</span>
+  <span class="inside_text">{{ 'PRIZES.PRIZES' | translate }}</span>
 </div>
 
 <div class="buttons-container uk-container uk-text-center">
@@ -9,14 +9,14 @@
         margin-right: auto;">
       <img class="icon" src="assets/icons/prize.png" alt=""/>
       <div class="item">
-        <span style="font-weight: bold; font-size: 28px;">55,000 EGP in Cash</span><br>
-        <span >Every month to the top scorer</span>
+        <span style="font-weight: bold; font-size: 28px;">{{ 'PRIZES.MES_01' | translate }}</span><br>
+        <span >{{ 'PRIZES.MES_02' | translate }}</span>
       </div>
     </div>
     </div>
     <div class="buttons-container uk-container uk-text-center">
      
-      <button class="uk-button uk-button-default play-button uk-width-1-1" *ngIf="isActive" (click)="goHome()">Go Back</button>
+      <button class="uk-button uk-button-default play-button uk-width-1-1" *ngIf="isActive" (click)="goHome()">{{ 'PRIZES.BACK' | translate }}</button>
       <!--<button class="uk-button uk-button-default play-button uk-width-1-1" style="background-image: linear-gradient(to bottom, #ffffff, #c3c3c3 16%, #acacac 84%, #c5c5c5);" *ngIf="!isActive" >Подписаться</button>-->
       <!-- <button *ngIf="_gamesPlayed >= 3 && !isActive" class="uk-button uk-button-default play-button uk-width-1-1" (click)="startGame()">Play for 0.50$</button>
       <button *ngIf="_gamesPlayed > 0 && _gamesPlayed < 3  && !isActive" class="uk-button uk-button-default play-button uk-width-1-1" (click)="startGame()" >Play for 0.50$</button>

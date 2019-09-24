@@ -1,5 +1,5 @@
 <div class="header_title">
-  <span class="inside_text">Settings</span>
+  <span class="inside_text">{{ 'SETT.SETT' | translate }}Settings</span>
 </div>
 
 <div class="profile-component uk-text-center settings" style="max-width: 600px;
@@ -16,7 +16,7 @@
     <div class="js-upload" uk-form-custom>
     <input type="file" accept="image/*" class="btn" (change)="OnFileSelected($event)" multiple>
     
-    <app-button [secondary]="true" class="btn">Upload Profile Photo</app-button> 
+    <app-button [secondary]="true" class="btn">{{ 'SETT.UPLOAD' | translate }}</app-button> 
     
     </div>
     <!--<input class="btn" type="file" (change)="OnFileSelected($event)" >-->
@@ -27,20 +27,20 @@
     <app-input-text
       [label]="true"
       inputType="text"
-      inputPlaceholder="Name"
+      inputPlaceholder="{{ 'SETT.NAME' | translate }}"
       placeholder="{{_name}}"
       (keyup)="onKeyName($event)"
     >{{_name}}
     </app-input-text>
     <div class="sex-selector">
-      <label class="uk-form-label label" for="sex">Sex</label>
+      <label class="uk-form-label label" for="sex">{{ 'SETT.SEX' | translate }}</label>
       <div class="uk-button-group" id="sex" data-uk-button-radio>
         
         <div class="uk-button uk-width-1-2 " (click)="doAlert()" [ngClass]="sex ? 'active' : ''">
-          <label class="uk-button" for="male">Male</label>
+          <label class="uk-button" for="male">{{ 'SETT.MALE' | translate }}</label>
           </div>
         <div class="uk-button uk-width-1-2" (click)="doAlert()" [ngClass]="!sex ? 'active' : ''">
-          <label class="uk-button" for="female" >Female</label>
+          <label class="uk-button" for="female" >{{ 'SETT.FEMALE' | translate }}</label>
           
           </div>
         
@@ -55,7 +55,7 @@
     <app-input-text
       [label]="true"
       inputType="text"
-      inputPlaceholder="Age"
+      inputPlaceholder="{{ 'SETT.AGE' | translate }}"
       placeholder="{{_age}}"
       (keyup)="onKeyAge($event)"
     >{{_age}}</app-input-text>
@@ -64,8 +64,8 @@
     <!--Toggle Unsubscribe-->
     
     <!-- <app-button [secondary]="true" class="btn" (click)="sendMail()">Help</app-button> -->
-    <app-button [secondary]="true" class="btn" (click)="saveData()" >Save</app-button>
-    <app-button [link_button]="true" [link_button_white]="true" (click)="logOut()" style="text-decoration:underline">Log Out</app-button>
+    <app-button [secondary]="true" class="btn" (click)="saveData()" >{{ 'SETT.SAVE' | translate }}</app-button>
+    <app-button [link_button]="true" [link_button_white]="true" (click)="logOut()" style="text-decoration:underline">{{ 'SETT.LOGOUT' | translate }}</app-button>
     <!-- <app-button [link_button]="true" [link_button_white]="true" class="btn unsubscribe" uk-toggle="target: #unsubscribe">Unsubscribe</app-button> -->
   </div>
   
@@ -96,9 +96,9 @@
   <div id="error" class="uk-flex-top" uk-modal>
     <div class="uk-modal-dialog uk-modal-body uk-margin-auto-vertical">
       <img src="assets/icons/icon-check.svg" alt="">
-      <h4>Changes Saved</h4>
-      <p>Profile updates saved</p>
+      <h4>{{ 'MESSAGES.MESSAGE_03' | translate }}</h4>
+      <p>{{ 'MESSAGES.MESSAGE_04' | translate }}</p>
       <!--<p>{{errorMsg}}</p>-->
-      <app-button [link_button]="true" class="uk-modal-close"(click)="goProfile()" >Back</app-button>
+      <app-button [link_button]="true" class="uk-modal-close"(click)="goProfile()" >{{ 'MESSAGES.MESSAGE_07' | translate }}</app-button>
     </div>
   </div>

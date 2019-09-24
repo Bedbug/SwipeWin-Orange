@@ -1,0 +1,73 @@
+{
+    "BURGER": {
+        "HOME": "Home",
+        "PROFILE": "Profile",
+        "HOW": "How to play",
+        "PRIZES": "Prizes",
+        "WINNERS": "Winners",
+        "FAQ": "FAQ",
+        "TERMS": "Terms & Conditions",
+        "LANG": "Change language"
+    },
+    "PROFILE": {
+        "PROFILE": "Profile",
+        "POINTS": "Points",
+        "PLAYED": "Games played",
+        "BEST": "Best Score",
+        "DAYS": "Days on service",
+        "SETTINGS": "Settings",
+        "BACK": "Go back to Home Page"
+    },
+    "SETT": {
+        "SETT": "Settings",
+        "UPLOAD": "Upload Profile Photo",
+        "SEX": "Sex",
+        "NAME": "Name",
+        "MALE": "Male",
+        "FEMALE": "Female",
+        "AGE": "Age",
+        "SAVE":"Save",
+        "LOGOUT":"Log Out"
+    },
+    "HOW": {
+        "HOW": "How to play",
+        "MES_01": "Subscribe to Swipe & Win,",
+        "MES_01b": "play the game and claim the Prizes.",
+        "MES_02": "Answer questions by swiping",
+        "MES_02b": "photos left.",
+        "MES_03": "You have 45 seconds to answer",
+        "MES_03b": "as many question as possible.",
+        "MES_04": "Be careful! For each wrong answer",
+        "MES_04b": "you lose 5 seconds.",
+        "MES_05": "Want to improve your score?",
+        "MES_05b": "Buy additional games",
+        "BACK": "Go Back"
+    },
+    "PRIZES": {
+        "PRIZES": "Prizes",
+        "MES_01": "55,000 EGP in Cash",
+        "MES_02": "Every month to the top scorer",
+        "BACK": "Go Back"
+    },
+    "WINNERS": {
+        "WINNERS": "Winners",
+        "PRIZE": "Prize",
+        "DATE": "Date",
+        "BACK": "Go Back"
+    },
+
+
+
+
+
+    "MESSAGES": {
+        "MESSAGE_01": "Oups",
+        "MESSAGE_02": "You must log-in to access this section",
+        "MESSAGE_03": "Changes Saved",
+        "MESSAGE_04": "Profile updates saved",
+        "MESSAGE_05": "Days on service",
+        "MESSAGE_06": "Settings",
+        "MESSAGE_07": "Go back to Home Page"
+    }
+  }
+  

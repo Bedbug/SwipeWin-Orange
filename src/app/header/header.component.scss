@@ -127,6 +127,7 @@
 #offcanvas-nav .nav-list-box span {
     padding-top: 15px;
     padding-left: 15px;
+    padding-right: 15px;
 }
 
 #offcanvas-nav .nav-list-box {
@@ -135,6 +136,7 @@
     padding-right: 0;
     margin-left: 14px;
     padding-left: 7px;
+    margin-right: 14px;
 }
 
 .mts-logo{
@@ -153,5 +155,28 @@
   vertical-align: sub;
   margin-right: 10px;
   padding-top: 2px;
+}
+
+.uk-navbar-right {
+  margin-left: auto;
+  position: absolute;
+  right: 0px;
+}
+.uk-navbar-left {
+  // flex-wrap: wrap;
+  position: absolute;
+  left: 65px;
+}
+
+.uk-navbar-left_b {
+  // flex-wrap: wrap;
+  position: absolute;
+}
+
+.direct_right{
+  direction: rtl;
+}
+.direct_left{
+  direction: ltr;
 }
 

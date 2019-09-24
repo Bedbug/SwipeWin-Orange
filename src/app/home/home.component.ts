@@ -22,6 +22,8 @@ export class HomeComponent implements OnInit {
   lblShow:boolean = true;
   passType: string = "password";
   loggedin: boolean;
+  credits: number;
+  gamesPlayed: number;
   
   // get this form the User object
   get isHasCashback(): boolean {
@@ -212,10 +214,32 @@ export class HomeComponent implements OnInit {
     console.log("Verify PIN & subscribe User!");
     this.openVerify = false;
     this.loggedin = true;
+    // Check Credits
+    this.CheckCredits();
   }
+  
 
   VerifyLogPin(pin:string) {
     console.log("Verify PIN & login User!");
+    this.loggedin = true;
+    // Check Credits
+    this.CheckCredits();
+  }
+
+  CheckCredits() {
+    console.log("Checking Credits!");
+    this.credits = 0;
+    this.gamesPlayed = 5;
+
+    if(this.credits > 0){
+      // Open Button "Play Now"
+    }
+    if(this.credits == 0 && this.gamesPlayed < 5){
+      // Open Button "Buy New Round"
+    }
+    if(this.credits == 0 && this.gamesPlayed >= 5){
+      // Close Button "Buy New Round"
+    }
   }
 
   OpenPass(){

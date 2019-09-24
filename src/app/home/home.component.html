@@ -16,8 +16,8 @@
               <img class="icon" style="width: 300px;" src="assets/icons/prize.png" alt=""/>
             </div>
         
-        <span style="font-weight: bold; font-size: 30px; color: white;">55,000 EGP in Cash</span><br>
-        <span style=" font-size: 20px; color: white;">every month</span>
+        <span style="font-weight: bold; font-size: 30px; color: white;">{{ 'HOME.CAR_01' | translate }}</span><br>
+        <span style=" font-size: 20px; color: white;">{{ 'HOME.CAR_01b' | translate }}</span>
       </div>
       </li>
       <!-- <li class="list-wrapper">
@@ -88,14 +88,14 @@
       <div class="uk-margin" >
           <div class="uk-inline uk-width-1-1 ">
               <span class="uk-form-icon" uk-icon="icon: phone; ratio: 1.5"></span>
-              <input #number class="uk-input uk-border-rounded" type="text" placeholder="Mobile number"> 
+              <input #number class="uk-input uk-border-rounded" type="text" placeholder="{{ 'HOME.NUM' | translate }}"> 
           </div>
       </div>
       
     </form>
     
     <div class="buttons-container uk-container uk-text-center">
-      <button class="uk-button uk-button-default play-button uk-width-1-1" (click)="CheckN(number.value)">Subscribe/Login</button> 
+      <button class="uk-button uk-button-default play-button uk-width-1-1" (click)="CheckN(number.value)">{{ 'HOME.SUB-LOG' | translate }}</button> 
     </div>   
   </div>
   </div>
@@ -104,7 +104,7 @@
 <!--OTP-->
 <div class="buttons-container uk-container uk-text-center" *ngIf="openVerify" tabindex="-1">
   <div class="message-container" style="margin-top: 100px">
-    <p style="font-size: 22px;color: rgb(255, 255, 255);text-align: center;">Please enter the 4-digit PIN code received to your mobile</p>
+    <p style="font-size: 22px;color: rgb(255, 255, 255);text-align: center;">{{ 'HOME.OTP' | translate }}</p>
     <!--<p>Услуга оказывается МТС совместно с партнером «ДжЮ Груп»</p>-->
   </div>
   <div class="buttons-container uk-container uk-text-center"  style="max-width: 595px; margin-bottom: 200px;">
@@ -121,11 +121,11 @@
     </form>
     
     <div class="buttons-container uk-container uk-text-center">
-      <button class="uk-button uk-button-default play-button uk-width-1-1" *ngIf="_isSubscribed" (click)="VerifyLogPin(pin.value)">Login</button> 
-      <button class="uk-button uk-button-default play-button uk-width-1-1" *ngIf="_isSubscribed == false" (click)="VerifySubPin(pin.value)">Subscribe</button>
+      <button class="uk-button uk-button-default play-button uk-width-1-1" *ngIf="_isSubscribed" (click)="VerifyLogPin(pin.value)">{{ 'HOME.LOGIN' | translate }}</button> 
+      <button class="uk-button uk-button-default play-button uk-width-1-1" *ngIf="_isSubscribed == false" (click)="VerifySubPin(pin.value)">{{ 'HOME.SUB' | translate }}</button>
     </div>
     <div class="message-container" style="margin-top: 30px;">
-      <p style="color:rgb(0, 0, 0); font-weight: bold; font-size: 20px;"><a  [routerLink]="['/info']" style="color:rgb(255, 255, 255); text-decoration: underline;">Resend PIN</a>
+      <p style="color:rgb(0, 0, 0); font-weight: bold; font-size: 20px;"><a  [routerLink]="['/info']" style="color:rgb(255, 255, 255); text-decoration: underline;">{{ 'HOME.RESEND' | translate }}</a>
       </p>
       <!--<p>Услуга оказывается МТС совместно с партнером «ДжЮ Груп»</p>-->
     </div>
@@ -146,8 +146,9 @@
     
     
     <div class="buttons-container uk-container uk-text-center">
-      <button class="uk-button uk-button-default play-button uk-width-1-1" *ngIf="_isSubscribed" (click)="VerifyLogPin(pin.value)">Play now</button> 
-      <button class="uk-button uk-button-default play-button uk-width-1-1" *ngIf="_isSubscribed == false" (click)="VerifySubPin(pin.value)">Buy a new round</button>
+      <button class="uk-button uk-button-default play-button uk-width-1-1" *ngIf="loggedin && credits > 0" (click)="VerifyLogPin(pin.value)">{{ 'HOME.PLAY' | translate }}</button> 
+      <button class="uk-button uk-button-default play-button uk-width-1-1" *ngIf="loggedin && credits == 0 && gamesPlayed < 5" (click)="VerifySubPin(pin.value)">{{ 'HOME.BUY' | translate }}</button>
+      <button class="uk-button uk-button-default uk-width-1-1" *ngIf="loggedin && credits == 0 && gamesPlayed == 5" (click)="VerifySubPin(pin.value)" disabled>{{ 'HOME.NOMORE' | translate }}</button>
     </div>
     <!-- <div class="message-container" style="margin-top: 30px;">
       <p style="color:rgb(0, 0, 0); font-weight: bold; font-size: 20px;"><a  [routerLink]="['/info']" style="color:rgb(255, 255, 255); text-decoration: underline;">Resend PIN</a>
@@ -187,12 +188,13 @@
   <!-- <a  (click)="playGame($event)" style="color: white;font-weight: bold;text-decoration: underline; ">Already Subscriber</a>
 </div> -->
 <div class="main-footer uk-container" *ngIf="!openVerify" style="text-align: center;">
-  1st day free then 2 pounds /day
+    {{ 'HOME.FOOTER_01' | translate }}
   <br>
-  <p>
-  By clicking Subscription you confirm that you have<br>read and agreed to the <a  [routerLink]="['/info']" style="color:white; text-decoration: underline;">Terms & Conditions.</a>
-  <br><br><span style="color:#ff6600">© Orange 2019</span>
+  <p >
+  {{ 'HOME.FOOTER_02' | translate }}<br>{{ 'HOME.FOOTER_02b' | translate }}<a  [routerLink]="['/info']" style="color:white; text-decoration: underline;">{{ 'HOME.FOOTER_02c' | translate }}</a>
   </p>
+  <span style="color:#ff6600">{{ 'HOME.FOOTER_03' | translate }}</span>
+  
 </div>
 <!-- <div class="main-footer uk-container" *ngIf="isSubscribed && !showLogin" style="max-width:100%">
  Служба поддержки:  111777 (бесплатно) или отправьте письмо на support@gu-group.ru

@@ -1,4 +1,22 @@
 {
+    "HOME": {
+        "CAR_01": "55,000 EGP in Cash",
+        "CAR_01b": "every month",
+        "NUM": "Mobile number",
+        "SUB-LOG": "Subscribe/Login",
+        "OTP": "Please enter the 4-digit PIN code received to your mobile",
+        "LOGIN": "Login",
+        "SUB": "Subscribe",
+        "RESEND": "Resend PIN",
+        "PLAY": "Play now",
+        "BUY": "Buy a new round",
+        "NOMORE": "No more games for today",
+        "FOOTER_01": "1st day free then 2 pounds /day",
+        "FOOTER_02": "By clicking Subscription you confirm that you have ",
+        "FOOTER_02b": "read and agreed to the ",
+        "FOOTER_02c": "Terms & Conditions.",
+        "FOOTER_03": "© Orange 2019"
+    },
     "BURGER": {
         "HOME": "Home",
         "PROFILE": "Profile",

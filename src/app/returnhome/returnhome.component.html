@@ -78,61 +78,7 @@
   5. If not check if eligible to buy new. (Screen buy new round)
   6. if not, alert that he has reached maximum. -->
   
-  <!-- WI-FI LOGIN -->
-  <div class="buttons-container uk-container uk-text-center" *ngIf="!AutoLogin && !openVerify && !loggedin" tabindex="-1">
-   
-    <div class="buttons-container uk-container uk-text-center"  >
-      
-      <!-- <h4 style="color:white;">Insert your phone number and password to login</h4> -->
-      <form >
-        <div class="uk-margin" >
-            <div class="uk-inline uk-width-1-1 ">
-                <span class="uk-form-icon" uk-icon="icon: phone; ratio: 1.5"></span>
-                <input #number class="uk-input uk-border-rounded" type="text" placeholder="{{ 'HOME.NUM' | translate }}"> 
-            </div>
-        </div>
-        
-      </form>
-      
-      <div class="buttons-container uk-container uk-text-center">
-        <button class="uk-button uk-button-default play-button uk-width-1-1" (click)="CheckN(number.value)">{{ 'HOME.SUB-LOG' | translate }}</button> 
-      </div>   
-    </div>
-    </div>
-  <!--END OF WIFI LOGIN-->
   
-  <!--OTP-->
-  <div class="buttons-container uk-container uk-text-center" *ngIf="openVerify" tabindex="-1">
-    <div class="message-container" style="margin-top: 100px">
-      <p style="font-size: 22px;color: rgb(255, 255, 255);text-align: center;">{{ 'HOME.OTP' | translate }}</p>
-      <!--<p>Услуга оказывается МТС совместно с партнером «ДжЮ Груп»</p>-->
-    </div>
-    <div class="buttons-container uk-container uk-text-center"  style="max-width: 595px; margin-bottom: 200px;">
-      
-      <!-- <h4 style="color:white;">Insert your phone number and password to login</h4> -->
-      <form >
-        <div class="uk-margin" >
-            <div class="uk-inline uk-width-1-1 ">
-                <a class="uk-form-icon uk-form-icon-flip" ><img class=".uk-position-right" (click)="OpenPass()" src="assets/icons/eye.svg" alt=""></a>
-                
-                <input #pin class="uk-input " type="{{passType}}" placeholder="....">
-            </div>
-        </div>
-      </form>
-      
-      <div class="buttons-container uk-container uk-text-center">
-        <button class="uk-button uk-button-default play-button uk-width-1-1" *ngIf="_isSubscribed" (click)="VerifyLogPin(pin.value)">{{ 'HOME.LOGIN' | translate }}</button> 
-        <button class="uk-button uk-button-default play-button uk-width-1-1" *ngIf="_isSubscribed == false" (click)="VerifySubPin(pin.value)">{{ 'HOME.SUB' | translate }}</button>
-      </div>
-      <div class="message-container" style="margin-top: 30px;">
-        <p style="color:rgb(0, 0, 0); font-weight: bold; font-size: 20px;"><a  [routerLink]="['/info']" style="color:rgb(255, 255, 255); text-decoration: underline;">{{ 'HOME.RESEND' | translate }}</a>
-        </p>
-        <!--<p>Услуга оказывается МТС совместно с партнером «ДжЮ Груп»</p>-->
-      </div>
-      
-    </div>
-    </div>
-  <!--END OF OTP-->
   
   <!--PLAY BUTTONS-->
   <div class="buttons-container uk-container uk-text-center" *ngIf="loggedin" tabindex="-1">

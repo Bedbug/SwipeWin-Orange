@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { SessionService } from '../../session.service';
 import { Router } from '@angular/router';
 import { DataService } from '../../data.service';
+
 import UIkit from 'uikit';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-resultdemo',
@@ -28,26 +30,26 @@ export class ResultdemoComponent implements OnInit {
   
   get TopText(): string {
     if(this._rightAnswerCount == 0)
-      return "Oops…"
+      return this.translate.instant('END.MES_01')
     if(this._rightAnswerCount == 1)
-      return "Just…"
+      return this.translate.instant('END.MES_02')
     if(this._rightAnswerCount >= 2 && this._rightAnswerCount <= 4)
-      return "Good!"
+      return this.translate.instant('END.MES_03')
     if(this._rightAnswerCount >= 5 && this._rightAnswerCount <= 9)
-      return "Very Good!"
+      return this.translate.instant('END.MES_04')
     if(this._rightAnswerCount >= 10)
-      return "Perfect!"
+      return this.translate.instant('END.MES_05')
   }
   
   get answerMessage(): string {
     if(this._rightAnswerCount == 0)
-      return "Correct Answers"
+      return this.translate.instant('END.MES_06')
     if(this._rightAnswerCount == 1)
-      return "Correct Answer"
+      return this.translate.instant('END.MES_06')
     if(this._rightAnswerCount >= 2 && this._rightAnswerCount <= 4)
-      return "Correct Answers"
+      return this.translate.instant('END.MES_06')
     if(this._rightAnswerCount >= 5 )
-      return "Correct Answers"
+      return this.translate.instant('END.MES_06')
     // if(this._rightAnswerCount >= 10)
     //   return "Прекрасно!"
   }
@@ -62,12 +64,13 @@ export class ResultdemoComponent implements OnInit {
   //     return "Not as good as last time...";
   
   private _firstTime = false;
-  public _gamesPlayed = 2;
+  public _gamesPlayed = 5;
+  public _hasCredits = 0;
   private _rightAnswerCount = 10;
   private _cashbackAmount = 0;
   private _secondVariant = true;
   
-  constructor(private dataService : DataService, private session: SessionService, private router: Router) { }
+  constructor(private dataService : DataService, private session: SessionService, private router: Router, private translate: TranslateService) { }
 
   ngOnInit() {
     if (!this.session.lastGameResults)

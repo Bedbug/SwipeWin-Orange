@@ -78,7 +78,17 @@
 
 
 
-
+    "END": {
+        "MES_01": "--",
+        "MES_02": "--",
+        "MES_03": "--",
+        "MES_04": "--",
+        "MES_05": "--",
+        "MES_06": "--",
+        "PLAY": "--",
+        "BACK": "--"
+        
+    },
     "MESSAGES": {
         "MESSAGE_01": "--",
         "MESSAGE_02": "--",
@@ -86,7 +96,13 @@
         "MESSAGE_04": "--",
         "MESSAGE_05": "--",
         "MESSAGE_06": "--",
-        "MESSAGE_07": "--"
+        "MESSAGE_07": "--",
+        "MESSAGE_08": "--",
+        "MESSAGE_09": "--",
+        "MESSAGE_10": "--",
+        "MESSAGE_11": "--",
+        "MESSAGE_12": "--",
+        "MESSAGE_13": "--"
     }
   }
   

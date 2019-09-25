@@ -13,18 +13,18 @@
         <p>{{answerMessage}}</p>
       </div>
       <!--Won Cash-->
-      <div class="coinWrap" *ngIf="cashbackAmount > 0">
+      <!-- <div class="coinWrap" *ngIf="cashbackAmount > 0">
         <div class = "cashbackCoin">
           <div class="coin__number coin__number_light">+{{cashbackAmount}}</div>
         </div>
         <p>Cashback Won</p>
-      </div>
+      </div> -->
     </div>
-    <p class="hint" style="white-space: pre-line; margin-bottom: 0px;">{{FooterText}}</p>
+    <!-- <p class="hint" style="white-space: pre-line; margin-bottom: 0px;">{{FooterText}}</p> -->
     <!--<p class="hint hint_fail" *ngIf="rightAnswerCount === 0">Ничего страшного, ты всегда можешь попробовать еще</p>-->
     <!--<p class="hint" style="white-space: pre-line; margin-bottom: 0px;" *ngIf="_gamesPlayed <= 2">Стоимость игры 15 ₽, максимум две дополн. игры в сутки</p>-->
     <!--If there are available games to buy play another game-->
-    <app-button [primary]="true"  *ngIf="_gamesPlayed ==0" class="uk-modal-close" (click)="startGame()" >Play</app-button>
+    <app-button [primary]="true"  *ngIf="_gamesPlayed ==0" class="uk-modal-close" (click)="startGame()" >{{ 'END.PLAY' | translate }}</app-button>
     <app-button [primary]="true"  *ngIf="_gamesPlayed > 0" class="uk-modal-close" (click)="startGame()" >Play for 0.50$</app-button>
     <!--<app-button [primary]="true"  *ngIf="_gamesPlayed >=3" class="uk-modal-close" (click)="startFreeGame()" >Играть в удовольствие</app-button>-->
     <!--Free Play-->

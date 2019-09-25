@@ -1,8 +1,9 @@
 #result {
   h4 {
-    color: #000;
+    color: rgb(255, 255, 255);
     font-size: 30px;
     text-align: center;
+    font-weight: bold;
     margin-bottom: 15px;
     margin-top: 15px;
   }
@@ -12,7 +13,7 @@
     p {
       font-size: 14px;
       font-weight: bold;
-      color: black;
+      color: rgb(255, 255, 255);
       margin: 10px 0;
     }
   }
@@ -31,7 +32,7 @@
     position: relative;
     box-sizing: border-box;
     margin: 5px auto 15px;
-    $border: 5px;
+    $border: 3px;
     background: #1d1d1d;
     background-clip: padding-box; /* !importanté */
     border: solid $border transparent; /* !importanté */
@@ -46,11 +47,12 @@
       background: linear-gradient(to top, #ff6600, #ff6600);
     }
     &__number {
-      font-size: 26px;
+      font-size: 33px;
       text-align: center;
-      color: #f9971e;
+      color: #ff6600;
       line-height: 80px;
       width: 80px;
+      font-weight: bold;
       &_light {
         color: #ffdb6d;
         line-height: 90px;
@@ -99,6 +101,15 @@
     text-align: center;
     min-height: 44px;
     text-transform: none;
+}
+
+.uk-modal-dialog {
+  background: #1d1d1d;
+}
+.button_link_white {
+  color: white;
+  margin-bottom: 12px;
+  text-decoration: underline;
 }
 // .message-container{
 //     font-size: 17px;

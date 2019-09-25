@@ -7,6 +7,7 @@ import { CookieService } from 'ngx-cookie-service';
 import UIkit from 'uikit';
 import { createPipeInstance } from '@angular/core/src/view/provider';
 import { debug } from 'util';
+import { TranslateService } from '@ngx-translate/core';
 
 // import * as libphonenumber from 'google-libphonenumber';
 
@@ -39,12 +40,12 @@ export class HomeComponent implements OnInit {
   private _isHasCashback = false;
   public demoGamesPlayed = 0;
   public errorMsg = "";
-  public noMoreRealGames = "Unfortunately, you have run-out of games. Try again tomorrow.";
-  public noMoreDemoGames = "Demo games have ended \n Why don't you try playing the real game?";
-  public authError = "Your tariff plan is not allowed to participate to Swipe & Win.\n Try to play from another number";
-  public logOut = "The session is invalid or has expired.\n Please log in again";
-  public blackListed = "Number is blocked.\n Unfortunately, you cannot participate through this number";
-  public noCredits = "Not enough balance to participate to Swipe & Win";
+  public noMoreRealGames = this.translate.instant('MESSAGES.MESSAGE_08');
+  public noMoreDemoGames = this.translate.instant('MESSAGES.MESSAGE_09');
+  public authError = this.translate.instant('MESSAGES.MESSAGE_10');
+  public logOut = this.translate.instant('MESSAGES.MESSAGE_11');
+  public blackListed = this.translate.instant('MESSAGES.MESSAGE_12');
+  public noCredits = this.translate.instant('MESSAGES.MESSAGE_13');
 
 
   
@@ -68,7 +69,8 @@ export class HomeComponent implements OnInit {
     private localizationService: LocalizationService,
     private router: Router,
     private activatedRoute: ActivatedRoute,
-    private cookieService: CookieService
+    private cookieService: CookieService,
+    private translate: TranslateService
     
     ) {}
     
@@ -215,7 +217,8 @@ export class HomeComponent implements OnInit {
     this.openVerify = false;
     this.loggedin = true;
     // Check Credits
-    this.CheckCredits();
+    // this.CheckCredits();
+    this.router.navigate(['returnhome']);
   }
   
 
@@ -223,24 +226,25 @@ export class HomeComponent implements OnInit {
     console.log("Verify PIN & login User!");
     this.loggedin = true;
     // Check Credits
-    this.CheckCredits();
+    // this.CheckCredits();
+    this.router.navigate(['returnhome']);
   }
 
-  CheckCredits() {
-    console.log("Checking Credits!");
-    this.credits = 0;
-    this.gamesPlayed = 5;
+  // CheckCredits() {
+  //   console.log("Checking Credits!");
+  //   this.credits = 0;
+  //   this.gamesPlayed = 5;
 
-    if(this.credits > 0){
-      // Open Button "Play Now"
-    }
-    if(this.credits == 0 && this.gamesPlayed < 5){
-      // Open Button "Buy New Round"
-    }
-    if(this.credits == 0 && this.gamesPlayed >= 5){
-      // Close Button "Buy New Round"
-    }
-  }
+  //   if(this.credits > 0){
+  //     // Open Button "Play Now"
+  //   }
+  //   if(this.credits == 0 && this.gamesPlayed < 5){
+  //     // Open Button "Buy New Round"
+  //   }
+  //   if(this.credits == 0 && this.gamesPlayed >= 5){
+  //     // Close Button "Buy New Round"
+  //   }
+  // }
 
   OpenPass(){
     this.lblShow = !this.lblShow;
@@ -252,30 +256,30 @@ export class HomeComponent implements OnInit {
   }
   
   // Check the number of games played in demo mode
-  public playDemoGame($event) {
-    console.log('Demo button is clicked');
+  // public playDemoGame($event) {
+  //   console.log('Demo button is clicked');
     
-    if (!this.sessionService.gameSettings || !this.sessionService.gameSettings.maintenance || this.sessionService.gameSettings.maintenance.siteDown || this.sessionService.gameSettings.maintenance.noGames)
-      return;
+  //   if (!this.sessionService.gameSettings || !this.sessionService.gameSettings.maintenance || this.sessionService.gameSettings.maintenance.siteDown || this.sessionService.gameSettings.maintenance.noGames)
+  //     return;
       
-    // this.router.navigate(['demogame']);
-    this.demoGamesPlayed = +localStorage.getItem('demoGamesPlayed');
-    // Check games count
-    console.log("demoGamesPlayed "+ this.demoGamesPlayed);
-    if(this.demoGamesPlayed >= 2) {
-      // popup modal with error
-      var modal = UIkit.modal("#error");
-      this.errorMsg = this.noMoreDemoGames;
-      modal.show();
+  //   // this.router.navigate(['demogame']);
+  //   this.demoGamesPlayed = +localStorage.getItem('demoGamesPlayed');
+  //   // Check games count
+  //   console.log("demoGamesPlayed "+ this.demoGamesPlayed);
+  //   if(this.demoGamesPlayed >= 2) {
+  //     // popup modal with error
+  //     var modal = UIkit.modal("#error");
+  //     this.errorMsg = this.noMoreDemoGames;
+  //     modal.show();
       
-    }else{
-      // Add one and play the demo game
-      this.demoGamesPlayed++;
-      localStorage.setItem('demoGamesPlayed', this.demoGamesPlayed.toString());
-      localStorage.setItem('lastDemoPlayed', (new Date()).toString() );
-      // this.router.navigate(['demogame']);
-      this.router.navigate(['demogame']);
-    }
-  }
+  //   }else{
+  //     // Add one and play the demo game
+  //     this.demoGamesPlayed++;
+  //     localStorage.setItem('demoGamesPlayed', this.demoGamesPlayed.toString());
+  //     localStorage.setItem('lastDemoPlayed', (new Date()).toString() );
+  //     // this.router.navigate(['demogame']);
+  //     this.router.navigate(['demogame']);
+  //   }
+  // }
 
 }

@@ -13,29 +13,27 @@
         <p>{{answerMessage}}</p>
       </div>
       <!--Won Cash-->
-      <div class="coinWrap" *ngIf="cashbackAmount > 0">
+      <!-- <div class="coinWrap" *ngIf="cashbackAmount > 0">
         <div class = "cashbackCoin">
           <div class="coin__number coin__number_light">+{{cashbackAmount}}</div>
         </div>
         <p>Cashback Won*</p>
-      </div>
+      </div> -->
     </div>
-    <p class="hint" *ngIf="cashbackAmount > 0">* Cashback available to be transferred after subscribing to the service</p>
-    <p class="hint" *ngIf="cashbackAmount == 0">Prize of the day 10,000 $</p>
+    <!-- <p class="hint" *ngIf="cashbackAmount > 0">* Cashback available to be transferred after subscribing to the service</p>
+    <p class="hint" *ngIf="cashbackAmount == 0">Prize of the day 10,000 $</p> -->
     
-    <!--If there are available games to buy play another game-->
-    <app-button [secondary]="true" *ngIf="_gamesPlayed < 3" class="uk-modal-close" (click)="startGame()" >Play Again</app-button>
+    <!--If there are available games to buy play another game && Available Credits-->
+    <app-button [secondary]="true" *ngIf="_gamesPlayed < 5 && _hasCredits > 0" class="uk-modal-close" (click)="startGame()" >{{ 'END.PLAY' | translate }}</app-button>
+    <app-button [secondary]="true" *ngIf="_gamesPlayed < 5 && _hasCredits == 0" class="uk-modal-close" (click)="startGame()" >{{ 'END.BUY' | translate }}</app-button>
+    <!-- <app-button [secondary]="true" *ngIf="_gamesPlayed == 5" class="uk-modal-close" (click)="startGame()" >{{ 'END.BUY' | translate }}</app-button> -->
     <!-- <app-button [primary]="true"   class="uk-modal-close" (click)="goHomeWithLogin()" >Subscribe</app-button> -->
-    <div class="message-container" style="text-align: center;">
+    <!-- <div class="message-container" style="text-align: center;">
       <span>1st day free then 0.50$ /day</span>
-      <!--<br>-->
-      <!--<p>Служба поддержки:  111777 (бесплатно) или отправьте письмо на <a href="mailto:support.mts@gu-group.ru" class="uk-button-link" style="color:white; text-decoration:underline">support.mts@gu-group.ru</a>-->
-      <!--</p>-->
-      <!--<p>Акция проходит под контролем независимого наблюдателя</p>-->
-    </div>
+    </div> -->
     <!--Free Play-->
     <!--<app-button [outlined]="true" class="uk-modal-close">Свободный режим</app-button>-->
     <!--Return to home page-->
-    <app-button [link_button]="true" class="uk-modal-close" (click)="goHome()">Back to Home Page</app-button>
+    <app-button [link_button]="true" [link_button_white]="true" class="uk-modal-close" (click)="goHome()">{{ 'END.BACK' | translate }}</app-button>
   </div>
 </div>

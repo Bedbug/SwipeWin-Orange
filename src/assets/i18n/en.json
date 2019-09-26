@@ -15,7 +15,13 @@
         "FOOTER_02": "By clicking Subscription you confirm that you have ",
         "FOOTER_02b": "read and agreed to the ",
         "FOOTER_02c": "Terms & Conditions.",
-        "FOOTER_03": "© Orange 2019"
+        "FOOTER_03": "© Orange 2019",
+
+        "CONGRATS": "Congratulations!",
+        "SUB_SUC_01": "You have successfully",
+        "SUB_SUC_02": "subscribed to Swipe & Win!",
+        "SUB_SUC_03": "Continue",
+        "SUB_SUC_04": "Reedem your free round"
     },
     "BURGER": {
         "HOME": "Home",

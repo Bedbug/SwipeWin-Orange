@@ -25,6 +25,7 @@ export class HomeComponent implements OnInit {
   loggedin: boolean;
   credits: number;
   gamesPlayed: number;
+  openSubSuccess: boolean = false;
   
   // get this form the User object
   get isHasCashback(): boolean {
@@ -216,8 +217,13 @@ export class HomeComponent implements OnInit {
     console.log("Verify PIN & subscribe User!");
     this.openVerify = false;
     this.loggedin = true;
+    this.openSubSuccess = true;
     // Check Credits
     // this.CheckCredits();
+    // this.router.navigate(['returnhome']);
+  }
+
+  GotoReturnHome() {
     this.router.navigate(['returnhome']);
   }
   

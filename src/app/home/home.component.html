@@ -2,7 +2,7 @@
   <img src="assets/images/gulogo.svg" alt="">
 </div> -->
 
-<div class="slideshow-container" *ngIf="!openVerify" uk-slideshow="animation: fade; min-height: 400; max-height: 400; autoplay: true; autoplay-interval: 1000; pause-on-hover: false;" >
+<div class="slideshow-container" *ngIf="!openVerify && !openSubSuccess" uk-slideshow="animation: fade; min-height: 400; max-height: 400; autoplay: true; autoplay-interval: 1000; pause-on-hover: false;" >
 
   <div class="uk-position-relative uk-visible-toggle uk-light" tabindex="-1">
     
@@ -134,30 +134,43 @@
   </div>
 <!--END OF OTP-->
 
+<!--SUBSCRIBE SUCCESS-->
+<div class="buttons-container uk-container uk-text-center" *ngIf="openSubSuccess" tabindex="-1">
+    <div class="message-container" style="margin-top: 100px">
+        <img class="icon1" src="assets/icons/icon-check.svg" alt=""/>
+        <div class="item" style="font-size: 25px;">{{ 'HOME.CONGRATS' | translate }}</div>
+        <img class="icon2" src="assets/images/logo-sw.svg" alt=""/>
+        <div class="item" style="font-size: 25px;">{{ 'HOME.SUB_SUC_01' | translate }}<br>{{ 'HOME.SUB_SUC_02' | translate }}</div>
+    </div>
+    <div class="buttons-container uk-container uk-text-center"  style="max-width: 595px; margin-bottom: 200px;">
+      
+      <!-- <h4 style="color:white;">Insert your phone number and password to login</h4> -->
+     
+      
+      <div class="buttons-container uk-container uk-text-center">
+        <button class="uk-button uk-button-default play-button uk-width-1-1"  (click)="GotoReturnHome()">{{'HOME.SUB_SUC_03' | translate }}</button> 
+        <button class="uk-button uk-button-default play-button uk-width-1-1"  (click)="GotoReturnHome()">{{'HOME.SUB_SUC_04' | translate }}</button> 
+      </div>
+      
+      
+    </div>
+    </div>
+  <!--END OF SUBSCRIBE SUCCESS-->
 <!--PLAY BUTTONS-->
-<div class="buttons-container uk-container uk-text-center" *ngIf="loggedin" tabindex="-1">
-  <!-- <div class="message-container" style="margin-top: 100px">
+<!-- <div class="buttons-container uk-container uk-text-center" *ngIf="loggedin" tabindex="-1">
+  <div class="message-container" style="margin-top: 100px">
     <p style="font-size: 22px;color: rgb(255, 255, 255);text-align: center;">Please enter the 4-digit PIN code received to your mobile</p>
     
-  </div> -->
+  </div>
   <div class="buttons-container uk-container uk-text-center"  style="max-width: 595px; margin-bottom: 50px;">
-    
-    <!-- <h4 style="color:white;">Insert your phone number and password to login</h4> -->
-    
-    
     <div class="buttons-container uk-container uk-text-center">
       <button class="uk-button uk-button-default play-button uk-width-1-1" *ngIf="loggedin && credits > 0" (click)="VerifyLogPin(pin.value)">{{ 'HOME.PLAY' | translate }}</button> 
       <button class="uk-button uk-button-default play-button uk-width-1-1" *ngIf="loggedin && credits == 0 && gamesPlayed < 5" (click)="VerifySubPin(pin.value)">{{ 'HOME.BUY' | translate }}</button>
       <button class="uk-button uk-button-default uk-width-1-1" *ngIf="loggedin && credits == 0 && gamesPlayed == 5" (click)="VerifySubPin(pin.value)" disabled>{{ 'HOME.NOMORE' | translate }}</button>
     </div>
-    <!-- <div class="message-container" style="margin-top: 30px;">
-      <p style="color:rgb(0, 0, 0); font-weight: bold; font-size: 20px;"><a  [routerLink]="['/info']" style="color:rgb(255, 255, 255); text-decoration: underline;">Resend PIN</a>
-      </p>
-      
-    </div> -->
     
   </div>
-  </div>
+  </div> -->
 <!--END OF PLAY BUTTONS-->
 
 <!-- <div class="buttons-container uk-container uk-text-center" *ngIf="!showLogin">
@@ -187,7 +200,7 @@
   <!--<a  [routerLink]="['/info']" style="color: white;font-weight: bold;text-decoration: underline; ">Правила игры</a>-->
   <!-- <a  (click)="playGame($event)" style="color: white;font-weight: bold;text-decoration: underline; ">Already Subscriber</a>
 </div> -->
-<div class="main-footer uk-container" *ngIf="!openVerify" style="text-align: center;">
+<div class="main-footer uk-container" *ngIf="!openVerify && !openSubSuccess" style="text-align: center;">
     {{ 'HOME.FOOTER_01' | translate }}
   <br>
   <p >

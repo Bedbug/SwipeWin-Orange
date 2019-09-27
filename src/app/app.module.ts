@@ -190,7 +190,7 @@ providers: [
     SessionService,
     Globals,
     CookieService,
-    [{ provider: HTTP_INTERCEPTORS, useClass: MsisdnEnrichmentDetector, multi: true }]
+    { provide: HTTP_INTERCEPTORS, useClass: MsisdnEnrichmentDetector, multi: true }
 ],
 bootstrap: [AppComponent]
 })

@@ -103,7 +103,7 @@ export class SettingsComponent implements OnInit {
       this._age = this.data$.age;
       this._sex = this.data$.gender;
 
-      this.sex = this._sex == "male" ? this.sex = true : this.sex = false;
+      this.sex = (this._sex === "male") ? this.sex = true : this.sex = false;
       
       if( this.data$.picture == null){
         this.avatarPic = "assets/images/avatar.svg";

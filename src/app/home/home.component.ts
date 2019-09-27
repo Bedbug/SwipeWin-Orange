@@ -137,18 +137,26 @@ export class HomeComponent implements OnInit {
       });
     
     
-    // Load the game settings
-    this.dataService.fetchGameSettings().then(
-      data => {
-        this.sessionService.gameSettings = data;
-        this.localizationService.init(this.sessionService.gameSettings.localization);
-      },
-      err => {});
+      // Load the game settings
+      this.dataService.fetchGameSettings().then(
+        data => {
+          this.sessionService.gameSettings = data;
+          this.localizationService.init(this.sessionService.gameSettings.localization);
+        },
+        err => {});
 
       // Check AutoLogin or NOt
       this.AutoLogin = false;
       this.openVerify = false;
-      this.loggedin = false;
+    this.loggedin = false;
+
+    // Determine if this is the mobile/Ussd/Sms user flow or the WiFi one
+    if (!this.sessionService.msisdn) {
+      // WiFi flow here
+    }
+    else {
+      // Mobile/Ussd/Sms flow here
+    }
   }
   
   public playGame($event) {

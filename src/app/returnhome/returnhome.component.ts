@@ -13,6 +13,7 @@ import UIkit from 'uikit';
 export class ReturnhomeComponent implements OnInit {
   credits: number;
   loggedin: boolean = true;
+  openVerify: true;
 
   get hasCashback(): number {
     return this._cashBackAmount;

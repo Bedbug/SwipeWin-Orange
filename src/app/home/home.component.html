@@ -95,7 +95,7 @@
     </form>
     
     <div class="buttons-container uk-container uk-text-center">
-      <button class="uk-button uk-button-default play-button uk-width-1-1" (click)="CheckN(number.value)">{{ 'HOME.SUB-LOG' | translate }}</button> 
+      <button class="uk-button uk-button-default play-button uk-width-1-1" (click)="submit(number.value)">{{ 'HOME.SUB-LOG' | translate }}</button> 
     </div>   
   </div>
   </div>
@@ -121,11 +121,11 @@
     </form>
     
     <div class="buttons-container uk-container uk-text-center">
-      <button class="uk-button uk-button-default play-button uk-width-1-1" *ngIf="_isSubscribed" (click)="VerifyLogPin(pin.value)">{{ 'HOME.LOGIN' | translate }}</button> 
-      <button class="uk-button uk-button-default play-button uk-width-1-1" *ngIf="_isSubscribed == false" (click)="VerifySubPin(pin.value)">{{ 'HOME.SUB' | translate }}</button>
+      <button class="uk-button uk-button-default play-button uk-width-1-1" *ngIf="_isSubscribed" (click)="verify(pin.value)">{{ 'HOME.LOGIN' | translate }}</button> 
+      <button class="uk-button uk-button-default play-button uk-width-1-1" *ngIf="_isSubscribed == false" (click)="verify(pin.value)">{{ 'HOME.SUB' | translate }}</button>
     </div>
     <div class="message-container" style="margin-top: 30px;">
-      <p style="color:rgb(0, 0, 0); font-weight: bold; font-size: 20px;"><a  [routerLink]="['/info']" style="color:rgb(255, 255, 255); text-decoration: underline;">{{ 'HOME.RESEND' | translate }}</a>
+      <p style="color:rgb(0, 0, 0); font-weight: bold; font-size: 20px;"><a (click)="resetPin()" style="color:rgb(255, 255, 255); text-decoration: underline;">{{ 'HOME.RESEND' | translate }}</a>
       </p>
       <!--<p>Услуга оказывается МТС совместно с партнером «ДжЮ Груп»</p>-->
     </div>

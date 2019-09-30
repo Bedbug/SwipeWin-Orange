@@ -32,7 +32,7 @@ export class PrizesComponent implements OnInit {
   public subscribe($event) {
     console.log('button is clicked');
     $event.stopPropagation();
-    this.dataService.authenticateRedirect();
+    this.router.navigate(['home']);
   }
   
   startGame() {

@@ -20,6 +20,9 @@ export class SessionService implements OnDestroy {
   mtsToken: string = null;
   
   user: User = null;
+
+  // A crypto-signed MSISDN code that should be incuded in the request header (header enrichment) if the user is connected through a mobile network
+  msisdnCode: string = null;
   
   // the main user identification property, the user's mobile number. 
   // If present, this signifies that the user has already logged in through MyMTS WebSSO login page
@@ -41,6 +44,9 @@ export class SessionService implements OnDestroy {
   
   // tells whether the user has enough credit to buy a game
   hasCredit: boolean = false;
+
+  // tells how many credits the user has
+  credits: number = 0;
   
   // tells whether the user has enough financial balance to buy the game
   hasBalance: boolean = false;

@@ -93,7 +93,9 @@ export class HomeComponent implements OnInit {
     //     };
     
     // Get Login On From LocalStorage
-    // this.loginOn = 0;
+    this.loginOn = 0;
+    this.openSubSuccess = false;
+
     // this.loginOn = +localStorage.getItem('loginOn');
     
     // if(this.loginOn != 1) console.log("Login is Off");
@@ -151,11 +153,41 @@ export class HomeComponent implements OnInit {
     this.loggedin = false;
 
     // Determine if this is the mobile/Ussd/Sms user flow or the WiFi one
-    if (!this.sessionService.msisdn) {
+    if (!this.sessionService.msisdnCode) {
       // WiFi flow here
+      console.log('WiFi user flow');
+
+
     }
     else {
       // Mobile/Ussd/Sms flow here
+      console.log('Mobile /SMS /USSD user flow');
+      this.AutoLogin = true;
+
+      this.dataService.authenticateOrangeSSO(this.sessionService.msisdnCode).then((resp: any) => {
+
+        // Get JWT token from response header and keep it for the session
+        const userToken = resp.headers.get('X-Access-Token');
+        if (userToken)  // if exists, keep it
+          this.sessionService.token = userToken;
+
+        // Deserialize payload
+        const body: any = resp.body; // JSON.parse(response);
+        if (body.isEligible !== undefined)
+          this.sessionService.isEligible = body.isEligible;
+        if (body.isSubscribed != undefined)
+          this.sessionService.isSubscribed = body.isSubscribed;
+        if (body.gamesPlayedToday !== undefined)
+          this.sessionService.gamesPlayed = body.gamesPlayedToday;
+        this.sessionService.Serialize();
+
+        // Goto the returnHome page
+        //this.router.navigate(['/returnhome']);
+        this.openSubSuccess = true;
+      },
+        (err) => {
+          this.router.navigate(['/home']);
+        });
     }
   }
   
@@ -189,17 +221,102 @@ export class HomeComponent implements OnInit {
     this.router.navigate(['/faq']);
   }
   
-  login(user: string, pass: string) {
-    
-    console.log("username: "+user);
-    console.log("password: "+pass);
-    
+  submit(number: string) {
+
+    console.log("MSISDN: " + number);
+    //this.showLogin = false;
+    this._isSubscribed = false;
+    console.log("USER IS SUBED: " + this._isSubscribed);
+
+    if (!this.sessionService.msisdn)
+      this.sessionService.msisdn = number;
 
     // Run or Go to returnHome
-    this.router.navigate(['/auth-callback'], { queryParams: { code: user } });
-    localStorage.setItem('loginOn', "0");
+    // this.router.navigate(['/auth-callback'], { queryParams: { code: number } });
+
+    this.dataService.authenticate(number).then((resp: any) => {
+
+
+      // Deserialize payload
+      const body: any = resp.body; // JSON.parse(response);
+      if (body.isEligible !== undefined)
+        this.sessionService.isEligible = body.isEligible;
+      if (body.isSubscribed != undefined)
+        this.sessionService.isSubscribed = body.isSubscribed;
+      if (body.gamesPlayedToday !== undefined)
+        this.sessionService.gamesPlayed = body.gamesPlayedToday;
+
+      // If present, Get JWT token from response header and keep it for the session
+      const userToken = resp.headers.get('X-Access-Token');
+      if (userToken) { // if exists, keep it
+        this.sessionService.token = userToken;
+        this.sessionService.Serialize();
+
+        // Goto the returnHome page
+        //this.router.navigate(['/returnhome']);
+        this.openSubSuccess = true;
+      }
+    },
+      (err) => {
+        //this.sessionService.msisdn = null;
+        this.router.navigate(['/home']);
+      });
+
+    this.openVerify = true;
   }
 
+
+  verify(pass: string) {
+
+    console.log("username: " + this.sessionService.msisdn);
+    console.log("password: " + pass);
+
+    this.dataService.authenticateVerify(this.sessionService.msisdn, pass).then((resp: any) => {
+
+      // Get JWT token from response header and keep it for the session
+      const userToken = resp.headers.get('X-Access-Token');
+      if (userToken)  // if exists, keep it
+        this.sessionService.token = userToken;
+
+      // Deserialize payload
+      const body: any = resp.body; // JSON.parse(response);
+      if (body.isEligible !== undefined)
+        this.sessionService.isEligible = body.isEligible;
+      if (body.isSubscribed != undefined)
+        this.sessionService.isSubscribed = body.isSubscribed;
+      if (body.gamesPlayedToday !== undefined)
+        this.sessionService.gamesPlayed = body.gamesPlayedToday;
+      if (body.credits > 0)
+        this.sessionService.credits = body.credits;
+      if (this.sessionService.credits > 0)
+        this.sessionService.hasCredit = true;
+      //this.sessionService.Serialize();
+
+      // Chage view state
+      this.loggedin = true;
+      this.openVerify = false;
+      this.openSubSuccess = true;
+
+
+      // Goto the returnHome page
+      //this.router.navigate(['/returnhome']);
+    },
+      (err) => {
+        this.router.navigate(['/home']);
+      });
+
+    // Run or Go to returnHome
+    //this.router.navigate(['/auth-callback'], { queryParams: { code: user } });
+  }
+
+
+  resetPin() {
+    this.dataService.requestPin(this.sessionService.msisdn).then((resp: any) => {
+      console.log('Reset password is successful');
+    });
+  }
+
+  /*
   // Check MSISDN FOR:
   // REGISTERED
   // VALID ORANGE USER
@@ -230,6 +347,7 @@ export class HomeComponent implements OnInit {
     // this.CheckCredits();
     // this.router.navigate(['returnhome']);
   }
+  */
 
   GotoReturnHome() {
     this.router.navigate(['returnhome']);

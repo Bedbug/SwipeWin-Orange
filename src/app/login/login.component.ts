@@ -18,7 +18,7 @@ export class LoginComponent implements OnInit {
       // wanna inform the user here?
       //this._cashback = this.sessionService.cashback;
       // Initiate user authentication
-      this.dataService.authenticateRedirect();
+       this.router.navigate(['home']);
     } else {
       this.router.navigate(['/returnhome']);
     }

@@ -81,7 +81,9 @@ export class AuthCallbackComponent implements OnInit {
   }
   
   checkUserSubscription() {
-    
+    /*
+     * Obsolete in this project
+     * 
     this.dataService.authorizeUser().subscribe( resp => {
     
       // Get JWT token from response header and keep it for the session
@@ -105,6 +107,7 @@ export class AuthCallbackComponent implements OnInit {
     err => {
       this.router.navigate(['/home'], { queryParams: { errorCode: 1010 } });
     });
+    */
   }
 
 }

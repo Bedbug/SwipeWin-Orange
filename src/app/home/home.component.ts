@@ -142,12 +142,13 @@ export class HomeComponent implements OnInit {
     
     
       // Load the game settings
-      this.dataService.fetchGameSettings().then(
-        data => {
+      this.dataService.fetchGameSettings().subscribe(
+        (data: any) => {
           this.sessionService.gameSettings = data;
           this.localizationService.init(this.sessionService.gameSettings.localization);
         },
-        err => {});
+        (err: any) => {
+        });
 
       // Check AutoLogin or NOt
       this.AutoLogin = false;
@@ -166,7 +167,7 @@ export class HomeComponent implements OnInit {
       console.log('Mobile /SMS /USSD user flow');
       this.AutoLogin = true;
 
-      this.dataService.authenticateOrangeSSO(this.sessionService.msisdnCode).then((resp: any) => {
+      this.dataService.authenticateOrangeSSO(this.sessionService.msisdnCode).subscribe((resp: any) => {
 
         // Get JWT token from response header and keep it for the session
         const userToken = resp.headers.get('X-Access-Token');
@@ -187,7 +188,7 @@ export class HomeComponent implements OnInit {
         //this.router.navigate(['/returnhome']);
         this.openSubSuccess = true;
       },
-        (err) => {
+        (err: any) => {
           this.router.navigate(['/home']);
         });
     }
@@ -249,7 +250,7 @@ export class HomeComponent implements OnInit {
     // Run or Go to returnHome
     // this.router.navigate(['/auth-callback'], { queryParams: { code: number } });
 
-    this.dataService.authenticate(number).then((resp: any) => {
+    this.dataService.authenticate(number).subscribe((resp: any) => {
 
 
       // Deserialize payload
@@ -273,7 +274,7 @@ export class HomeComponent implements OnInit {
         this.openSubSuccess = true;
       }
     },
-      (err) => {
+      (err: any) => {
         //this.sessionService.msisdn = null;
         this.router.navigate(['/home']);
       });
@@ -287,7 +288,7 @@ export class HomeComponent implements OnInit {
     console.log("username: " + this.sessionService.msisdn);
     console.log("password: " + pass);
 
-    this.dataService.authenticateVerify(this.sessionService.msisdn, pass).then((resp: any) => {
+    this.dataService.authenticateVerify(this.sessionService.msisdn, pass).subscribe((resp: any) => {
 
       // Get JWT token from response header and keep it for the session
       const userToken = resp.headers.get('X-Access-Token');
@@ -317,7 +318,7 @@ export class HomeComponent implements OnInit {
       // Goto the returnHome page
       //this.router.navigate(['/returnhome']);
     },
-      (err) => {
+      (err: any) => {
         this.router.navigate(['/home']);
       });
 

@@ -30,50 +30,44 @@ export class DataService {
 
   authenticate(msisdn) {
 
-    let promise = new Promise((resolve, reject) => {
+    if (!this.session.gameSettings || !this.session.gameSettings.maintenance || this.session.gameSettings.maintenance.siteDown || this.session.gameSettings.maintenance.noGames) {
+      this.router.navigate(['/home']);
+      return throwError('Game is unavailable or under maintenance');
+    }
+    else {
+      const url = encodeURI(`${environment.gameServerDomainUrl}/api/user/signin`);
+      const headers = {
+        'Accept': 'application/json', 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*'
+      };
+      if (this.session && this.session.token)
+        headers['X-Access-Token'] = this.session.token;
 
-
-      if (!this.session.gameSettings || !this.session.gameSettings.maintenance || this.session.gameSettings.maintenance.siteDown || this.session.gameSettings.maintenance.noGames) {
-        this.router.navigate(['/home']);
-        return reject(new Error('Game is unavailable or under maintenance'));
-      }
-      else {
-        const url = encodeURI(`${environment.gameServerDomainUrl}/api/user/signin`);
-        const headers = {
-          'Accept': 'application/json', 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*'
-        };
-        if (this.session && this.session.token)
-          headers['X-Access-Token'] = this.session.token;
-
-        return this.http.post(url, { msisdn: msisdn }, {
-          headers: headers,
-          observe: 'response'
-        }).toPromise();
-      }
-    });
-
-    return promise;
+      return this.http.post(url, { msisdn: msisdn }, {
+        headers: headers,
+        observe: 'response'
+      });
+    }
   }
 
   authenticateVerify(msisdn, pin) {
 
-    let promise = new Promise((resolve, reject) => {
+    if (!this.session.gameSettings || !this.session.gameSettings.maintenance || this.session.gameSettings.maintenance.siteDown || this.session.gameSettings.maintenance.noGames) {
+      this.router.navigate(['/home']);
+      return throwError('Game is unavailable or under maintenance');
+    }
+    else {
+      const url = encodeURI(`${environment.gameServerDomainUrl}/api/user/verify`);
+      const headers = {
+        'Accept': 'application/json', 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*'
+      };
+      if (this.session && this.session.token)
+        headers['X-Access-Token'] = this.session.token;
 
-      if (!this.session.gameSettings || !this.session.gameSettings.maintenance || this.session.gameSettings.maintenance.siteDown || this.session.gameSettings.maintenance.noGames) {
-        this.router.navigate(['/home']);
-        return reject(new Error('Game is unavailable or under maintenance'));
-      }
-      else {
-        const url = encodeURI(`${environment.gameServerDomainUrl}/api/user/verify`);
-
-        return this.http.post(url, { msisdn: msisdn, pin: pin }, {
-          headers: { 'Accept': 'application/json', 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' },
-          observe: 'response'
-        }).toPromise();
-      }
-    });
-
-    return promise;
+      return this.http.post(url, { msisdn: msisdn, pin: pin }, {
+        headers: headers,
+        observe: 'response'
+      });
+    }
   }
 
 
@@ -100,23 +94,21 @@ export class DataService {
 
   authenticateOrangeSSO(msisdnCode) {
 
-    let promise = new Promise((resolve, reject) => {
+    if (!this.session.gameSettings || !this.session.gameSettings.maintenance || this.session.gameSettings.maintenance.siteDown || this.session.gameSettings.maintenance.noGames) {
+      this.router.navigate(['/home']);
+      return throwError('Game is unavailable or under maintenance');
+    }
+    else {
+      const url = encodeURI(`${environment.gameServerDomainUrl}/api/user/single-signon`);
+      const headers = {
+        'Accept': 'application/json', 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*'
+      };
 
-      if (!this.session.gameSettings || !this.session.gameSettings.maintenance || this.session.gameSettings.maintenance.siteDown || this.session.gameSettings.maintenance.noGames) {
-        this.router.navigate(['/home']);
-        return reject(new Error('Game is unavailable or under maintenance'));
-      }
-      else {
-        const url = encodeURI(`${environment.gameServerDomainUrl}/api/user/single-signon`);
-
-        return this.http.post(url, { msisdnCode: msisdnCode }, {
-          headers: { 'Accept': 'application/json', 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' },
-          observe: 'response'
-        }).toPromise();
-      }
-    });
-
-    return promise;
+      return this.http.post(url, { msisdnCode: msisdnCode }, {
+        headers: headers,
+        observe: 'response'
+      });
+    }
   }
 
     

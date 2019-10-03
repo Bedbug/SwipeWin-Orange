@@ -153,7 +153,7 @@ export class HomeComponent implements OnInit {
       // Check AutoLogin or NOt
       this.AutoLogin = false;
       this.openVerify = false;
-    this.loggedin = false;
+      this.loggedin = false;
 
     // Determine if this is the mobile/Ussd/Sms user flow or the WiFi one
     if (!this.sessionService.msisdnCode) {
@@ -262,7 +262,9 @@ export class HomeComponent implements OnInit {
       if (body.gamesPlayedToday !== undefined)
         this.sessionService.gamesPlayed = body.gamesPlayedToday;
 
-      
+        console.log("Is Subed: "+ this.sessionService.isSubscribed);
+      this.openVerify = true;
+
       // If present, Get JWT token from response header and keep it for the session
       const userToken = resp.headers.get('X-Access-Token');
       if (userToken) { // if exists, keep it
@@ -279,7 +281,7 @@ export class HomeComponent implements OnInit {
         this.router.navigate(['/home']);
       });
 
-    this.openVerify = true;
+    
   }
 
 
@@ -314,6 +316,49 @@ export class HomeComponent implements OnInit {
       this.openVerify = false;
       this.openSubSuccess = true;
 
+
+      // Goto the returnHome page
+      //this.router.navigate(['/returnhome']);
+    },
+      (err: any) => {
+        this.router.navigate(['/home']);
+      });
+
+    // Run or Go to returnHome
+    //this.router.navigate(['/auth-callback'], { queryParams: { code: user } });
+  }
+
+  verifyDirect(pass: string) {
+
+    console.log("username: " + this.sessionService.msisdn);
+    console.log("password: " + pass);
+
+    this.dataService.authenticateVerify(this.sessionService.msisdn, pass).subscribe((resp: any) => {
+
+      // Get JWT token from response header and keep it for the session
+      const userToken = resp.headers.get('X-Access-Token');
+      if (userToken)  // if exists, keep it
+        this.sessionService.token = userToken;
+
+      // Deserialize payload
+      const body: any = resp.body; // JSON.parse(response);
+      if (body.isEligible !== undefined)
+        this.sessionService.isEligible = body.isEligible;
+      if (body.isSubscribed != undefined)
+        this.sessionService.isSubscribed = body.isSubscribed;
+      if (body.gamesPlayedToday !== undefined)
+        this.sessionService.gamesPlayed = body.gamesPlayedToday;
+      if (body.credits > 0)
+        this.sessionService.credits = body.credits;
+      if (this.sessionService.credits > 0)
+        this.sessionService.hasCredit = true;
+      //this.sessionService.Serialize();
+
+      // Chage view state
+      this.loggedin = true;
+      this.openVerify = false;
+      
+      this.router.navigate(['/returnhome']);
 
       // Goto the returnHome page
       //this.router.navigate(['/returnhome']);

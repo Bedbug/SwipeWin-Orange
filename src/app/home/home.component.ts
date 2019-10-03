@@ -316,7 +316,7 @@ export class HomeComponent implements OnInit {
       this.openVerify = false;
       this.openSubSuccess = true;
 
-
+      this.CheckCredits();
       // Goto the returnHome page
       //this.router.navigate(['/returnhome']);
     },
@@ -424,21 +424,21 @@ export class HomeComponent implements OnInit {
     this.router.navigate(['returnhome']);
   }
 
-  // CheckCredits() {
-  //   console.log("Checking Credits!");
-  //   this.credits = 0;
-  //   this.gamesPlayed = 5;
+  CheckCredits() {
+    console.log("Checking Credits!");
+    this.credits = 0;
+    
 
-  //   if(this.credits > 0){
-  //     // Open Button "Play Now"
-  //   }
-  //   if(this.credits == 0 && this.gamesPlayed < 5){
-  //     // Open Button "Buy New Round"
-  //   }
-  //   if(this.credits == 0 && this.gamesPlayed >= 5){
-  //     // Close Button "Buy New Round"
-  //   }
-  // }
+    if(this.credits > 0){
+      // Open Button "Play Now"
+    }
+    if(this.credits == 0 && this.gamesPlayed < 5){
+      // Open Button "Buy New Round"
+    }
+    if(this.credits == 0 && this.gamesPlayed >= 5){
+      // Close Button "Buy New Round"
+    }
+  }
 
   OpenPass(){
     this.lblShow = !this.lblShow;

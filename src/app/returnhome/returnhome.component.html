@@ -92,9 +92,9 @@
       
       
       <div class="buttons-container uk-container uk-text-center">
-        <button class="uk-button uk-button-default play-button uk-width-1-1" *ngIf="loggedin && credits > 0" (click)="startGame()">{{ 'HOME.PLAY' | translate }}</button> 
-        <button class="uk-button uk-button-default play-button uk-width-1-1" *ngIf="loggedin && credits == 0 && _gamesPlayed < 5" (click)="VerifySubPin(pin.value)">{{ 'HOME.BUY' | translate }}</button>
-        <button class="uk-button uk-button-default uk-width-1-1" *ngIf="loggedin && credits == 0 && _gamesPlayed == 5" (click)="VerifySubPin(pin.value)" disabled>{{ 'HOME.NOMORE' | translate }}</button>
+        <button class="uk-button uk-button-default play-button uk-width-1-1" *ngIf="loggedin &&  this.sessionService.hasCredit" (click)="startGame()">{{ 'HOME.PLAY' | translate }}</button> 
+        <button class="uk-button uk-button-default play-button uk-width-1-1" *ngIf="loggedin &&  !this.sessionService.hasCredit && _gamesPlayed < 5" (click)="startGame()">{{ 'HOME.BUY' | translate }}</button>
+        <button class="uk-button uk-button-default uk-width-1-1" *ngIf="loggedin &&  !this.sessionService.hasCredit && _gamesPlayed == 5"  disabled>{{ 'HOME.NOMORE' | translate }}</button>
       </div>
       <!-- <div class="message-container" style="margin-top: 30px;">
         <p style="color:rgb(0, 0, 0); font-weight: bold; font-size: 20px;"><a  [routerLink]="['/info']" style="color:rgb(255, 255, 255); text-decoration: underline;">Resend PIN</a>

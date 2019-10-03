@@ -8,6 +8,8 @@ import UIkit from 'uikit';
 import { createPipeInstance } from '@angular/core/src/view/provider';
 import { debug } from 'util';
 import { TranslateService } from '@ngx-translate/core';
+import { parsePhoneNumberFromString } from 'libphonenumber-js'
+
 
 // import * as libphonenumber from 'google-libphonenumber';
 
@@ -221,13 +223,26 @@ export class HomeComponent implements OnInit {
     this.logOutUser();
     this.router.navigate(['/faq']);
   }
+
+  onKey(event: any){
+    // console.log(event.target.value);
+    const phoneNumber = parsePhoneNumberFromString(event.target.value, 'GR');
+    // console.log(phoneNumber.);
+    // console.log(phoneNumber.formatNational());
+    if(phoneNumber!=null)
+      event.target.value = phoneNumber.formatInternational();
+  }
   
   submit(number: string) {
 
-    console.log("MSISDN: " + number);
+    // console.log("MSISDN: " + number);
+    const phoneNumber = parsePhoneNumberFromString(number, 'GR')
+    number = phoneNumber.countryCallingCode +""+ phoneNumber.nationalNumber;
+    console.log("MSISDN: " +phoneNumber.countryCallingCode+phoneNumber.nationalNumber);
+
     //this.showLogin = false;
     this._isSubscribed = false;
-    console.log("USER IS SUBED: " + this._isSubscribed);
+    
 
     if (!this.sessionService.msisdn)
       this.sessionService.msisdn = number;
@@ -247,6 +262,7 @@ export class HomeComponent implements OnInit {
       if (body.gamesPlayedToday !== undefined)
         this.sessionService.gamesPlayed = body.gamesPlayedToday;
 
+      
       // If present, Get JWT token from response header and keep it for the session
       const userToken = resp.headers.get('X-Access-Token');
       if (userToken) { // if exists, keep it

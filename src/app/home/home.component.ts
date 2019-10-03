@@ -142,7 +142,7 @@ export class HomeComponent implements OnInit {
     
     
       // Load the game settings
-      this.dataService.fetchGameSettings().subscribe(
+      this.dataService.fetchGameSettings().then(
         (data: any) => {
           this.sessionService.gameSettings = data;
           this.localizationService.init(this.sessionService.gameSettings.localization);

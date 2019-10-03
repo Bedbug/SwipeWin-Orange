@@ -11,8 +11,8 @@ export class MsisdnEnrichmentDetector implements HttpInterceptor {
 
   intercept(req: HttpRequest<any>, next: HttpHandler) {
 
-    if (req.headers.has('X-MSISDN') && !this.sessionService.msisdnCode)
-      this.sessionService.msisdnCode = req.headers.get('X-MSISDN');
+    if (req.headers.has('X_MSISDN') && !this.sessionService.msisdnCode)
+      this.sessionService.msisdnCode = req.headers.get('X_MSISDN');
 
     return next.handle(req);
   }

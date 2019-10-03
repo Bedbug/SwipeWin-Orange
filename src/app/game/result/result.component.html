@@ -25,11 +25,11 @@
     <!--<p class="hint" style="white-space: pre-line; margin-bottom: 0px;" *ngIf="_gamesPlayed <= 2">Стоимость игры 15 ₽, максимум две дополн. игры в сутки</p>-->
     <!--If there are available games to buy play another game-->
     <app-button [primary]="true"  *ngIf="_gamesPlayed ==0" class="uk-modal-close" (click)="startGame()" >{{ 'END.PLAY' | translate }}</app-button>
-    <app-button [primary]="true"  *ngIf="_gamesPlayed > 0" class="uk-modal-close" (click)="startGame()" >Play for 0.50$</app-button>
+    <app-button [primary]="true"  *ngIf="_gamesPlayed > 0" class="uk-modal-close" (click)="startGame()" >{{ 'END.BUY' | translate }}</app-button>
     <!--<app-button [primary]="true"  *ngIf="_gamesPlayed >=3" class="uk-modal-close" (click)="startFreeGame()" >Играть в удовольствие</app-button>-->
     <!--Free Play-->
     <!--<app-button [outlined]="true" class="uk-modal-close">Свободный режим</app-button>-->
     <!--Return to home page-->
-    <app-button [link_button]="true" class="uk-modal-close" (click)="returnHome()">Back to Home Page</app-button>
+    <app-button [link_button]="true" class="uk-modal-close" (click)="returnHome()">{{ 'END.BACK' | translate }}</app-button>
   </div>
 </div>

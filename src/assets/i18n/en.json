@@ -79,9 +79,19 @@
         "DATE": "Date",
         "BACK": "Go Back"
     },
-    
+
     "FAQ": {
         "FAQ": "FAQ"
+    },
+    "RESULT": {
+        "MES_01": "Oops…",
+        "MES_02": "Just…",
+        "MES_03": "Good!",
+        "MES_04": "Very Good!",
+        "MES_05": "Perfect!",
+        "MES_06": "Correct Answer",
+        "MES_07": "Correct Answers",
+        "MES_08": "Keep playing for today’s 10,000$"
     },
 
 

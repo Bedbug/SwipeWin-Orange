@@ -228,12 +228,12 @@
   <div id="error" class="uk-flex-top" uk-modal>
     <div class="uk-modal-dialog uk-modal-body uk-margin-auto-vertical">
       <img src="assets/images/wanted.svg" alt="">
-      <h4>Oops...</h4>
-    <pre>{{errorMsg}}</pre>
+      <h4>{{ 'END.MES_01' | translate }}</h4>
+    <pre>{{ errorMsg | translate }}</pre>
     <!--<p>{{errorMsg}}</p>-->
-    <app-button *ngIf="!logOutBtn" [link_button]="true" class="uk-modal-close">Back</app-button>
-    <app-button *ngIf="gotofaqBtn" [link_button]="true" class="uk-modal-close" (click)="gotoFaqPage()">Read more at FAQs</app-button>
-    <app-button *ngIf="logOutBtn" [link_button]="true" class="uk-modal-close" (click)="logOutUser()">Back</app-button>
+    <app-button *ngIf="!logOutBtn" [link_button]="true" class="uk-modal-close">{{ 'MESSAGES.MESSAGE_07' | translate }}</app-button>
+    <app-button *ngIf="gotofaqBtn" [link_button]="true" class="uk-modal-close" (click)="gotoFaqPage()">{{ 'MESSAGES.MESSAGE_14' | translate }}</app-button>
+    <app-button *ngIf="logOutBtn" [link_button]="true" class="uk-modal-close" (click)="logOutUser()">{{ 'MESSAGES.MESSAGE_07' | translate }}</app-button>
       
     </div>
   </div>

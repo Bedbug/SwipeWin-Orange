@@ -111,7 +111,10 @@
         "MESSAGE_10": "Your tariff plan is not allowed to participate to Swipe & Win.\n Try to play from another number",
         "MESSAGE_11": "The session is invalid or has expired.\n Please log in again",
         "MESSAGE_12": "Number is blocked.\n Unfortunately, you cannot participate through this number",
-        "MESSAGE_13": "Not enough balance to participate to Swipe & Win"
+        "MESSAGE_13": "Not enough balance to participate to Swipe & Win",
+
+        "MESSAGE_14": "Read more at FAQs"
+
     }
   }
   

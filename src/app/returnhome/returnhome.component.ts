@@ -62,9 +62,9 @@ export class ReturnhomeComponent implements OnInit {
     // }else{
       console.log("Play Main Game!");
       this.sessionService.gamesPlayed++;
-      // this.router.navigate(['game']);
+      this.router.navigate(['game']);
       // this.router.navigate(['freetimegame']);
-      this.router.navigate(['demogame']);
+      //this.router.navigate(['demogame']);
     // }
   }
   
@@ -80,44 +80,46 @@ export class ReturnhomeComponent implements OnInit {
     console.log( "Has Credit: " + this.sessionService.hasCredit );
     console.log( "Played Games: " + this.sessionService.gamesPlayed );
     // user login validation check
-    // if (!this.sessionService.token || !this.sessionService.isSubscribed || !this.sessionService.isEligible) {
-    //   // wanna inform the user here?
+    if (!this.sessionService.token || !this.sessionService.isSubscribed || !this.sessionService.isEligible) {
+      // wanna inform the user here?
       
-    //   // Redirect him to Home
-    //   this.router.navigate(['/home'], { queryParams: { errorCode: 401 } });
-    // }
-    // else if (!this.sessionService.isEligible) {
-    //   this.router.navigate(['/home'], { queryParams: { errorCode: 1026 } });
-      
-      
-    // }
-    // else {
-    //   this._isSubscribed = this.sessionService.isSubscribed;
-    //   console.log(this.sessionService.msisdn);
-    //   console.log("this.session "+this.sessionService.token);
-    //   // this._cashBackAmount = this.sessionService._cashBackAmount;
-    //   // this._cashBackAmount = 500;
-      
-    //   // TOBE ERASED
-    //   // This resets the games played every time
+      // Redirect him to Home
+      this.router.navigate(['/home'], { queryParams: { errorCode: 401 } });
+    }
+    else if (!this.sessionService.isEligible) {
+      this.router.navigate(['/home'], { queryParams: { errorCode: 1026 } });
       
       
-    //   this.dataService.getUserProfile().then( 
-    //     (data:User) => {
-    //       this.sessionService.user = data;
-    //       this._gamesPlayed = this.sessionService.gamesPlayed;
+    }
+    else {
+      this._isSubscribed = this.sessionService.isSubscribed;
+      console.log(this.sessionService.msisdn);
+      console.log("this.session "+this.sessionService.token);
+      // this._cashBackAmount = this.sessionService._cashBackAmount;
+      // this._cashBackAmount = 500;
+      
+      // TOBE ERASED
+      // This resets the games played every time
+      
+      
+      this.dataService.getUserProfile().then( 
+        (data:User) => {
+          this.sessionService.user = data;
+          this._gamesPlayed = this.sessionService.gamesPlayed;
           
-    //       console.log("this._gamesPlayed "+this._gamesPlayed);
-    //       console.log("this.sessionService.gamesPlayed "+this.sessionService.gamesPlayed);
-    //       // this._gamesPlayed = 3;
-    //       this._cashBackAmount = this.sessionService.user.wallet.pendingMaturityCashback + this.sessionService.user.wallet.pendingTransferCashback;
-    //     },
-    //     (err) => {
+          console.log("this._gamesPlayed "+this._gamesPlayed);
+          console.log("this.sessionService.gamesPlayed "+this.sessionService.gamesPlayed);
+
+          // Set Properties here
+          // this._gamesPlayed = 3;
+          // this._cashBackAmount = this.sessionService.user.wallet.pendingMaturityCashback + this.sessionService.user.wallet.pendingTransferCashback;
+        },
+        (err) => {
           
-    //     }
+        }
         
-    //   );
-    // }
+      );
+    }
   }
 
   CheckCredits() {

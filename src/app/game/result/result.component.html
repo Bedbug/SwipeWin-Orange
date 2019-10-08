@@ -24,12 +24,16 @@
     <!--<p class="hint hint_fail" *ngIf="rightAnswerCount === 0">Ничего страшного, ты всегда можешь попробовать еще</p>-->
     <!--<p class="hint" style="white-space: pre-line; margin-bottom: 0px;" *ngIf="_gamesPlayed <= 2">Стоимость игры 15 ₽, максимум две дополн. игры в сутки</p>-->
     <!--If there are available games to buy play another game-->
-    <app-button [primary]="true"  *ngIf="_gamesPlayed ==0" class="uk-modal-close" (click)="startGame()" >{{ 'END.PLAY' | translate }}</app-button>
-    <app-button [primary]="true"  *ngIf="_gamesPlayed > 0" class="uk-modal-close" (click)="startGame()" >{{ 'END.BUY' | translate }}</app-button>
+    
+    <br>
+    <button class="uk-button uk-button-default play-button uk-width-1-1 uk-modal-close"  *ngIf="_gamesPlayed == 0" (click)="startGame()">{{ 'END.PLAY' | translate }}</button>
+    <button class="uk-button uk-button-default play-button uk-width-1-1 uk-modal-close"  *ngIf="_gamesPlayed > 0" (click)="startGame()">{{ 'END.BUY' | translate }}</button>
+    <!-- <app-button [primary]="true"  *ngIf="_gamesPlayed ==0" class="uk-modal-close" (click)="startGame()" >{{ 'END.PLAY' | translate }}</app-button>
+    <app-button [primary]="true"  *ngIf="_gamesPlayed > 0" class="uk-modal-close" (click)="startGame()" >{{ 'END.BUY' | translate }}</app-button> -->
     <!--<app-button [primary]="true"  *ngIf="_gamesPlayed >=3" class="uk-modal-close" (click)="startFreeGame()" >Играть в удовольствие</app-button>-->
     <!--Free Play-->
     <!--<app-button [outlined]="true" class="uk-modal-close">Свободный режим</app-button>-->
     <!--Return to home page-->
-    <app-button [link_button]="true" class="uk-modal-close" (click)="returnHome()">{{ 'END.BACK' | translate }}</app-button>
+    <app-button [link_button]="true" [link_button_white]="true" class="uk-modal-close"  (click)="returnHome()">{{ 'END.BACK' | translate }}</app-button>
   </div>
 </div>

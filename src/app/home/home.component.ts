@@ -60,6 +60,7 @@ export class HomeComponent implements OnInit {
   
   public showLogin = false;
   
+  lang: string;
   // Lottie
   public lottieConfig: Object;
   private anim: any;
@@ -79,20 +80,17 @@ export class HomeComponent implements OnInit {
     
   
   ngOnInit() {
+
+    this.activatedRoute.paramMap.subscribe(params => {
+      console.table(params);
+      this.lang = params.get("lang");
+      if(this.lang != null)
+      this.translate.setDefaultLang(this.lang);
+      console.log("Language Selected: "+this.lang);
+    })
+
     
-    // this.lottieConfig = {
-    //         path: 'assets/logoanim.json',
-    //         renderer: 'svg',
-    //         autoplay: true,
-    //         loop: false,
-    //         rendererSettings: {
-    //           progressiveLoad:true,
-    //           preserveAspectRatio: 'xMidYMid meet',
-    //           imagePreserveAspectRatio: 'xMidYMid meet',
-    //           title: 'TEST TITLE',
-    //           description: 'TEST DESCRIPTION',
-    //       }
-    //     };
+    
     
     // Get Login On From LocalStorage
     this.loginOn = 0;
@@ -182,11 +180,19 @@ export class HomeComponent implements OnInit {
           this.sessionService.isSubscribed = body.isSubscribed;
         if (body.gamesPlayedToday !== undefined)
           this.sessionService.gamesPlayed = body.gamesPlayedToday;
+        if (this.sessionService.credits > 0)
+          this.sessionService.hasCredit = true;
+        if (body.bestScore !== undefined)
+          this.sessionService.user.bestScore = body.bestScore;
+
+        console.log("User Best Score: "+this.sessionService.user.bestScore);
         this.sessionService.Serialize();
 
-        // Goto the returnHome page
-        //this.router.navigate(['/returnhome']);
-        this.openSubSuccess = true;
+        // Goto the returnHome page if user is subscribed
+        if(this.sessionService.isSubscribed)
+          this.router.navigate(['/returnhome']);
+
+        // this.openSubSuccess = true;
       },
         (err: any) => {
           this.router.navigate(['/home']);
@@ -299,6 +305,7 @@ export class HomeComponent implements OnInit {
 
       // Deserialize payload
       const body: any = resp.body; // JSON.parse(response);
+      console.log("Best Score: "+body.bestScore);
       if (body.isEligible !== undefined)
         this.sessionService.isEligible = body.isEligible;
       if (body.isSubscribed != undefined)
@@ -309,6 +316,10 @@ export class HomeComponent implements OnInit {
         this.sessionService.credits = body.credits;
       if (this.sessionService.credits > 0)
         this.sessionService.hasCredit = true;
+      if (body.bestScore !== undefined)
+          this.sessionService.user.bestScore = body.bestScore;
+
+      console.log("User Best Score: "+this.sessionService.user.bestScore);
       //this.sessionService.Serialize();
 
       // Chage view state

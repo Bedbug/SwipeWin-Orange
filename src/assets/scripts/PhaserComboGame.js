@@ -141,7 +141,8 @@ var __phaser = {
   game: {
     type: 'demo',
     //-------------------
-    init: function init(canvasEle, appComponent) {
+    init: function init(canvasEle, appComponent, locale) {
+      Localization.locale = locale;
       // create game object
       var game = new Phaser.Game(window.innerWidth * window.devicePixelRatio, window.innerHeight * window.devicePixelRatio, Phaser.CANVAS, canvasEle, {
         preload: preload,

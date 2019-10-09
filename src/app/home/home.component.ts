@@ -81,13 +81,22 @@ export class HomeComponent implements OnInit {
   
   ngOnInit() {
 
-    this.activatedRoute.paramMap.subscribe(params => {
-      console.table(params);
-      this.lang = params.get("lang");
-      if(this.lang != null)
-      this.translate.setDefaultLang(this.lang);
-      console.log("Language Selected: "+this.lang);
-    })
+    // this.activatedRoute.queryParams.subscribe(params => {
+    //   console.table(params);
+    //   this.lang = params["lang"];
+    //   if(this.lang != null)
+    //   this.translate.setDefaultLang(this.lang);
+    //   console.log("Language Selected: "+this.lang);
+    // })
+
+    // this.activatedRoute.queryParams
+    //   .subscribe(params => {
+    //     console.log(params); // {order: "popular"}
+
+    //     // this.order = params.order;
+    //     // console.log(this.order); // popular
+    //   });
+  
 
     
     

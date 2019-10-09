@@ -7,6 +7,7 @@ import { SessionService } from '../session.service';
 import { Globals } from '../globals'
 import * as _ from 'lodash';
 import { DeviceDetectorService } from 'ngx-device-detector';
+import {TranslateService} from '@ngx-translate/core';
 
 @Component({
   selector: 'app-game',
@@ -27,6 +28,7 @@ export class GameComponent implements OnInit {
     private router: Router, 
     private sessionService: SessionService,
     public globals: Globals,
+    private translate: TranslateService,
     private deviceService: DeviceDetectorService
     ) {
       this.epicFunction(); 
@@ -118,7 +120,7 @@ export class GameComponent implements OnInit {
       that._phaser._ = _;
       that._phaser.game.type = 'normal';
       that._phaser.environment = environment;
-      that._phaser.game.init(phaser.container, this);
+      that._phaser.game.init(phaser.container, this, that.translate.currentLang);
     }
     else {
       js = document.createElement("script");
@@ -133,7 +135,7 @@ export class GameComponent implements OnInit {
         that._phaser._ = _;
         that._phaser.game.type = 'normal';
         that._phaser.environment = environment;
-        that._phaser.game.init(phaser.container, this);
+        that._phaser.game.init(phaser.container, this, that.translate.currentLang);
       }
     }
   }

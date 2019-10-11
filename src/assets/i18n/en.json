@@ -31,7 +31,7 @@
         "WINNERS": "Winners",
         "FAQ": "FAQ",
         "TERMS": "Terms & Conditions",
-        "LANG": "Change language"
+        "LANG": "عربي"
     },
     "PROFILE": {
         "PROFILE": "Profile",
@@ -79,54 +79,48 @@
         "DATE": "Date",
         "BACK": "Go Back"
     },
-    
+
     "FAQ": {
         "FAQ": "FAQ",
-        "MES_01": "What is Lucky Packages?",
-        "MES_01b": "What is Lucky Packages?",
-        "MES_02": "What is Lucky Packages?",
-        "MES_02b": "What is Lucky Packages?",
-        "data": [{"title": "What is Lucky Packages?","descr":"<p>Lucky Packages from Beeline is a new interactive game for Beeline subscribers which awards big cash prizes.</p><p>The game is based on a simple principle: a participant receives questions and sends his/her answers. One game consists of 10 questions. Correct answers bring points. The participant who scored the highest amount of points for the shortest time interval is a winner and he/she is awarded a prize from Beeline:</p><p>You can win:<br />- 50,000 ten.: daily from Monday to Saturday;<br />- 200,000 ten.: on Sundays, apart from those Sundays when a monthly prize is awarded;<br />- 1,000,000 ten.: prize of a month, awarded on last Sunday of a month.</p><p>To participate one has to subscribe.</p>"},
-        {"title": "How to begin to play?",
-        "descr":"<p>If you are a Beeline subscriber, you can become a participant by means of subscription.</p><p>There are several ways to subscribe and begin to play, choose the most convenient way to you:<br />- to send a free SMS with text ДА to short number 2015;<br />- to use USSD-menu by dialing *201# on your mobile phone.</p><p>On subscribing, you become a participant of the game and will receive a welcome message, as well as the first question of the game. One game consists of 10 questions.</p>"},
-        {"title": "How much does it cost to participate in the campaign?",
-            "descr":"<p>Even the first game can make you a winner if the result of your game is better than those of other participants.</p><p>Beginning from the first day, the cost of participation is 59 ten., including VAT. With every daily renewal of participation, a user gets an access to a new game of a day which consists of 10 questions.</p><p>To receive the first question of a game at any convenient to you moment, just send a free SMS with text START or СТАРТ to short number 2015.</p>"},
-        {"title": "How many games can I play per day?",
-            "descr":"<p>Renewal of a daily participation guarantees an access to a new game (which consists of 10 questions) per day.</p><p>If you want to answer additional questions to gain more points and increase your chances to win and receive a prize, you can purchase unlimited amount of additional questions per day.</p><p>If you participate in the game via SMS, send an SMS with text IGRA or ИГРА to number 2114 and answer a new (additional) question.<br />Each additional question costs 200 ten.</p>"},
-        {"title": "How to stop my subscription?",
-            "descr":"<p>To refuse from participating in a game, just send an SMS with text STOP or СТОП to number 2015.</p>"},
-        {"title": "Till what time I should finish the game to be awarded a prize of a day?",
-            "descr":"<p>Questions in the game of a day are accepted till 23:59:59, Astana time.</p>"},
-        {"title": "What kind of questions does the game consist of?",
-            "descr":"<p>We created a game of questions of different complexity. To answer a participant has to choose one of offered variants or an arbitrary answer depending on the category of a question. One game consists of 10 questions.</p><p>No worries: each question contains a brief and exact instruction on how to answer.</p>"},
-        {"title": "How will I know that my answer is correct?",
-            "descr":"<p>On answering each of 10 questions, you will receive a message which says whether your answer was correct. If the answer was wrong, you will immediately see the correct answer.</p><p>After each answer you will also know the total amount of points you gained and will receive next question.</p>"},
-        {"title": "What kind of prizes are awarded in the Lucky Packages interactive game?",
-            "descr":"<p>Every day, Monday through Saturday, the best player receives 50,000 ten.</p><p>Each Sunday (apart from last Sunday of a month, when a monthly prize is awarded), the best player receives 200,000 ten.<br />On last Sunday of each month a best player becomes a winner of a month and receives a prize of 1,000,000 ten.</p>"},
-        {"title": "On which days monthly prizes are awarded?",
-            "descr":"<p>Prize of a month is awarded on last Sunday of a month. The dates of the nearest awards are:<br />Jan, 27, 2019 &ndash; 1,000,000 tenge;<br />Feb, 24, 2019 &ndash; 1,000,000 tenge.</p>"},
-        {"title": "Will I receive a prize if I become a winner using a number which does not belong to me?",
-            "descr":"<p>An owner of a mobile number is a subscriber who is a legal owner of the SIM-card in the agreement signed with PAO Beeline. If you are not a subscriber of this number, you have no right to receive a prize.</p>"},
-        {"title": "Who will be a winner if two or more participants gain the same maximum amount of points?",
-            "descr":"<p>A participant who finished the game within the shortest time interval, will be announced a winner.</p>"},
-        {"title": "Who will become a winner if several participants gain maximum points within the minimum time interval?",
-            "descr":"<p>Each participant will receive a prize of a day.</p>"},
-        {"title": "How will I know that I become a winner?",
-            "descr":"<p>If you gain maximum points within minimum time interval among all participants of a game and become a winner, a Beeline representative will contact you and provide you with a detailed information on receiving a prize.</p><p>Names of confirmed winners are published on the website of the campaign: like.beeline.kz and are openly accessible only after a winner was contacted by a Beeline representative.</p>"},
-        {"title": "Where can I see the rating table and learn my rating in the game of a day?",
-            "descr":"<p>Where is no open access to the rating table as it contains personal information of all participants, namely their mobile numbers, best result of a day and time used to answer questions. Thus, you cannot see your place in the rating table. <br />However, you can send a free SMS with text BALLI or БАЛЛЫ to short number 2015 and learn your best result of a day.</p>"},
-        {"title": "Do I have to pay a tax for receiving a prize?",
-            "descr":"<p>The individual who receives a prize has to pay 10% of the prize cost. The Promoter who is a tax agent, pays the tax on a winner&rsquo;s behalf.</p>"},
-        {"title": "Can I receive an amount of a tax and pay the tax on my own?",
-            "descr":"<p>Beeline makes the prize receiving procedure simpler and takes care of all necessary tax procedures. For this reason you cannot receive the money which make the tax.</p>"},
-        {"title": "When will a winner receive his/her prize?",
-            "descr":"<p>A winner receives a prize during 60 days from the day he/she provided the Promoter with all necessary documents.</p>"},
-        {"title": "Who are reserved winners and how they get defined?",
-            "descr":"<p>On the results of each game a rating table is formed. Participants who take the 2nd and 3rd places, become reserved winners.</p><p>If a winner of a day violated the rules of participation, did not submit necessary documents or just refused from receiving a prize, a right to receive a prize goes to a reserved winner.</p>"}]
+        "data": [
+        {"title": "How do I subscribe?",
+            "descr":"<p>You can subscribe to 'Orange Swipe &amp; Win' service by:<br />Following the link via 'my Orange' app menu<br />Visit https://swipe.orange.eg <br />Dial #50# from your Orange mobile number<br />Send SUB to 5055 from your Orange mobile number</p>"},
+
+        {"title": "What is the duration of the service?",
+            "descr":"<p>The service has annual duration.</p>"},
+
+        {"title": "What are the prizes?",
+            "descr":"<p>Every month the top scorer wins 55,000 EGP in Cash!</p>"},
+
+        {"title": "If I win how will I be informed?",
+            "descr":"<p>The winner will be contacted by Orange in the next days as to explain the process needed. So do not worry, just keep your phone on.</p>"},
+
+        {"title": "How many times may I win each prize?",
+            "descr":"<p>A participant may win each prize only once.</p>"},
+
+        {"title": "How can I change the language of participation?",
+            "descr":"<p>If you are participating in English and you want to switch to Arabic, send the keyword AR to the short-code 5055.<br><br>If you are participating in Arabic and you want to switch to English, send the keyword EN to the short-code 5055.</p>"},
+
+
+        {"title": "What are the Swipe & Win game rules?",
+            "descr":"<p>Each game lasts for 55 seconds.</p><p>Each question is consisted of a statement and a photo.</p><p>User has to Swipe right for Correct or left for Wrong.</p><p>Be careful! Every wrong reply deducts 5 seconds from the remaining time!</p><p>During a game round, special questions may also be served such as bronze, silver and golden ones which give away more points to the 'my Orange' app users.</p>"},
+
+        {"title": "Does my Swipe & Win credit expire?",
+            "descr":"<p>The awarded Swipe & Win credit expires at the end of calendar day if not consumed until then.</p>"},
+
+        {"title": "What are the benefits by logging-in via 'my Orange' app?",
+            "descr":"<p>Users who subscribe via 'my Orange' app will be awqarded with extra points. The ones who login and start a new round via the app will unlock a special daily bonus! <br><br>Please check the Terms and Conditions for more details!</p>"},
+
+        {"title": "I consume my daily credit, can I add more?",
+            "descr":"<p>You can purchase another credit for 2 EGP upon consuming your available daily credits.<br> Each user may purchase up to 5 extra rounds per day.</p>"},
+
+        {"title": "How can I unsubscribe?",
+            "descr":"<p>To cancel your 'Orange Swipe & Win' subscription, send 'STOP' to the short code 5055.</p>"},
+
+        {"title": "I'm not an Orange subscriber, may I participate to the service?",
+            "descr":"<p>No, if you are not an Orange subscriber unfortunately you cannot subscribe to the service.</p>"}
+        ]
     },
-
-
-
 
     "END": {
         "MES_01": "Oops…",
@@ -158,4 +152,3 @@
 
     }
   }
-  

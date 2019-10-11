@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { DataService } from '../data.service';
 import { SessionService } from '../session.service';
 import { Router } from '@angular/router';
+import {TranslateService, LangChangeEvent} from '@ngx-translate/core';
+
 
 @Component({
   selector: 'app-faq',
@@ -12,11 +14,26 @@ export class FaqComponent implements OnInit {
   
    public isActive: boolean = false;
    public _gamesPlayed = 0;
-   
-  constructor(private dataService : DataService, private sessionService: SessionService, private router: Router ) { }
+   alignAllLeft = true;
+
+  constructor(private dataService : DataService, private sessionService: SessionService, private router: Router, public translate: TranslateService ) { }
 
  
   ngOnInit() {
+    // Subscribe to Translate Service
+    this.translate.onLangChange.subscribe((event: LangChangeEvent) => {
+      // do something
+      console.log(event.lang);
+      if(this.translate.currentLang == "en") {
+        this.alignAllLeft = true;
+      }
+      if(this.translate.currentLang == "ar") {
+        this.alignAllLeft = false;
+      }
+
+    });
+
+
     if (!this.sessionService.token || !this.sessionService.isSubscribed || !this.sessionService.isEligible) {
       // wanna inform the user here?
       this.isActive = true;

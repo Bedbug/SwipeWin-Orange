@@ -29,6 +29,8 @@ export class HeaderComponent implements OnInit {
   ngOnInit() {
     const that = this;
 
+
+
     UIkit.util.on('#offcanvas-nav', 'hide', function (e) {
       // do something
       const currentClass = this

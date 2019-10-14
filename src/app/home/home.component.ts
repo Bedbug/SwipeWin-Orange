@@ -325,8 +325,11 @@ export class HomeComponent implements OnInit {
         this.sessionService.credits = body.credits;
       if (this.sessionService.credits > 0)
         this.sessionService.hasCredit = true;
-      if (body.bestScore !== undefined)
-          this.sessionService.user.bestScore = body.bestScore;
+      if (body.bestScore !== undefined) {
+        if (!this.sessionService.user)
+          this.sessionService.user = {};
+        this.sessionService.user.bestScore = body.bestScore;
+      }
 
       console.log("User Best Score: "+this.sessionService.user.bestScore);
       //this.sessionService.Serialize();

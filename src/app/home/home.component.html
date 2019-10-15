@@ -148,8 +148,10 @@
      
       
       <div class="buttons-container uk-container uk-text-center">
+          <!-- // Continue To ReturnHome -->
         <button class="uk-button uk-button-default play-button uk-width-1-1"   *ngIf="sessionService.hasCredit" (click)="GotoReturnHome()">{{'HOME.SUB_SUC_03' | translate }}</button> 
-        <button class="uk-button uk-button-default play-button uk-width-1-1"   *ngIf="!sessionService.hasCredit" (click)="GotoReturnHome()">{{'HOME.SUB_SUC_04' | translate }}</button> 
+          <!-- // Play Game, Burn One Credit -->
+        <button class="uk-button uk-button-default play-button uk-width-1-1"   *ngIf="!sessionService.hasCredit" (click)="PlayGame()">{{'HOME.SUB_SUC_04' | translate }}</button> 
       </div>
       
       

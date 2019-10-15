@@ -27,10 +27,14 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit() {
+    // Checking Lang
+    if(this.translate.currentLang == "ar") {
+      this.alignAllLeft = false;
+    } else {
+      this.alignAllLeft = true;
+    }
+
     const that = this;
-
-
-
     UIkit.util.on('#offcanvas-nav', 'hide', function (e) {
       // do something
       const currentClass = this

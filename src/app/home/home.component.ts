@@ -328,13 +328,18 @@ export class HomeComponent implements OnInit {
         this.sessionService.credits = body.credits;
       if (this.sessionService.credits > 0)
         this.sessionService.hasCredit = true;
-      if (body.bestScore !== undefined) {
-        if (!this.sessionService.user)
-          this.sessionService.user = new User();
-        this.sessionService.user.bestScore = body.bestScore;
-      }
+      else
+        this.sessionService.hasCredit = false;
 
-      console.log("User Best Score: "+this.sessionService.user.bestScore);
+      console.log("hasCredit: "+ this.sessionService.hasCredit)
+      this.sessionService.hasCredit = true;
+      // if (body.bestScore !== undefined) {
+      //   if (!this.sessionService.user)
+      //     this.sessionService.user = new User();
+      //   this.sessionService.user.bestScore = body.bestScore;
+      // }
+
+      // console.log("User Best Score: "+this.sessionService.user.bestScore);
       //this.sessionService.Serialize();
 
       // Chage view state
@@ -378,6 +383,9 @@ export class HomeComponent implements OnInit {
         this.sessionService.credits = body.credits;
       if (this.sessionService.credits > 0)
         this.sessionService.hasCredit = true;
+      else
+        this.sessionService.hasCredit = false;
+
       //this.sessionService.Serialize();
 
       // Chage view state
@@ -440,6 +448,10 @@ export class HomeComponent implements OnInit {
   GotoReturnHome() {
     this.router.navigate(['returnhome']);
   }
+
+  PlayGame() {
+    console.log("Burn One Credit, Play Game!");
+  }
   
 
   VerifyLogPin(pin:string) {
@@ -452,6 +464,8 @@ export class HomeComponent implements OnInit {
 
   CheckCredits() {
     console.log("Checking Credits!");
+    // Dummy Properties
+    this.sessionService.hasCredit = true;
     this.credits = 0;
     
 

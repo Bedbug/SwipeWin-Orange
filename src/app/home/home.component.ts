@@ -332,7 +332,7 @@ export class HomeComponent implements OnInit {
         this.sessionService.hasCredit = false;
 
       console.log("hasCredit: "+ this.sessionService.hasCredit)
-      this.sessionService.hasCredit = true;
+      // this.sessionService.hasCredit = true;
       // if (body.bestScore !== undefined) {
       //   if (!this.sessionService.user)
       //     this.sessionService.user = new User();

@@ -11,17 +11,18 @@ export class AppComponent {
   title = 'swipr';
   lang: string;
   constructor(public translate: TranslateService, private activatedRoute: ActivatedRoute) {
-    translate.addLangs(['en', 'ar']);
-    translate.setDefaultLang('en');
+    translate.addLangs(['ar', 'en']);
+    translate.setDefaultLang('ar');
 
     const browserLang = translate.getBrowserLang();
-    translate.use(browserLang.match(/en|ar/) ? browserLang : 'en');
+    translate.use(browserLang.match(/ar|er/) ? browserLang : 'ar');
 
     this.activatedRoute.queryParams.subscribe(params => {
       // console.table(params);
       this.lang = params["lang"];
       if(this.lang != null)
       this.translate.setDefaultLang(this.lang);
+      
       console.log("Language Selected: "+this.lang);
     })
   }

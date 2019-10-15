@@ -12,6 +12,7 @@ class User {
   bestScoreToday: number = 0;
   totalDaysPlaying: number = 0;
   wallet: any = null;
+  credits: any = null;
 
   public toProfileDTO() {
       return {

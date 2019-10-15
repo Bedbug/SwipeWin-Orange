@@ -75,7 +75,7 @@ export class ReturnhomeComponent implements OnInit {
   constructor(private dataService: DataService, private sessionService: SessionService, private router: Router) { }
 
   ngOnInit() {
-    this.CheckCredits();
+    
 
     console.log( "Has Credit: " + this.sessionService.hasCredit );
     console.log( "Played Games: " + this.sessionService.gamesPlayed );
@@ -92,6 +92,7 @@ export class ReturnhomeComponent implements OnInit {
       
     }
     else {
+      
       this._isSubscribed = this.sessionService.isSubscribed;
       console.log(this.sessionService.msisdn);
       console.log("this.session "+this.sessionService.token);
@@ -110,6 +111,7 @@ export class ReturnhomeComponent implements OnInit {
           console.log("this._gamesPlayed "+this._gamesPlayed);
           console.log("this.sessionService.gamesPlayed "+this.sessionService.gamesPlayed);
 
+          this.CheckCredits();
           // Set Properties here
           // this._gamesPlayed = 3;
           // this._cashBackAmount = this.sessionService.user.wallet.pendingMaturityCashback + this.sessionService.user.wallet.pendingTransferCashback;
@@ -124,29 +126,27 @@ export class ReturnhomeComponent implements OnInit {
 
   CheckCredits() {
     console.log("Checking Credits!");
-    this.credits = 1;
-    this._gamesPlayed = 0;
-
-    if(this.credits > 0) {
-      // Open Button "Play Now"
-    }
-    if(this.credits == 0 && this._gamesPlayed < 5){
-      // Open Button "Buy New Round"
-    }
-    if(this.credits == 0 && this._gamesPlayed >= 5){
-      // Close Button "Buy New Round"
-    }
+    if(this.sessionService.user.credits > 0)
+        this.sessionService.hasCredit = true;
+      else
+        this.sessionService.hasCredit = false;
   }
 
   purchaseCredit() {
     console.log("Attempting to purchase credits!");
     this.dataService.purchaseCredit().then(
       (data: User) => {
+
         this.sessionService.user = data;
         this._gamesPlayed = this.sessionService.gamesPlayed;
-
-        console.log("this._gamesPlayed " + this._gamesPlayed);
-        console.log("this.sessionService.gamesPlayed " + this.sessionService.gamesPlayed);
+        console.table(data);
+        if(this.sessionService.user.credits > 0){
+          this.startGame();
+          // Burn Credit
+        }
+          
+        // console.log("this._gamesPlayed " + this._gamesPlayed);
+        // console.log("this.sessionService.gamesPlayed " + this.sessionService.gamesPlayed);
       },
       (err) => {
 

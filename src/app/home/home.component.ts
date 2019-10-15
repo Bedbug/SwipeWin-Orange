@@ -454,18 +454,18 @@ export class HomeComponent implements OnInit {
   CheckCredits() {
     console.log("Checking Credits!");
     // Dummy Properties
-    this.credits = 0;
+    // this.credits = 0;
     
 
-    if(this.credits > 0){
-      // Open Button "Play Now"
-    }
-    if(this.credits == 0 && this.gamesPlayed < 5){
-      // Open Button "Buy New Round"
-    }
-    if(this.credits == 0 && this.gamesPlayed >= 5){
-      // Close Button "Buy New Round"
-    }
+    // if(this.credits > 0){
+    //   // Open Button "Play Now"
+    // }
+    // if(this.credits == 0 && this.gamesPlayed < 5){
+    //   // Open Button "Buy New Round"
+    // }
+    // if(this.credits == 0 && this.gamesPlayed >= 5){
+    //   // Close Button "Buy New Round"
+    // }
   }
 
   OpenPass(){

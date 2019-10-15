@@ -126,10 +126,9 @@ export class ReturnhomeComponent implements OnInit {
 
   CheckCredits() {
     console.log("Checking Credits!");
-    if(this.sessionService.user.credits > 0)
-        this.sessionService.hasCredit = true;
-      else
-        this.sessionService.hasCredit = false;
+    
+      this.sessionService.hasCredit();
+    
   }
 
   purchaseCredit() {

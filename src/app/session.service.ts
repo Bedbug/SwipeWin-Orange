@@ -43,7 +43,7 @@ export class SessionService implements OnDestroy {
   isSubscribed: boolean = false;
   
   // tells whether the user has enough credit to buy a game
-  hasCredit: boolean = false;
+  hasCredit: boolean = this.credits > 0;
 
   // tells how many credits the user has
   credits: number = 0;

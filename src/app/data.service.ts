@@ -182,7 +182,24 @@ export class DataService {
     return promise;
   }
   
-  
+
+  purchaseCredit = function () {
+
+    const url = `${environment.gameServerDomainUrl}/api/user/credit`;
+
+    return this.http.post(url,
+      {},
+      {
+        headers: {
+          'Accept': 'application/json',
+          'Access-Control-Allow-Origin': '*',
+          'X-Access-Token': this.session.token
+        }
+      }).toPromise();
+  };
+
+
+
   transferCashback() {
     
     let promise = new Promise((resolve, reject) => {

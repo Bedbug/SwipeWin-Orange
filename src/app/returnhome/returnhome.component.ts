@@ -127,7 +127,7 @@ export class ReturnhomeComponent implements OnInit {
     this.credits = 1;
     this._gamesPlayed = 0;
 
-    if(this.credits > 0){
+    if(this.credits > 0) {
       // Open Button "Play Now"
     }
     if(this.credits == 0 && this._gamesPlayed < 5){
@@ -136,6 +136,22 @@ export class ReturnhomeComponent implements OnInit {
     if(this.credits == 0 && this._gamesPlayed >= 5){
       // Close Button "Buy New Round"
     }
+  }
+
+  purchaseCredit() {
+    console.log("Attempting to purchase credits!");
+    this.dataService.purchaseCredit().then(
+      (data: User) => {
+        this.sessionService.user = data;
+        this._gamesPlayed = this.sessionService.gamesPlayed;
+
+        console.log("this._gamesPlayed " + this._gamesPlayed);
+        console.log("this.sessionService.gamesPlayed " + this.sessionService.gamesPlayed);
+      },
+      (err) => {
+
+      }
+    );
   }
 
 }

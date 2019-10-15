@@ -9,7 +9,6 @@ import { createPipeInstance } from '@angular/core/src/view/provider';
 import { debug } from 'util';
 import { TranslateService } from '@ngx-translate/core';
 import { parsePhoneNumberFromString } from 'libphonenumber-js'
-import { User } from '../../models/User';
 
 
 // import * as libphonenumber from 'google-libphonenumber';

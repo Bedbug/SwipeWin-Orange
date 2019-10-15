@@ -46,7 +46,7 @@ export class SessionService implements OnDestroy {
   credits: number = 0;
   
   // tells whether the user has enough credit to buy a game
-  hasCredit: boolean = this.credits > 0;
+  hasCredit(): boolean { return this.credits > 0; }
 
   // tells whether the user has enough financial balance to buy the game
   hasBalance: boolean = false;

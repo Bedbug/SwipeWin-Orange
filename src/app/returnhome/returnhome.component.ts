@@ -77,7 +77,7 @@ export class ReturnhomeComponent implements OnInit {
   ngOnInit() {
     this.CheckCredits();
 
-    console.log( "Has Credit: " + this.sessionService.hasCredit );
+    console.log( "Has Credit: " + this.sessionService.hasCredit() );
     console.log( "Played Games: " + this.sessionService.gamesPlayed );
     // user login validation check
     if (!this.sessionService.token || !this.sessionService.isSubscribed || !this.sessionService.isEligible) {

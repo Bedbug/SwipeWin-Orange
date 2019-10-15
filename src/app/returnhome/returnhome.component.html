@@ -93,7 +93,7 @@
       
       <div class="buttons-container uk-container uk-text-center">
         <button class="uk-button uk-button-default play-button uk-width-1-1" *ngIf="loggedin &&  this.sessionService.hasCredit" (click)="startGame()">{{ 'HOME.PLAY' | translate }}</button> 
-        <button class="uk-button uk-button-default play-button uk-width-1-1" *ngIf="loggedin &&  !this.sessionService.hasCredit && _gamesPlayed < 5" (click)="startGame()">{{ 'HOME.BUY' | translate }}</button>
+        <button class="uk-button uk-button-default play-button uk-width-1-1" *ngIf="loggedin &&  !this.sessionService.hasCredit && _gamesPlayed < 5" (click)="purchaseCredit()">{{ 'HOME.BUY' | translate }}</button>
         <button class="uk-button uk-button-default uk-width-1-1" *ngIf="loggedin &&  !this.sessionService.hasCredit && _gamesPlayed >= 5"  disabled>{{ 'HOME.NOMORE' | translate }}</button>
       </div>
       <!-- <div class="message-container" style="margin-top: 30px;">
@@ -170,5 +170,4 @@
         
       </div>
     </div> -->
-  
   

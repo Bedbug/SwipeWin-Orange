@@ -88,8 +88,6 @@ export class ReturnhomeComponent implements OnInit {
     }
     else if (!this.sessionService.isEligible) {
       this.router.navigate(['/home'], { queryParams: { errorCode: 1026 } });
-      
-      
     }
     else {
       

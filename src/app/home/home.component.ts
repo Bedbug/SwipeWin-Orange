@@ -440,6 +440,20 @@ export class HomeComponent implements OnInit {
 
   PlayGame() {
     console.log("Burn One Credit, Play Game!");
+    this.dataService.getUserProfile().then( 
+      (data:User) => {
+        this.sessionService.user = data;
+        console.log("this.sessionService.gamesPlayed "+this.sessionService.gamesPlayed);
+
+      this.sessionService.gamesPlayed++;
+      this.router.navigate(['game']);
+        
+      },
+      (err) => {
+        
+      });
+
+      
   }
   
 

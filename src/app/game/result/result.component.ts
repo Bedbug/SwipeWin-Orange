@@ -3,6 +3,7 @@ import { SessionService } from '../../session.service';
 import { Router } from '@angular/router';
 import UIkit from 'uikit';
 import { TranslateService } from '@ngx-translate/core';
+import { DataService } from '../../data.service';
 
 @Component({
   selector: 'app-result',
@@ -35,7 +36,7 @@ export class ResultComponent implements OnInit {
   private _isInTop = true;
   private _bestWeekScore = 0;
   
-  constructor( private session: SessionService, private router: Router, private translate: TranslateService ) { }
+  constructor( private session: SessionService, private router: Router, private translate: TranslateService, private dataService: DataService  ) { }
 
   ngOnInit() {
     if (!this.session.lastGameResults)
@@ -74,6 +75,28 @@ export class ResultComponent implements OnInit {
       this.session.gamesPlayed++;
        this.router.navigate(['game']);
     // }
+  }
+
+  purchaseCredit() {
+    console.log("Attempting to purchase credits!");
+    this.dataService.purchaseCredit().then(
+      (data: User) => {
+
+        this.session.user = data;
+        this._gamesPlayed = this.session.gamesPlayed;
+        console.table(data);
+        if(this.session.user.credits > 0){
+          this.startGame();
+          // Burn Credit
+        }
+          
+        // console.log("this._gamesPlayed " + this._gamesPlayed);
+        // console.log("this.sessionService.gamesPlayed " + this.sessionService.gamesPlayed);
+      },
+      (err) => {
+
+      }
+    );
   }
   
   returnHome() {
@@ -136,5 +159,6 @@ export class ResultComponent implements OnInit {
           return "Keep playing for today’s 10,000$"
     }
   }
+
 
 }

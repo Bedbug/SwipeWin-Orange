@@ -85,7 +85,7 @@ export class ProfileComponent implements OnInit {
             this._daysInGame = 0;
             
           // this._totalDays = data.totalDaysPlaying;
-          this._cashBackAmount = data.wallet.pendingMaturityCashback + data.wallet.pendingTransferCashback;
+          // this._cashBackAmount = data.wallet.pendingMaturityCashback + data.wallet.pendingTransferCashback;
           
           if( data.picture != null ){
             this.avatarPic = environment.gameServerDomainUrl + '/' + data.picture;

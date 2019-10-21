@@ -26,8 +26,9 @@
     <!--If there are available games to buy play another game-->
     
     <br>
-    <button class="uk-button uk-button-default play-button uk-width-1-1 uk-modal-close"  *ngIf="_gamesPlayed == 0" (click)="startGame()">{{ 'END.PLAY' | translate }}</button>
-    <button class="uk-button uk-button-default play-button uk-width-1-1 uk-modal-close"  *ngIf="_gamesPlayed > 0" (click)="startGame()">{{ 'END.BUY' | translate }}</button>
+    <button class="uk-button uk-button-default play-button uk-width-1-1 uk-modal-close"  *ngIf="this.session.hasCredit()" (click)="startGame()">{{ 'END.PLAY' | translate }}</button>
+    <button class="uk-button uk-button-default play-button uk-width-1-1 uk-modal-close"  *ngIf="!this.session.hasCredit() && _gamesPlayed < 5" (click)="purchaseCredit()">{{ 'END.BUY' | translate }}</button>
+    <button class="uk-button uk-button-default uk-width-1-1" *ngIf="_gamesPlayed >= 5"  disabled>{{ 'HOME.NOMORE' | translate }}</button>
     <!-- <app-button [primary]="true"  *ngIf="_gamesPlayed ==0" class="uk-modal-close" (click)="startGame()" >{{ 'END.PLAY' | translate }}</app-button>
     <app-button [primary]="true"  *ngIf="_gamesPlayed > 0" class="uk-modal-close" (click)="startGame()" >{{ 'END.BUY' | translate }}</app-button> -->
     <!--<app-button [primary]="true"  *ngIf="_gamesPlayed >=3" class="uk-modal-close" (click)="startFreeGame()" >Играть в удовольствие</app-button>-->

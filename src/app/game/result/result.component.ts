@@ -107,6 +107,10 @@ export class ResultComponent implements OnInit {
     this.router.navigate(['freetimegame']);
   }
   
+  hasCredit() {
+	  return this.session.hasCredit();
+  }
+  
   get TopText(): string {
     if(this._rightAnswerCount == 0)
       return this.translate.instant('END.MES_01')

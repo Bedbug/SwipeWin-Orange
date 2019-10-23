@@ -33,6 +33,10 @@ export class HeaderComponent implements OnInit {
     } else {
       this.alignAllLeft = true;
     }
+    let offcanvas = UIkit.offcanvas("#offcanvas-nav");
+    console.log(offcanvas);
+    offcanvas.$props.flip =  this.alignAllLeft;
+
 
     const that = this;
     UIkit.util.on('#offcanvas-nav', 'hide', function (e) {
@@ -83,6 +87,9 @@ export class HeaderComponent implements OnInit {
 
    changeLanguage() {
      this.alignAllLeft = !this.alignAllLeft;
+     let offcanvas = UIkit.offcanvas("#offcanvas-nav");
+     offcanvas.flip =  this.alignAllLeft;
+     console.log( offcanvas);
     //  const browserLang = this.translate.getBrowserLang();
     //  console.log(browserLang);
     //  this.translate.use(browserLang.match(/en|ar/) ? browserLang : 'en');

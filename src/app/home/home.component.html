@@ -95,6 +95,7 @@
     </form>
     
     <div class="buttons-container uk-container uk-text-center">
+      <p *ngIf="alertNumber" style="font-size: 12px; color: white;">{{ 'HOME.WRONGNUM' | translate }}</p>
       <button class="uk-button uk-button-default play-button uk-width-1-1" (click)="submit(number.value)">{{ 'HOME.SUB-LOG' | translate }}</button> 
     </div>   
   </div>
@@ -121,6 +122,7 @@
     </form>
     
     <div class="buttons-container uk-container uk-text-center">
+      <p *ngIf="verErrorMes" style="font-size: 12px; color: white;">{{ 'HOME.VERERROR' | translate }}</p>
       <button class="uk-button uk-button-default play-button uk-width-1-1" *ngIf="sessionService.isSubscribed" (click)="verifyDirect(pin.value)">{{ 'HOME.LOGIN' | translate }}</button> 
       <button class="uk-button uk-button-default play-button uk-width-1-1" *ngIf="!sessionService.isSubscribed" (click)="verify(pin.value)">{{ 'HOME.SUB' | translate }}</button>
     </div>

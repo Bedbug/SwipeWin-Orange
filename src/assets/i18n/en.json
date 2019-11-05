@@ -1,7 +1,13 @@
 {
     "HOME": {
-        "CAR_01": "55,000 EGP in Cash",
+        "CAR_01": "30,000 EGP in Cash",
         "CAR_01b": "every month",
+        "CAR_02": "3,000 EGP in Cash",
+        "CAR_02b": "every week",
+        "CAR_03": "300 EGP in Cash",
+        "CAR_03b": "every day",
+        "CAR_04": "100 MB mobile data",
+        "CAR_04b": "with every 10 correct questions",
         "NUM": "Mobile number",
         "SUB-LOG": "Subscribe/Login",
         "OTP": "Please enter the 4-digit PIN code received to your mobile",
@@ -9,9 +15,9 @@
         "SUB": "Subscribe",
         "RESEND": "Resend PIN",
         "PLAY": "Play now",
-        "BUY": "Buy a new round",
+        "BUY": "Buy 3 rounds for 2 EGP",
         "NOMORE": "No more games for today",
-        "FOOTER_01": "1st day free then 2 pounds /day",
+        "FOOTER_01": "1st day free then 1 pound/day",
         "FOOTER_02": "By clicking Subscription you confirm that you have ",
         "FOOTER_02b": "read and agreed to the ",
         "FOOTER_02c": "Terms & Conditions.",
@@ -68,8 +74,14 @@
     },
     "PRIZES": {
         "PRIZES": "Prizes",
-        "MES_01": "55,000 EGP in Cash",
-        "MES_02": "Every month to the top scorer",
+        "MES_01": "30,000 EGP in Cash",
+        "MES_02": "Every month",
+        "MES_03": "3,000 EGP in Cash",
+        "MES_04": "every week",
+        "MES_05": "300 EGP in Orange Cash",
+        "MES_06": "every day",
+        "MES_07": "100 MB mobile data",
+        "MES_08": "with every 10 correct questions",
         "BACK": "Go Back"
     },
     "WINNERS": {
@@ -85,51 +97,36 @@
         "MES_04": "Remember: Every wrong question<br>decreases the time 5 seconds",
         "MES_05": "Gather points",
         "MES_06": "Build up points and you can be the<br>next Orange Swipe & Win winner<br>Enter via the app & get extra points",
-        "MES_07": "55,000 EGP are waiting",
-        "MES_08": "The top-scorer of the month wins"
+        "MES_07": "Cash prizes are waiting",
+        "MES_08": "Cash prizes are being given away every day! Want more? Every 10 correct Swipe & Win replies award 100 MB mobile data!"
     },
     "FAQ": {
         "FAQ": "FAQ",
         "data": [
         {"title": "How do I subscribe?",
             "descr":"<p>You can subscribe to 'Orange Swipe &amp; Win' service by:<br />Following the link via 'my Orange' app menu<br />Visit https://swipe.orange.eg <br />Dial #50# from your Orange mobile number<br />Send SUB to 5055 from your Orange mobile number</p>"},
-
         {"title": "What is the duration of the service?",
             "descr":"<p>The service has annual duration.</p>"},
-
         {"title": "What are the prizes?",
-            "descr":"<p>Every month the top scorer wins 55,000 EGP in Cash!</p>"},
-
+            "descr":"<p>Swipe & Win service gives away:</p><ul><li>100 MB mobile data bundle upon replying correctly to 10 Swipe & Win questions</li><li>300 EGP in Orange Cash every day</li><li>3,000 EGP in Cash every week</li><li>30,000 EGP in Cash every month</li></ul>"},
         {"title": "If I win how will I be informed?",
             "descr":"<p>The winner will be contacted by Orange in the next days as to explain the process needed. So do not worry, just keep your phone on.</p>"},
-
         {"title": "How many times may I win each prize?",
-            "descr":"<p>A participant may win each prize only once.</p>"},
-
+            "descr":"<p>A participant may win the Cash prizes only once. On the other hand, all users may win the 100 MB mobile data bundle unlimited times, as every 10 Swipe & Win correct answers unlock them.</p>"},
         {"title": "How can I change the language of participation?",
             "descr":"<p>If you are participating in English and you want to switch to Arabic, send the keyword AR to the short-code 5055.<br><br>If you are participating in Arabic and you want to switch to English, send the keyword EN to the short-code 5055.</p>"},
-
-
         {"title": "What are the Swipe & Win game rules?",
-            "descr":"<p>Each game lasts for 55 seconds.</p><p>Each question is consisted of a statement and a photo.</p><p>User has to Swipe right for Correct or left for Wrong.</p><p>Be careful! Every wrong reply deducts 5 seconds from the remaining time!</p><p>During a game round, special questions may also be served such as bronze, silver and golden ones which give away more points to the 'my Orange' app users.</p>"},
-
-        {"title": "Does my Swipe & Win credit expire?",
-            "descr":"<p>The awarded Swipe & Win credit expires at the end of calendar day if not consumed until then.</p>"},
-
-        {"title": "What are the benefits by logging-in via 'my Orange' app?",
-            "descr":"<p>Users who subscribe via 'my Orange' app will be awqarded with extra points. The ones who login and start a new round via the app will unlock a special daily bonus! <br><br>Please check the Terms and Conditions for more details!</p>"},
-
+            "descr":"<p>Each game lasts for 55 seconds.</p><p>Each question is consisted of a statement and a photo.</p><p>User has to Swipe right for Correct or left for Wrong.</p><p>Be careful! Every wrong reply deducts 5 seconds from the remaining time!</p><p>During a game round, special questions may also be served such as bronze, silver and golden ones.</p>"},
+        {"title": "Does my Swipe & Win credits expire?",
+            "descr":"<p>Both awarded and purchased Swipe & Win credits expire at the end of calendar day if not consumed until then.</p>"},
         {"title": "I consume my daily credit, can I add more?",
-            "descr":"<p>You can purchase another credit for 2 EGP upon consuming your available daily credits.<br> Each user may purchase up to 5 extra rounds per day.</p>"},
-
+            "descr":"<p>You can purchase a bundle of 3 Swipe & Win credits only for 2 EGP upon consuming your available daily credits. Each user may play up to 5 extra rounds per day.</p>"},
         {"title": "How can I unsubscribe?",
             "descr":"<p>To cancel your 'Orange Swipe & Win' subscription, send 'STOP' to the short code 5055.</p>"},
-
         {"title": "I'm not an Orange subscriber, may I participate to the service?",
             "descr":"<p>No, if you are not an Orange subscriber unfortunately you cannot subscribe to the service.</p>"}
         ]
     },
-
     "END": {
         "MES_01": "Oops…",
         "MES_02": "Just…",

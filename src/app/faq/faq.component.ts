@@ -20,6 +20,12 @@ export class FaqComponent implements OnInit {
 
  
   ngOnInit() {
+    if(this.translate.currentLang == "en") {
+      this.alignAllLeft = true;
+    }
+    if(this.translate.currentLang == "ar") {
+      this.alignAllLeft = false;
+    }
     // Subscribe to Translate Service
     this.translate.onLangChange.subscribe((event: LangChangeEvent) => {
       // do something

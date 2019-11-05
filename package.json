@@ -1,6 +1,9 @@
 {
   "name": "swipr",
   "version": "0.0.0",
+  "engines": {
+    "node": "10.16.0"
+  },
   "scripts": {
     "start": "angular-http-server --path ./dist/ --config dist/assets/config/angular-http-server.config.js",
     "build": "ng build",

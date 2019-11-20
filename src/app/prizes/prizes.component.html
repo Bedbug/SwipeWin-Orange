@@ -7,32 +7,37 @@
     <div class="how-to-play-text" style="max-width: 600px;
         margin-left: auto;
         margin-right: auto;">
-      <img class="icon" src="assets/icons/prize.png" alt=""/>
+      <!-- <img class="icon" src="assets/icons/prize.png" alt=""/> -->
       <div class="item">
+        <img src="assets/icons/daily_prize.png" alt="">
+        <h4>{{ 'HOME.CAR_01b' | translate }}</h4>
+        <p>{{ 'HOME.CAR_01' | translate }}</p>
+      </div>
+      <div class="item">
+        <img src="assets/icons/weekly_prize.png" alt="">
+        <h4>{{ 'HOME.CAR_01b' | translate }}</h4>
+        <p>{{ 'HOME.CAR_01' | translate }}</p>
+      </div>
+      <div class="item">
+        <img src="assets/icons/monthly_prize.png" alt="">
+        <h4>{{ 'HOME.CAR_01b' | translate }}</h4>
+        <p>{{ 'HOME.CAR_01' | translate }}</p>
+      </div>
+      <div class="item">
+        <img src="assets/icons/grand_prize.png" alt="">
+        <h4>{{ 'HOME.CAR_01b' | translate }}</h4>
+        <p>{{ 'HOME.CAR_01' | translate }}</p>
+      </div>
+    </div>
+      <!-- <div class="item">
         <span style="font-weight: bold; font-size: 28px;">{{ 'PRIZES.MES_01' | translate }}</span><br>
         <span >{{ 'PRIZES.MES_02' | translate }}</span>
       </div>
     </div>
-    </div>
+    </div> -->
+
     <div class="buttons-container uk-container uk-text-center">
-     
       <button class="uk-button uk-button-default play-button uk-width-1-1" *ngIf="isActive" (click)="goHome()">{{ 'PRIZES.BACK' | translate }}</button>
-      
-      <!--<button class="uk-button uk-button-default play-button uk-width-1-1" style="background-image: linear-gradient(to bottom, #ffffff, #c3c3c3 16%, #acacac 84%, #c5c5c5);" *ngIf="!isActive" >Подписаться</button>-->
-      <!-- <button *ngIf="_gamesPlayed >= 3 && !isActive" class="uk-button uk-button-default play-button uk-width-1-1" (click)="startGame()">Play for 0.50$</button>
-      <button *ngIf="_gamesPlayed > 0 && _gamesPlayed < 3  && !isActive" class="uk-button uk-button-default play-button uk-width-1-1" (click)="startGame()" >Play for 0.50$</button>
-      <button *ngIf="_gamesPlayed == 0 && !isActive" class="uk-button uk-button-default play-button uk-width-1-1" (click)="startGame()" >Play</button> -->
-      <!-- <div class="message-container">
-        <span *ngIf="isActive">1st day free – then 0.50$ /day</span>
-        <br>
-        <p *ngIf="isActive">By clicking Subscription you confirm that you<br><a  [routerLink]="['/info']" style="color:white; text-decoration: underline;">have read and agreed to the game rules.</a>
-        </p>
-          <br>
-         <br>
-         <br>
-    <br><br>   
-        <p>Услуга оказывается МТС совместно с партнером «ДжЮ Груп»</p>-->
-      <!-- </div> -->
     </div>
     <!--<div class="main-footer uk-container" >-->
     <!--  Служба поддержки:  111777 (бесплатно) или отправьте письмо на support@gu-group.ru-->

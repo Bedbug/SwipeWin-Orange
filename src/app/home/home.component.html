@@ -2,23 +2,61 @@
   <img src="assets/images/gulogo.svg" alt="">
 </div> -->
 
-<div class="slideshow-container" *ngIf="!openVerify && !openSubSuccess" uk-slideshow="animation: fade; min-height: 400; max-height: 400; autoplay: true; autoplay-interval: 1000; pause-on-hover: false;" >
+<div class="slideshow-container" *ngIf="!openVerify && !openSubSuccess" uk-slideshow="animation: fade; min-height: 400; max-height: 400; autoplay: true; autoplay-interval: 2000; pause-on-hover: false;" >
 
   <div class="uk-position-relative uk-visible-toggle uk-light" tabindex="-1">
     
-    <!-- <img  alt="" src="assets/images/lights.png" uk-cover width="auto" height=""> -->
-    
     <ul class="uk-slideshow-items" >
       <li class="list-wrapper">
-        <!-- <img src="assets/images/lights.png" alt="" uk-cover> -->
+        
       <div class="uk-position-center uk-position-small uk-text-center uk-light">
           <div class="vector">
-              <img class="icon" style="width: 300px;" src="assets/icons/prize.png" alt=""/>
+              <img class="icon" style="width: 300px;" src="assets/icons/daily_prize.png" alt=""/>
             </div>
-        
-        <span style="font-weight: bold; font-size: 30px; color: white;" [innerHtml]="'HOME.CAR_01' | translate"></span><br>
-        <span style=" font-size: 20px; color: white;">{{ 'HOME.CAR_01b' | translate }}</span>
+          <div uk-slideshow-parallax="x: 100,0,0" class="current-prize-fond">
+            <span style="font-weight: bold; font-size: 30px; color: white;" [innerHtml]="'HOME.CAR_01' | translate"></span><br>
+            <span style=" font-size: 20px; color: white;">{{ 'HOME.CAR_01b' | translate }}</span>
+          </div>
       </div>
+      </li>
+      <li class="list-wrapper">
+        
+        <div class="uk-position-center uk-position-small uk-text-center uk-light">
+            <div class="vector">
+                <img class="icon" style="width: 300px;" src="assets/icons/weekly_prize.png" alt=""/>
+              </div>
+              <div uk-slideshow-parallax="x: 100,0,0" class="current-prize-fond">
+                <span style="font-weight: bold; font-size: 30px; color: white;" [innerHtml]="'HOME.CAR_01' | translate"></span><br>
+                <span style=" font-size: 20px; color: white;">{{ 'HOME.CAR_01b' | translate }}</span>
+            </div>
+         
+        </div>
+      </li>
+      <li class="list-wrapper">
+        
+        <div class="uk-position-center uk-position-small uk-text-center uk-light">
+            <div class="vector">
+                <img class="icon" style="width: 300px;" src="assets/icons/monthly_prize.png" alt=""/>
+              </div>
+              <div uk-slideshow-parallax="x: 100,0,0" class="current-prize-fond">
+                <span style="font-weight: bold; font-size: 30px; color: white;" [innerHtml]="'HOME.CAR_01' | translate"></span><br>
+                <span style=" font-size: 20px; color: white;">{{ 'HOME.CAR_01b' | translate }}</span>
+            </div>
+         
+        </div>
+      </li>
+      <li class="list-wrapper">
+        
+        <div class="uk-position-center uk-position-small uk-text-center uk-light">
+            <div class="vector">
+                <img class="icon" style="width: 300px;" src="assets/icons/grand_prize.png" alt=""/>
+              </div>
+              <div uk-slideshow-parallax="x: 100,0,0" class="current-prize-fond">
+                <span style="font-weight: bold; font-size: 30px; color: white;" [innerHtml]="'HOME.CAR_01' | translate"></span><br>
+                <span style=" font-size: 20px; color: white;">{{ 'HOME.CAR_01b' | translate }}</span>
+            </div>
+         
+        </div>
       </li>
       <!-- <li class="list-wrapper">
         <div class="uk-position-center uk-position-small uk-text-center uk-light">
@@ -69,6 +107,74 @@
 
 </div>
 
+<!-- <div class="slideshow-container" *ngIf="showLogin"  uk-slideshow="animation: fade; min-height: 300; max-height: 500; autoplay: true; autoplay-interval: 2000; pause-on-hover: false;" >
+
+  <div class="uk-position-relative uk-visible-toggle uk-light" tabindex="-1">
+
+    <ul class="uk-slideshow-items" uk-height-viewport="offset-top: true; offset-bottom: 30">
+      <li class="list-wrapper" >
+            <div class="uk-position-center uk-position-medium uk-text-center">
+              <div uk-slideshow-parallax="scale: 1,1,0.8">
+                <div class="vector">
+                    <img class="scaled"  src="assets/icons/grand_prize.png" alt=""/>
+                </div>
+                <div uk-slideshow-parallax="x: 200,0,0"
+                  class="current-prize-fond">
+                  <h2 class="uk-margin-remove">{{ 'HOME.CAR_01' | translate }}</h2>
+                  <span class="roubles uk-margin-remove">{{ 'HOME.CAR_01b' | translate }}</span>
+                </div>
+              </div>
+            </div>
+      </li>
+      <li class="list-wrapper">
+              <div class="uk-position-center uk-position-medium uk-text-center">
+                <div uk-slideshow-parallax="scale: 1,1,0.8">
+                  <div class="vector">
+                      <img class="scaled" src="assets/icons/monthly_prize.png" alt="" >
+                  </div>
+                  <div uk-slideshow-parallax="x: 200,0,0"
+                    class="current-prize-fond">
+                    <h2 class="uk-margin-remove">{{ 'HOME.CAR_02' | translate }}</h2>
+                    <span class="roubles uk-margin-remove">{{ 'HOME.CAR_02b' | translate }}</span>
+                  </div>
+                </div>
+              </div>
+      </li>
+      <li class="list-wrapper">
+        <div class="uk-position-center uk-position-medium uk-text-center">
+          <div uk-slideshow-parallax="scale: 1,1,0.8">
+            <div class="vector">
+              <img class="scaled" src="assets/icons/weekly_prize.png" alt="" >
+            </div>
+            <div uk-slideshow-parallax="x: 200,0,0"
+              class="current-prize-fond">
+              <h2 class="uk-margin-remove">{{ 'HOME.CAR_03' | translate }}</h2>
+              <span class="roubles uk-margin-remove">{{ 'HOME.CAR_03b' | translate }}</span>
+            </div>
+          </div>
+        </div>
+      </li>
+      <li class="list-wrapper">
+          <div class="uk-position-center uk-position-medium uk-text-center">
+            <div uk-slideshow-parallax="scale: 1,1,0.8">
+              <div class="vector">
+                  <img  class="scaled" src="assets/icons/daily_prize.png" alt="" >
+              </div>
+              <div uk-slideshow-parallax="x: 200,0,0"
+                class="current-prize-fond">
+                <h2 class="uk-margin-remove">{{ 'HOME.CAR_04' | translate }}</h2>
+                <span class="roubles uk-margin-remove">{{ 'HOME.CAR_04b' | translate }}</span>
+              </div>
+            </div>
+          </div>
+      </li>
+    </ul>
+
+    <ul class="uk-slideshow-nav uk-dotnav uk-flex-center "></ul>
+  </div>
+  
+
+</div> -->
 
 
 <!-- 1. Check if MSISDN is in Header. If Yes Auto Login - goto 3

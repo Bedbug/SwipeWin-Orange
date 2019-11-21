@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="40px" height="40px" viewBox="0 0 40 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 58 (84663) - https://sketch.com -->
+    <title>exclamation</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="100%" y1="50%" x2="0%" y2="50%" id="linearGradient-1">
+            <stop stop-color="#FF9F59" offset="0%"></stop>
+            <stop stop-color="#FF6333" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <path d="M20,0 C31.045695,0 40,8.954305 40,20 C40,31.045695 31.045695,40 20,40 C8.954305,40 0,31.045695 0,20 C0,8.954305 8.954305,0 20,0 Z M20.5,25.4138399 C19.786984,25.4138399 19.1920701,25.6286727 18.7152406,26.0583446 C18.2384112,26.4880166 18,27.0375362 18,27.7069199 C18,28.3763037 18.2384112,28.9258233 18.7152406,29.3554953 C19.1920701,29.7851672 19.786984,30 20.5,30 C21.213016,30 21.8079299,29.7851672 22.2847594,29.3554953 C22.7615888,28.9258233 23,28.3763037 23,27.7069199 C23,27.0375362 22.7615888,26.4880166 22.2847594,26.0583446 C21.8079299,25.6286727 21.213016,25.4138399 20.5,25.4138399 Z M22.9331551,10 L18.1336898,10 L18.7085561,23.5006784 L22.3582888,23.5006784 L22.9331551,10 Z" id="exclamation" fill="url(#linearGradient-1)" fill-rule="nonzero"></path>
+    </g>
+</svg>

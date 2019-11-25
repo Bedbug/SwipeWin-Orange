@@ -133,14 +133,22 @@ export class ReturnhomeComponent implements OnInit {
   }
 
   OpenOTPPurchase() {
+    console.log("Open OTP Modal!");
     // Start OTP proccess for new game purchace
     // Send PIN
     // Verify user Input
     // If success purchaceCredit
+    this.dataService.purchaseCreditRequest().subscribe((resp: any) => {
 
-    // Open Modal
-    let modal = UIkit.modal("#otp");
-    modal.show();
+      // Open Modal
+      let modal = UIkit.modal("#otp");
+      modal.show();
+    },
+      (err: any) => {
+        console.log("Error with Sending purchase Pin!!!");
+        let modal = UIkit.modal("#otp");
+        modal.show();
+      });
   }
 
   
@@ -155,7 +163,7 @@ export class ReturnhomeComponent implements OnInit {
 
   verify(pass: string) {
 
-    this.dataService.authenticateVerify(this.sessionService.msisdn, pass).subscribe((resp: any) => {
+    this.dataService.purchaseCredit(pass).subscribe((resp: any) => {
 
       // Get JWT token from response header and keep it for the session
       const userToken = resp.headers.get('X-Access-Token');
@@ -171,7 +179,15 @@ export class ReturnhomeComponent implements OnInit {
       console.log("hasCredit: " + this.sessionService.hasCredit());
      
 
-      this.purchaseCredit();
+      this.sessionService.user = body;
+      this._gamesPlayed = this.sessionService.gamesPlayed;
+      console.table(body);
+
+      if (this.sessionService.user.credits > 0) {
+        // Burn Credit
+        this.startGame();
+      }
+
       // Goto the returnHome page
       //this.router.navigate(['/returnhome']);
     },
@@ -179,31 +195,5 @@ export class ReturnhomeComponent implements OnInit {
         console.log("Error With Pin!!!");
        this.verErrorMes = true;
       });
-
-    // Run or Go to returnHome
-    //this.router.navigate(['/auth-callback'], { queryParams: { code: user } });
   }
-  
-  purchaseCredit() {
-    console.log("Attempting to purchase credits!");
-    this.dataService.purchaseCredit().then(
-      (data: User) => {
-
-        this.sessionService.user = data;
-        this._gamesPlayed = this.sessionService.gamesPlayed;
-        console.table(data);
-        if(this.sessionService.user.credits > 0){
-          this.startGame();
-          // Burn Credit
-        }
-          
-        // console.log("this._gamesPlayed " + this._gamesPlayed);
-        // console.log("this.sessionService.gamesPlayed " + this.sessionService.gamesPlayed);
-      },
-      (err) => {
-
-      }
-    );
-  }
-
 }

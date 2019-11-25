@@ -196,4 +196,8 @@ export class ReturnhomeComponent implements OnInit {
        this.verErrorMes = true;
       });
   }
+  
+  resetPin() {
+    console.log("Reset PIN!");
+  }
 }

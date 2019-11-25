@@ -131,9 +131,9 @@
       
       
       <div class="buttons-container uk-container uk-text-center">
-        <button class="uk-button uk-button-default play-button uk-width-1-1" *ngIf="loggedin &&  this.sessionService.hasCredit()" (click)="startGame()">{{ 'HOME.PLAY' | translate }}</button> 
-        <button class="uk-button uk-button-default play-button uk-width-1-1" *ngIf="loggedin &&  !this.sessionService.hasCredit() && _gamesPlayed < 5" (click)="OpenOTPPurchase()">{{ 'HOME.BUY' | translate }}</button>
-        <button class="uk-button uk-button-default uk-width-1-1" *ngIf="loggedin &&  !this.sessionService.hasCredit() && _gamesPlayed >= 5"  disabled>{{ 'HOME.NOMORE' | translate }}</button>
+        <button class="uk-button uk-button-default play-button uk-width-1-1" *ngIf="loggedin &&  this.sessionService.hasCredit() && _gamesPlayed < 3" (click)="startGame()">{{ 'HOME.PLAY' | translate }}</button> 
+        <button class="uk-button uk-button-default play-button uk-width-1-1" *ngIf="loggedin &&  !this.sessionService.hasCredit() && _gamesPlayed < 3" (click)="OpenOTPPurchase()">{{ 'HOME.BUY' | translate }}</button>
+        <button class="uk-button uk-button-default uk-width-1-1" *ngIf="loggedin && _gamesPlayed >= 3"  disabled>{{ 'HOME.NOMORE' | translate }}</button>
       </div>
       <!-- <div class="message-container" style="margin-top: 30px;">
         <p style="color:rgb(0, 0, 0); font-weight: bold; font-size: 20px;"><a  [routerLink]="['/info']" style="color:rgb(255, 255, 255); text-decoration: underline;">Resend PIN</a>
@@ -188,10 +188,10 @@
 
         <div class="buttons-container uk-container uk-text-center" tabindex="-1">
           <div class="message-container" style="margin-top: 100px">
-            <p style="font-size: 22px;color: rgb(255, 255, 255);text-align: center;">{{ 'HOME.OTP' | translate }}</p>
+            <p style="font-size: 22px;color:  rgb(32, 32, 32);text-align: center;">{{ 'HOME.OTP' | translate }}</p>
             <!--<p>Услуга оказывается МТС совместно с партнером «ДжЮ Груп»</p>-->
           </div>
-          <div class="buttons-container uk-container uk-text-center"  style="max-width: 595px; margin-bottom: 200px;">
+          <div class="buttons-container uk-container uk-text-center"  style="max-width: 595px; margin-bottom: 0px;">
             
             <!-- <h4 style="color:white;">Insert your phone number and password to login</h4> -->
             <form >
@@ -205,12 +205,12 @@
             </form>
             
             <div class="buttons-container uk-container uk-text-center">
-              <p *ngIf="verErrorMes" style="font-size: 12px; color: white;">{{ 'HOME.VERERROR' | translate }}</p>
-              <button class="uk-button uk-button-default play-button uk-width-1-1"  (click)="verify(pin.value)">{{ 'HOME.SUB' | translate }}</button> 
+              <p *ngIf="verErrorMes" style="font-size: 12px; color: rgb(32, 32, 32);">{{ 'HOME.VERERROR' | translate }}</p>
+              <button class="uk-button uk-button-default play-button uk-width-1-1 uk-modal-close"  (click)="verify(pin.value)">{{ 'HOME.CONFIRM' | translate }}</button> 
               <!-- <button class="uk-button uk-button-default play-button uk-width-1-1" *ngIf="!sessionService.isSubscribed" (click)="purchaseCredit()">{{ 'HOME.BUY' | translate }}</button> -->
             </div>
-            <div class="message-container" style="margin-top: 30px;">
-              <p style="color:rgb(0, 0, 0); font-weight: bold; font-size: 20px;"><a (click)="resetPin()" style="color:rgb(255, 255, 255); text-decoration: underline;">{{ 'HOME.RESEND' | translate }}</a>
+            <div class="message-container" style="margin-top: 0px;">
+              <p style="color:rgb(0, 0, 0); font-weight: bold; font-size: 20px;"><a (click)="resetPin()" style="color: rgb(32, 32, 32); text-decoration: underline;">{{ 'HOME.RESEND' | translate }}</a>
               </p>
               <!--<p>Услуга оказывается МТС совместно с партнером «ДжЮ Груп»</p>-->
             </div>

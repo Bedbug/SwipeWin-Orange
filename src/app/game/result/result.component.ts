@@ -78,8 +78,8 @@ export class ResultComponent implements OnInit {
        this.router.navigate(['game']);
     // }
   }
-  OpenOTP
-  Purchase() {
+  OpenOTPPurchase() {
+    console.log("Open OTP Modal!");
     // Start OTP proccess for new game purchace
     // Send PIN
     // Verify user Input
@@ -92,6 +92,10 @@ export class ResultComponent implements OnInit {
     },
       (err: any) => {
         console.log("Error with Sending purchase Pin!!!");
+
+        // THIS HAS TO BE REMOVED IN PRODUCTION!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        let modal = UIkit.modal("#otp");
+        modal.show();
       });
   }
 
@@ -139,6 +143,10 @@ export class ResultComponent implements OnInit {
         console.log("Error With Pin!!!");
        this.verErrorMes = true;
       });
+  }
+
+  resetPin() {
+    console.log("Reset PIN!");
   }
   // purchaseCredit() {
   //   console.log("Attempting to purchase credits!");

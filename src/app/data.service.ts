@@ -209,7 +209,7 @@ export class DataService {
           'Accept': 'application/json',
           'Access-Control-Allow-Origin': '*',
           'X-Access-Token': this.session.token
-        }
+        }, observe: 'response'
       });
   }
 

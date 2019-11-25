@@ -14,6 +14,9 @@ export class ReturnhomeComponent implements OnInit {
   credits: number;
   loggedin: boolean = true;
   openVerify: true;
+  lblShow:boolean = true;
+  passType: string = "password";
+  verErrorMes: boolean = false;
 
   get hasCashback(): number {
     return this._cashBackAmount;
@@ -129,6 +132,57 @@ export class ReturnhomeComponent implements OnInit {
     
   }
 
+  OpenOTPPurchase() {
+    // Start OTP proccess for new game purchace
+    // Send PIN
+    // Verify user Input
+    // If success purchaceCredit
+
+    // Open Modal
+    let modal = UIkit.modal("#otp");
+    modal.show();
+  }
+
+  
+  OpenPass(){
+    this.lblShow = !this.lblShow;
+    console.log("Hide/Show Password: " + this.lblShow);
+    if(this.lblShow)
+      this.passType = "password";
+    else
+      this.passType = "test";
+  }
+
+  verify(pass: string) {
+
+    this.dataService.authenticateVerify(this.sessionService.msisdn, pass).subscribe((resp: any) => {
+
+      // Get JWT token from response header and keep it for the session
+      const userToken = resp.headers.get('X-Access-Token');
+      if (userToken)  // if exists, keep it
+        this.sessionService.token = userToken;
+
+      // Deserialize payload
+      const body: any = resp.body; // JSON.parse(response);
+      
+      if (body.credits > 0)
+        this.sessionService.credits = body.credits;
+
+      console.log("hasCredit: " + this.sessionService.hasCredit());
+     
+
+      this.purchaseCredit();
+      // Goto the returnHome page
+      //this.router.navigate(['/returnhome']);
+    },
+      (err: any) => {
+        console.log("Error With Pin!!!");
+       this.verErrorMes = true;
+      });
+
+    // Run or Go to returnHome
+    //this.router.navigate(['/auth-callback'], { queryParams: { code: user } });
+  }
   purchaseCredit() {
     console.log("Attempting to purchase credits!");
     this.dataService.purchaseCredit().then(

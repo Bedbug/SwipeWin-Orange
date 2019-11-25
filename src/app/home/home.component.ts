@@ -257,7 +257,7 @@ export class HomeComponent implements OnInit {
     const phoneNumber = parsePhoneNumberFromString(number, 'EG')
     number = phoneNumber.countryCallingCode +""+ phoneNumber.nationalNumber;
     console.log("MSISDN: " +phoneNumber.countryCallingCode+phoneNumber.nationalNumber);
-    if(number.length != 11){
+    if(number.length != 12){
       this.alertNumber = true;
       return;
     }
@@ -308,8 +308,8 @@ export class HomeComponent implements OnInit {
 
   verify(pass: string) {
 
-    console.log("username: " + this.sessionService.msisdn);
-    console.log("password: " + pass);
+    // console.log("username: " + this.sessionService.msisdn);
+    // console.log("password: " + pass);
 
     this.dataService.authenticateVerify(this.sessionService.msisdn, pass).subscribe((resp: any) => {
 
@@ -360,8 +360,8 @@ export class HomeComponent implements OnInit {
 
   verifyDirect(pass: string) {
 
-    console.log("username: " + this.sessionService.msisdn);
-    console.log("password: " + pass);
+    // console.log("username: " + this.sessionService.msisdn);
+    // console.log("password: " + pass);
 
     this.dataService.authenticateVerify(this.sessionService.msisdn, pass).subscribe((resp: any) => {
 

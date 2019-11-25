@@ -132,7 +132,7 @@
       
       <div class="buttons-container uk-container uk-text-center">
         <button class="uk-button uk-button-default play-button uk-width-1-1" *ngIf="loggedin &&  this.sessionService.hasCredit()" (click)="startGame()">{{ 'HOME.PLAY' | translate }}</button> 
-        <button class="uk-button uk-button-default play-button uk-width-1-1" *ngIf="loggedin &&  !this.sessionService.hasCredit() && _gamesPlayed < 5" (click)="purchaseCredit()">{{ 'HOME.BUY' | translate }}</button>
+        <button class="uk-button uk-button-default play-button uk-width-1-1" *ngIf="loggedin &&  !this.sessionService.hasCredit() && _gamesPlayed < 5" (click)="OpenOTPPurchase()">{{ 'HOME.BUY' | translate }}</button>
         <button class="uk-button uk-button-default uk-width-1-1" *ngIf="loggedin &&  !this.sessionService.hasCredit() && _gamesPlayed >= 5"  disabled>{{ 'HOME.NOMORE' | translate }}</button>
       </div>
       <!-- <div class="message-container" style="margin-top: 30px;">
@@ -145,33 +145,7 @@
     </div>
   <!--END OF PLAY BUTTONS-->
   
-  <!-- <div class="buttons-container uk-container uk-text-center" *ngIf="!showLogin">
-    <button class="uk-button uk-button-default demo-button uk-width-1-1" (click)="playDemoGame($event)">Play Demo Game</button> 
-    <br>
-    <button class="uk-button uk-button-default play-button uk-width-1-1" (click)="playGame($event)">Subscribe</button>
-  </div> -->
-  
-  <!-- <div *ngIf="isHasCashback">
-      <h4 class="title">Cashback Won</h4>
-      <div class="cashback" uk-grid routerLink="/cashback">
-        <div class="uk-width-expand label">Cashback</div>
-        <div class="uk-width-auto amount">100$ <span uk-icon="chevron-right"></span></div>
-      </div>
-      
-    </div> -->
-  <!-- <div class="main-footer uk-container">
-      <span>1st day free then 0.50$ /day</span>
-      <br>
-      <p>
-      By clicking Subscription you confirm that you<br><a  [routerLink]="['/info']" style="color:white; text-decoration: underline;">have read and agreed to the game rules.</a>
-      </p>
-      
-  </div> -->
-  <!--goto rules-->
-  <!-- <div class="buttons-container uk-container uk-text-center" style="padding:10px;" *ngIf="!showLogin"> -->
-    <!--<a  [routerLink]="['/info']" style="color: white;font-weight: bold;text-decoration: underline; ">Правила игры</a>-->
-    <!-- <a  (click)="playGame($event)" style="color: white;font-weight: bold;text-decoration: underline; ">Already Subscriber</a>
-  </div> -->
+ 
   <div class="main-footer uk-container" *ngIf="!openVerify" style="text-align: center;">
       {{ 'HOME.FOOTER_01' | translate }}
     <br>
@@ -209,4 +183,41 @@
         
       </div>
     </div> -->
+    <div id="otp" class="uk-flex-top" uk-modal>
+      <div class="uk-modal-dialog uk-modal-body uk-margin-auto-vertical">
+
+        <div class="buttons-container uk-container uk-text-center" tabindex="-1">
+          <div class="message-container" style="margin-top: 100px">
+            <p style="font-size: 22px;color: rgb(255, 255, 255);text-align: center;">{{ 'HOME.OTP' | translate }}</p>
+            <!--<p>Услуга оказывается МТС совместно с партнером «ДжЮ Груп»</p>-->
+          </div>
+          <div class="buttons-container uk-container uk-text-center"  style="max-width: 595px; margin-bottom: 200px;">
+            
+            <!-- <h4 style="color:white;">Insert your phone number and password to login</h4> -->
+            <form >
+              <div class="uk-margin" >
+                  <div class="uk-inline uk-width-1-1 ">
+                      <a class="uk-form-icon uk-form-icon-flip" ><img class=".uk-position-right" (click)="OpenPass()" src="assets/icons/eye.svg" alt=""></a>
+                      
+                      <input #pin class="uk-input " type="{{passType}}" placeholder="....">
+                  </div>
+              </div>
+            </form>
+            
+            <div class="buttons-container uk-container uk-text-center">
+              <p *ngIf="verErrorMes" style="font-size: 12px; color: white;">{{ 'HOME.VERERROR' | translate }}</p>
+              <button class="uk-button uk-button-default play-button uk-width-1-1" *ngIf="!sessionService.isSubscribed" (click)="verify(pin.value)">{{ 'HOME.SUB' | translate }}</button> //verify(pin.value)
+              <!-- <button class="uk-button uk-button-default play-button uk-width-1-1" *ngIf="!sessionService.isSubscribed" (click)="purchaseCredit()">{{ 'HOME.BUY' | translate }}</button> -->
+            </div>
+            <div class="message-container" style="margin-top: 30px;">
+              <p style="color:rgb(0, 0, 0); font-weight: bold; font-size: 20px;"><a (click)="resetPin()" style="color:rgb(255, 255, 255); text-decoration: underline;">{{ 'HOME.RESEND' | translate }}</a>
+              </p>
+              <!--<p>Услуга оказывается МТС совместно с партнером «ДжЮ Груп»</p>-->
+            </div>
+            
+          </div>
+          </div>
+      
+        </div>
+    </div>
   

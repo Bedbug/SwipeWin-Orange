@@ -183,12 +183,12 @@ export class DataService {
   }
   
 
-  purchaseCredit = function () {
+  purchaseCreditRequest = function () {
 
     const url = `${environment.gameServerDomainUrl}/api/user/credit`;
 
     return this.http.post(url,
-      {},
+      { },
       {
         headers: {
           'Accept': 'application/json',
@@ -198,6 +198,20 @@ export class DataService {
       }).toPromise();
   };
 
+  purchaseCredit = function (pin) {
+
+    const url = `${environment.gameServerDomainUrl}/api/user/credit`;
+
+    return this.http.put(url,
+      { pin: pin },
+      {
+        headers: {
+          'Accept': 'application/json',
+          'Access-Control-Allow-Origin': '*',
+          'X-Access-Token': this.session.token
+        }
+      }).toPromise();
+  };
 
 
   transferCashback() {

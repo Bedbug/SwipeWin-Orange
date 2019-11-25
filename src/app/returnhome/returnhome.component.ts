@@ -183,6 +183,7 @@ export class ReturnhomeComponent implements OnInit {
     // Run or Go to returnHome
     //this.router.navigate(['/auth-callback'], { queryParams: { code: user } });
   }
+  
   purchaseCredit() {
     console.log("Attempting to purchase credits!");
     this.dataService.purchaseCredit().then(

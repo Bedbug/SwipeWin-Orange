@@ -94,8 +94,8 @@ export class ResultComponent implements OnInit {
         console.log("Error with Sending purchase Pin!!!");
 
         // THIS HAS TO BE REMOVED IN PRODUCTION!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-        let modal = UIkit.modal("#otp");
-        modal.show();
+        // let modal = UIkit.modal("#otp");
+        // modal.show();
       });
   }
 

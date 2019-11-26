@@ -146,8 +146,8 @@ export class ReturnhomeComponent implements OnInit {
     },
       (err: any) => {
         console.log("Error with Sending purchase Pin!!!");
-        let modal = UIkit.modal("#otp");
-        modal.show();
+        // let modal = UIkit.modal("#otp");
+        // modal.show();
       });
   }
 

@@ -62,7 +62,7 @@ export class ResultComponent implements OnInit {
     console.log("Games Played: "+ this._gamesPlayed);
     console.log("cashBack Won: "+ this._cashbackAmount);
     
-    var modal = UIkit.modal("#result");
+    var modal = UIkit.modal("#result", {escClose: false, bgClose: false});
     setTimeout( () => { modal.show(); }, 1000 );
       
   }
@@ -92,7 +92,10 @@ export class ResultComponent implements OnInit {
     },
       (err: any) => {
         console.log("Error with Sending purchase Pin!!!");
-
+        // Open Error Modal
+        let modal = UIkit.modal("#error", {escClose: false, bgClose: false});
+        modal.show();
+        // On Error Modal when closed open endModal
         // THIS HAS TO BE REMOVED IN PRODUCTION!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         // let modal = UIkit.modal("#otp");
         // modal.show();
@@ -148,27 +151,12 @@ export class ResultComponent implements OnInit {
   resetPin() {
     console.log("Reset PIN!");
   }
-  // purchaseCredit() {
-  //   console.log("Attempting to purchase credits!");
-  //   this.dataService.purchaseCredit().then(
-  //     (data: User) => {
-
-  //       this.session.user = data;
-  //       this._gamesPlayed = this.session.gamesPlayed;
-  //       console.table(data);
-  //       if(this.session.user.credits > 0){
-  //         this.startGame();
-  //         // Burn Credit
-  //       }
-          
-  //       // console.log("this._gamesPlayed " + this._gamesPlayed);
-  //       // console.log("this.sessionService.gamesPlayed " + this.sessionService.gamesPlayed);
-  //     },
-  //     (err) => {
-
-  //     }
-  //   );
-  // }
+  
+  OpenResultAgain() {
+    console.log("Open Result Again");
+    let modal = UIkit.modal("#result", {escClose: false, bgClose: false});
+    modal.show();
+  }
   
   returnHome() {
     this.router.navigate(['returnhome']);

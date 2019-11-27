@@ -220,4 +220,17 @@
       
         </div>
     </div>
+
+    <div id="error" class="uk-flex-top" uk-modal>
+      <div class="uk-modal-dialog uk-modal-body uk-margin-auto-vertical">
+        <img src="assets/images/wanted.svg" alt="">
+        <h4>{{ 'END.MES_01' | translate }}</h4>
+      <pre>{{ 'MESSAGES.MESSAGE_16' | translate }}</pre>
+      <!--<p>{{errorMsg}}</p>-->
+      <!-- <app-button *ngIf="!logOutBtn" [link_button]="true" class="uk-modal-close">{{ 'MESSAGES.MESSAGE_07' | translate }}</app-button> -->
+      
+      <app-button  [link_button]="true" class="uk-modal-close" >{{ 'MESSAGES.MESSAGE_15' | translate }}</app-button>
+        
+      </div>
+    </div>
   

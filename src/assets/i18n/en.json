@@ -7,13 +7,15 @@
         "CAR_03": "300 EGP in Cash",
         "CAR_03b": "every day",
         "CAR_04": "50 MB mobile data",
-        "CAR_04b": "with every 10 correct questions",
+        "CAR_04b": "with the first 10 correct questions",
         "NUM": "Mobile number",
         "SUB-LOG": "Subscribe/Login",
         "OTP": "Please enter the 4-digit PIN code received to your mobile",
         "LOGIN": "Login",
         "SUB": "Subscribe",
-        "CONFIRM": "Confirm",
+        "CONFIRM": "Confirm purchase",
+        "VERERROR":"The 4-digit PIN code you entered is not correct. Please try again!",
+        "WRONGNUM":"The number you inserted has invalid format!",
         "RESEND": "Resend PIN",
         "PLAY": "Play now",
         "BUY": "Buy 3 rounds for 2 EGP",
@@ -82,7 +84,7 @@
         "MES_05": "300 EGP in Orange Cash",
         "MES_06": "every day",
         "MES_07": "50 MB mobile data",
-        "MES_08": "with every 10 correct questions",
+        "MES_08": "with first 10 correct questions",
         "BACK": "Go Back"
     },
     "WINNERS": {
@@ -105,15 +107,15 @@
         "FAQ": "FAQ",
         "data": [
         {"title": "How do I subscribe?",
-            "descr":"<p>You can subscribe to 'Orange Swipe &amp; Win' service by:<br />Following the link via 'my Orange' app menu<br />Visit https://swipe.orange.eg <br />Dial #50# from your Orange mobile number<br />Send SUB to 5055 from your Orange mobile number</p>"},
+            "descr":"<p>You can subscribe to 'Orange Swipe &amp; Win' service by:<br />Following the link via 'my Orange' app menu<br />Visit https://swipe.orange.eg <br />Dial #53# from your Orange mobile number<br />Send SUB to 5055 from your Orange mobile number</p>"},
         {"title": "What is the duration of the service?",
             "descr":"<p>The service has annual duration.</p>"},
         {"title": "What are the prizes?",
-            "descr":"<p>Swipe & Win service gives away:</p><ul><li>50 MB mobile data bundle upon replying correctly to 10 Swipe & Win questions</li><li>300 EGP in Orange Cash every day</li><li>3,000 EGP in Cash every week</li><li>30,000 EGP in Cash every month</li></ul>"},
+            "descr":"<p>Swipe & Win service gives away:</p><ul><li>50 MB mobile data bundle upon replying correctly to the first 10 Swipe & Win questions</li><li>300 EGP in Orange Cash every day</li><li>3,000 EGP in Cash every week</li><li>30,000 EGP in Cash every month</li></ul>"},
         {"title": "If I win how will I be informed?",
             "descr":"<p>The winner will be contacted by Orange in the next days as to explain the process needed. So do not worry, just keep your phone on.</p>"},
         {"title": "How many times may I win each prize?",
-            "descr":"<p>A participant may win the Cash prizes only once. On the other hand, all users may win the 50 MB mobile data bundle unlimited times, as every 10 Swipe & Win correct answers unlock them.</p>"},
+            "descr":"<p>A participant may win each prize only once.</p>"},
         {"title": "How can I change the language of participation?",
             "descr":"<p>If you are participating in English and you want to switch to Arabic, send the keyword AR to the short-code 5055.<br><br>If you are participating in Arabic and you want to switch to English, send the keyword EN to the short-code 5055.</p>"},
         {"title": "What are the Swipe & Win game rules?",
@@ -153,8 +155,9 @@
         "MESSAGE_11": "The session is invalid or has expired.\n Please log in again",
         "MESSAGE_12": "Number is blocked.\n Unfortunately, you cannot participate through this number",
         "MESSAGE_13": "Not enough balance to participate to Swipe & Win",
-
-        "MESSAGE_14": "Read more at FAQs"
+        "MESSAGE_14": "Read more at FAQs",
+        "MESSAGE_15": "Go back",
+        "MESSAGE_16": "There was something wrong with your purchase, please try again"
 
     }
   }

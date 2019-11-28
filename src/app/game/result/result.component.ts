@@ -61,7 +61,8 @@ export class ResultComponent implements OnInit {
     
     console.log("Games Played: "+ this._gamesPlayed);
     console.log("cashBack Won: "+ this._cashbackAmount);
-    
+    console.log("hasCredit: " + this.session.hasCredit());
+    console.log("Credits: " + this.session.credits);
     var modal = UIkit.modal("#result", {escClose: false, bgClose: false});
     setTimeout( () => { modal.show(); }, 1000 );
       
@@ -75,6 +76,8 @@ export class ResultComponent implements OnInit {
     // }else{
       console.log("Play Main Game!");
       this.session.gamesPlayed++;
+      this.session.credits--;
+      console.log("this.sessionService.credits: "+this.session.credits);
        this.router.navigate(['game']);
     // }
   }
@@ -127,15 +130,16 @@ export class ResultComponent implements OnInit {
       if (body.credits > 0)
         this.session.credits = body.credits;
 
-      console.log("hasCredit: " + this.session.hasCredit());
+        console.log("hasCredit: " + this.session.hasCredit());
      
 
       this.session.user = body;
       this._gamesPlayed = this.session.gamesPlayed;
       console.table(body);
 
-      if (this.session.user.credits > 0) {
+      if (this.session.credits > 0) {
         // Burn Credit
+        this.session.credits--;
         this.startGame();
       }
 

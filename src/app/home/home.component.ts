@@ -452,6 +452,7 @@ export class HomeComponent implements OnInit {
         console.log("this.sessionService.gamesPlayed "+this.sessionService.gamesPlayed);
 
       this.sessionService.gamesPlayed++;
+      this.sessionService.credits--;
       this.router.navigate(['game']);
         
       },

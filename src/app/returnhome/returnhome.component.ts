@@ -65,6 +65,8 @@ export class ReturnhomeComponent implements OnInit {
     // }else{
       console.log("Play Main Game!");
       this.sessionService.gamesPlayed++;
+      this.sessionService.credits--;
+      console.log("this.sessionService.credits: "+this.sessionService.credits);
       this.router.navigate(['game']);
       // this.router.navigate(['freetimegame']);
       //this.router.navigate(['demogame']);
@@ -78,10 +80,7 @@ export class ReturnhomeComponent implements OnInit {
   constructor(private dataService: DataService, private sessionService: SessionService, private router: Router) { }
 
   ngOnInit() {
-    
 
-    console.log( "Has Credit: " + this.sessionService.hasCredit() );
-    console.log( "Played Games: " + this.sessionService.gamesPlayed );
     // user login validation check
     if (!this.sessionService.token || !this.sessionService.isSubscribed || !this.sessionService.isEligible) {
       // wanna inform the user here?
@@ -100,6 +99,8 @@ export class ReturnhomeComponent implements OnInit {
       // this._cashBackAmount = this.sessionService._cashBackAmount;
       // this._cashBackAmount = 500;
       
+      console.log( "Has Credit: " + this.sessionService.hasCredit() );
+      console.log( "Played Games: " + this.sessionService.gamesPlayed );
       // TOBE ERASED
       // This resets the games played every time
       
@@ -183,8 +184,9 @@ export class ReturnhomeComponent implements OnInit {
       this._gamesPlayed = this.sessionService.gamesPlayed;
       console.table(body);
 
-      if (this.sessionService.user.credits > 0) {
+      if (this.sessionService.credits > 0) {
         // Burn Credit
+        this.sessionService.credits--;
         this.startGame();
       }
 

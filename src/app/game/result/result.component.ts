@@ -38,7 +38,7 @@ export class ResultComponent implements OnInit {
   private _isInTop = true;
   private _bestWeekScore = 0;
   
-  constructor( private session: SessionService, private router: Router, private translate: TranslateService, private dataService: DataService  ) { }
+  constructor( public session: SessionService, private router: Router, private translate: TranslateService, private dataService: DataService  ) { }
 
   ngOnInit() {
     if (!this.session.lastGameResults)

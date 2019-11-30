@@ -393,7 +393,8 @@ export class HomeComponent implements OnInit {
       //this.router.navigate(['/returnhome']);
     },
       (err: any) => {
-        this.router.navigate(['/home']);
+        console.log("Error With Pin!!!");
+        this.verErrorMes = true;
       });
 
     // Run or Go to returnHome

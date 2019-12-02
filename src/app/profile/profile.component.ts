@@ -130,7 +130,12 @@ export class ProfileComponent implements OnInit {
   }
   
   goHome() {
-    this.router.navigate(['home']);
+    if (!this.sessionService.token || !this.sessionService.isSubscribed || !this.sessionService.isEligible) {
+      this.router.navigate(['home']);
+    } else {
+      this.router.navigate(['/returnhome']);
+    }
+    
   }
     
 }

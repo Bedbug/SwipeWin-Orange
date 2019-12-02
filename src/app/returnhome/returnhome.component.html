@@ -128,8 +128,7 @@
     <div class="buttons-container uk-container uk-text-center"  style="max-width: 595px; margin-bottom: 50px;">
       
       <!-- <h4 style="color:white;">Insert your phone number and password to login</h4> -->
-      85
-      
+    
       <div class="buttons-container uk-container uk-text-center">
         <button class="uk-button uk-button-default play-button uk-width-1-1" *ngIf="loggedin &&  this.sessionService.hasCredit() && _gamesPlayed < 3" (click)="startGame()">{{ 'HOME.PLAY' | translate }}</button> 
         <button class="uk-button uk-button-default play-button uk-width-1-1" *ngIf="loggedin &&  !this.sessionService.hasCredit() && _gamesPlayed < 3" (click)="OpenOTPPurchase()">{{ 'HOME.BUY' | translate }}</button>

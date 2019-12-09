@@ -171,34 +171,36 @@ export class ReturnhomeComponent implements OnInit {
       if (userToken)  // if exists, keep it
         this.sessionService.token = userToken;
 
+     // Close the modal if pin & purchase are success
+      let modal = UIkit.modal("#otp");
+      modal.hide();
+    
       // Deserialize payload
       const body: any = resp.body; // JSON.parse(response);
-      
-      if(!body.success)
-        {
-          let modal = UIkit.modal("#error", {escClose: false, bgClose: false});
-          modal.show();
-        }else {
-
+         
           if (body.credits > 0)
-          this.sessionService.credits = body.credits;
-  
+            this.sessionService.credits = body.credits;
+      
           console.log("hasCredit: " + this.sessionService.hasCredit());
-
+    
           this.sessionService.user = body;
           this._gamesPlayed = this.sessionService.gamesPlayed;
           console.table(body);
-    
+        
           if (this.sessionService.credits > 0) {
-            // Burn Credit
-            this.sessionService.credits--;
-            this.startGame();
+    
+          // Burn Credit
+                this.sessionService.credits--;
+                this.startGame();
           }
-       }
 
       
     },
       (err: any) => {
+        // If Purchase is not Success Open Error Modal and close OTP modal (Then return to home) 
+        console.log("Error With Purchase!!!");
+
+        // If PIN is incorect saw text error
         console.log("Error With Pin!!!");
        this.verErrorMes = true;
       });

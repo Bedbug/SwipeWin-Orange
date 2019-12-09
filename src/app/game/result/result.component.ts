@@ -127,30 +127,32 @@ export class ResultComponent implements OnInit {
       // Deserialize payload
       const body: any = resp.body; // JSON.parse(response);
       
-      if(!body.success)
-        {
-          let modal = UIkit.modal("#error", {escClose: false, bgClose: false});
-          modal.show();
-        }else {
-          if (body.credits > 0)
-          this.session.credits = body.credits;
+      // Close the modal if pin & purchase are success
+      let modal = UIkit.modal("#otp");
+      modal.hide();
+      
+      if (body.credits > 0)
+        this.session.credits = body.credits;
   
-          console.log("hasCredit: " + this.session.hasCredit());
+      console.log("hasCredit: " + this.session.hasCredit());
        
   
-          this.session.user = body;
-          this._gamesPlayed = this.session.gamesPlayed;
-          console.table(body);
+      this.session.user = body;
+      this._gamesPlayed = this.session.gamesPlayed;
+      console.table(body);
     
-          if (this.session.credits > 0) {
-            // Burn Credit
-            this.session.credits--;
-            this.startGame();
-          }
-        }
+      if (this.session.credits > 0) {
+        // Burn Credit
+        this.session.credits--;
+        this.startGame();
+      
+      }
 
     },
       (err: any) => {
+        //  if Purchase is not success, Open Error modal, close OTP modal
+        console.log("Error With Purchase!!!");
+
         console.log("Error With Pin!!!");
        this.verErrorMes = true;
       });

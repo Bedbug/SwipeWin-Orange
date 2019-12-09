@@ -174,24 +174,29 @@ export class ReturnhomeComponent implements OnInit {
       // Deserialize payload
       const body: any = resp.body; // JSON.parse(response);
       
-      if (body.credits > 0)
-        this.sessionService.credits = body.credits;
+      if(!body.success)
+        {
+          let modal = UIkit.modal("#error", {escClose: false, bgClose: false});
+          modal.show();
+        }else {
 
-      console.log("hasCredit: " + this.sessionService.hasCredit());
-     
+          if (body.credits > 0)
+          this.sessionService.credits = body.credits;
+  
+          console.log("hasCredit: " + this.sessionService.hasCredit());
 
-      this.sessionService.user = body;
-      this._gamesPlayed = this.sessionService.gamesPlayed;
-      console.table(body);
+          this.sessionService.user = body;
+          this._gamesPlayed = this.sessionService.gamesPlayed;
+          console.table(body);
+    
+          if (this.sessionService.credits > 0) {
+            // Burn Credit
+            this.sessionService.credits--;
+            this.startGame();
+          }
+       }
 
-      if (this.sessionService.credits > 0) {
-        // Burn Credit
-        this.sessionService.credits--;
-        this.startGame();
-      }
-
-      // Goto the returnHome page
-      //this.router.navigate(['/returnhome']);
+      
     },
       (err: any) => {
         console.log("Error With Pin!!!");
@@ -201,5 +206,8 @@ export class ReturnhomeComponent implements OnInit {
   
   resetPin() {
     console.log("Reset PIN!");
+  }
+  returnHome() {
+    this.router.navigate(['returnhome']);
   }
 }

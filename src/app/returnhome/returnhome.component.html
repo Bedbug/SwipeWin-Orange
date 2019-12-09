@@ -228,8 +228,9 @@
       <!--<p>{{errorMsg}}</p>-->
       <!-- <app-button *ngIf="!logOutBtn" [link_button]="true" class="uk-modal-close">{{ 'MESSAGES.MESSAGE_07' | translate }}</app-button> -->
       
-      <app-button  [link_button]="true" class="uk-modal-close" >{{ 'MESSAGES.MESSAGE_15' | translate }}</app-button>
+      <app-button  [link_button]="true" class="uk-modal-close" (click)="returnHome()">{{ 'MESSAGES.MESSAGE_15' | translate }}</app-button>
         
       </div>
     </div>
+
   

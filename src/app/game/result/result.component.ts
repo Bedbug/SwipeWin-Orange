@@ -127,24 +127,28 @@ export class ResultComponent implements OnInit {
       // Deserialize payload
       const body: any = resp.body; // JSON.parse(response);
       
-      if (body.credits > 0)
-        this.session.credits = body.credits;
+      if(!body.success)
+        {
+          let modal = UIkit.modal("#error", {escClose: false, bgClose: false});
+          modal.show();
+        }else {
+          if (body.credits > 0)
+          this.session.credits = body.credits;
+  
+          console.log("hasCredit: " + this.session.hasCredit());
+       
+  
+          this.session.user = body;
+          this._gamesPlayed = this.session.gamesPlayed;
+          console.table(body);
+    
+          if (this.session.credits > 0) {
+            // Burn Credit
+            this.session.credits--;
+            this.startGame();
+          }
+        }
 
-        console.log("hasCredit: " + this.session.hasCredit());
-     
-
-      this.session.user = body;
-      this._gamesPlayed = this.session.gamesPlayed;
-      console.table(body);
-
-      if (this.session.credits > 0) {
-        // Burn Credit
-        this.session.credits--;
-        this.startGame();
-      }
-
-      // Goto the returnHome page
-      //this.router.navigate(['/returnhome']);
     },
       (err: any) => {
         console.log("Error With Pin!!!");

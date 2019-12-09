@@ -178,31 +178,43 @@ export class ReturnhomeComponent implements OnInit {
       // Deserialize payload
       const body: any = resp.body; // JSON.parse(response);
          
-          if (body.credits > 0)
-            this.sessionService.credits = body.credits;
+      if (body.credits > 0)
+        this.sessionService.credits = body.credits;
       
-          console.log("hasCredit: " + this.sessionService.hasCredit());
+      console.log("hasCredit: " + this.sessionService.hasCredit());
     
-          this.sessionService.user = body;
-          this._gamesPlayed = this.sessionService.gamesPlayed;
-          console.table(body);
+      this.sessionService.user = body;
+      this._gamesPlayed = this.sessionService.gamesPlayed;
+      console.table(body);
         
-          if (this.sessionService.credits > 0) {
+      if (this.sessionService.credits > 0) {
     
-          // Burn Credit
-                this.sessionService.credits--;
-                this.startGame();
-          }
-
-      
+      // Burn Credit
+            this.sessionService.credits--;
+            this.startGame();
+      }      
     },
       (err: any) => {
         // If Purchase is not Success Open Error Modal and close OTP modal (Then return to home) 
-        console.log("Error With Purchase!!!");
+        console.log("Error With Purchase!!!", err);
 
-        // If PIN is incorect saw text error
-        console.log("Error With Pin!!!");
-       this.verErrorMes = true;
+        if (err.error) {
+          const errorCode = err.error.errorCode;
+
+          if (errorCode === 1007) {
+            // pin verification problem, pin invalid or wrong
+            console.log("Error With Pin!!!");
+            // If PIN is incorect show a text error
+            this.verErrorMes = true;
+          }
+          else if (errorCode === 1004) {
+            // user is not eligible to buy credits
+          }
+          else {
+            // transaction could not be completed by the system, system error
+          }
+        }
+
       });
   }
   

@@ -212,6 +212,8 @@ export class ReturnhomeComponent implements OnInit {
           }
           else {
             // transaction could not be completed by the system, system error
+            let modal = UIkit.modal("#error");
+            modal.show();
           }
         }
 

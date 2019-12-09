@@ -153,8 +153,24 @@ export class ResultComponent implements OnInit {
         //  if Purchase is not success, Open Error modal, close OTP modal
         console.log("Error With Purchase!!!");
 
-        console.log("Error With Pin!!!");
-       this.verErrorMes = true;
+        if (err.error) {
+          const errorCode = err.error.errorCode;
+
+          if (errorCode === 1007) {
+            // pin verification problem, pin invalid or wrong
+            console.log("Error With Pin!!!");
+            // If PIN is incorect show a text error
+            this.verErrorMes = true;
+          }
+          else if (errorCode === 1004) {
+            // user is not eligible to buy credits
+          }
+          else {
+            // transaction could not be completed by the system, system error
+            let modal = UIkit.modal("#error");
+            modal.show();
+          }
+        }
       });
   }
 

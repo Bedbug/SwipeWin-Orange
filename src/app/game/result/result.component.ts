@@ -90,7 +90,7 @@ export class ResultComponent implements OnInit {
     this.dataService.purchaseCreditRequest().subscribe((resp: any) => {
 
       // Open Modal
-      let modal = UIkit.modal("#otp");
+      let modal = UIkit.modal("#otp", {escClose: false, bgClose: false});
       modal.show();
     },
       (err: any) => {

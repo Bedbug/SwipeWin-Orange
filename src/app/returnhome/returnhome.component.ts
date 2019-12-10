@@ -181,7 +181,7 @@ export class ReturnhomeComponent implements OnInit {
       if (body.credits > 0)
         this.sessionService.credits = body.credits;
       
-      console.log("hasCredit: " + this.sessionService.hasCredit());
+      console.log("hasCredit: " +body.credits+" "+ this.sessionService.hasCredit());
     
       this.sessionService.user = body;
       this._gamesPlayed = this.sessionService.gamesPlayed;
@@ -215,6 +215,9 @@ export class ReturnhomeComponent implements OnInit {
             let modal = UIkit.modal("#error");
             modal.show();
           }
+        } else {
+          let modal = UIkit.modal("#error");
+          modal.show();
         }
 
       });

@@ -170,6 +170,9 @@ export class ResultComponent implements OnInit {
             let modal = UIkit.modal("#error");
             modal.show();
           }
+        } else {
+          let modal = UIkit.modal("#error");
+            modal.show();
         }
       });
   }

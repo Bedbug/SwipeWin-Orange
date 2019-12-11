@@ -66,6 +66,7 @@ export class ReturnhomeComponent implements OnInit {
       console.log("Play Main Game!");
       this.sessionService.gamesPlayed++;
       this.sessionService.credits--;
+      
       console.log("this.sessionService.credits: "+this.sessionService.credits);
       this.router.navigate(['game']);
       // this.router.navigate(['freetimegame']);
@@ -190,7 +191,7 @@ export class ReturnhomeComponent implements OnInit {
       if (this.sessionService.credits > 0) {
     
       // Burn Credit
-            this.sessionService.credits--;
+            
             this.startGame();
       }      
     },

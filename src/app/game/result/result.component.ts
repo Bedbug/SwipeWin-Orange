@@ -143,7 +143,7 @@ export class ResultComponent implements OnInit {
     
       if (this.session.credits > 0) {
         // Burn Credit
-        this.session.credits--;
+        // this.session.credits--;
         this.startGame();
       
       }

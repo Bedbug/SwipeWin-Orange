@@ -76,6 +76,7 @@ export class ProfileComponent implements OnInit {
         (data:User) => {
           this.sessionService.user = data;
           this.userName = data.username;
+          this.sessionService.credits = data.credits;
           this._totalGamesCount = data.gamesPlayed;
           this._bestResultAllTime = data.bestScore;
           this._bestResultToday = data.bestScoreToday;

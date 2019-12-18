@@ -107,6 +107,9 @@ export class GameComponent implements OnInit {
     }
   }
 
+  get GetWindow(){
+    return window;
+  }
   
   loadGame(phaser:any){
 

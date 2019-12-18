@@ -36,6 +36,9 @@ export class HomeComponent implements OnInit {
     return this._isHasCashback;
   }
   
+  get GetWindow(){
+    return window;
+  }
   // get this form the User objectusername
   get isSubscribed(): boolean {
     return this._isSubscribed;

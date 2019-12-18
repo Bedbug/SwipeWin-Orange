@@ -96,13 +96,14 @@ export class GameComponent implements OnInit {
       
       
       //check if first time and open tutorial
-      var isFirst = localStorage.getItem('firstTime');
-      if(isFirst != "no"){
-        this.globals.isFirstDemo = true
-        localStorage.setItem('firstTime','no');
-      }else {
-        this.globals.isFirstDemo = false;
-      }
+      // var isFirst = localStorage.getItem('firstTime');
+      // if(isFirst != "no"){
+      //   this.globals.isFirstDemo = true
+      //   localStorage.setItem('firstTime','no');
+      // }else {
+      //   this.globals.isFirstDemo = false;
+      // }
+      this.globals.isFirstDemo = false;
     }
   }
 

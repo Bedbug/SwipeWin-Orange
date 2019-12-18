@@ -115,7 +115,7 @@ export class GameComponent implements OnInit {
 
     let that = this;
     const window = that.dataService.getWindow() as any;
-
+    
     var js = document.getElementById("Phaser") as any;
     if (js) {
       that._gameInited = true;

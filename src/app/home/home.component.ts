@@ -202,7 +202,7 @@ export class HomeComponent implements OnInit {
                 this.router.navigate(['/returnhome']);
               },
                 (err: any) => {
-                  this.router.navigate(['/home']);
+                  this.AutoLogin = false;
                 });
             }
 

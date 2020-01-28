@@ -2,13 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { DataService } from '../data.service';
 import { SessionService } from '../session.service';
 import { LocalizationService } from '../localization.service';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import UIkit from 'uikit';
 import { createPipeInstance } from '@angular/core/src/view/provider';
 import { debug } from 'util';
 import { TranslateService } from '@ngx-translate/core';
 import { parsePhoneNumberFromString } from 'libphonenumber-js'
+import { skip } from 'rxjs/operators';
 
 
 // import * as libphonenumber from 'google-libphonenumber';
@@ -130,10 +131,13 @@ export class HomeComponent implements OnInit {
     
     // console.log("Substract Dates: " + hours);
     // Check if we have any errorCode in the url, coming from another angular state
-    this.activatedRoute.queryParams.subscribe(params => {
-      errorCode = params["errorCode"];
-      msisdnCode = params["ui"];
-    });
+    this.activatedRoute.queryParamMap.subscribe(
+      (params: ParamMap) => {
+        errorCode = params.get("errorCode");
+        msisdnCode = params.get("ui");
+        //console.log('Discovered ui= ' + msisdnCode);
+      });
+
     
       // Load the game settings
       this.dataService.fetchGameSettings().then(

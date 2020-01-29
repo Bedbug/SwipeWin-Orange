@@ -10,6 +10,7 @@ import { debug } from 'util';
 import { TranslateService } from '@ngx-translate/core';
 import { parsePhoneNumberFromString } from 'libphonenumber-js'
 import { skip } from 'rxjs/operators';
+import { User } from '../../models/User';
 
 
 // import * as libphonenumber from 'google-libphonenumber';

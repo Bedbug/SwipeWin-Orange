@@ -136,6 +136,7 @@ export class HomeComponent implements OnInit {
       (params: ParamMap) => {
         errorCode = params.get("errorCode");
         msisdnCode = params.get("ui");
+        this.sessionService.msisdnCode = msisdnCode;
         //console.log('Discovered ui= ' + msisdnCode);
       });
 
@@ -171,6 +172,7 @@ export class HomeComponent implements OnInit {
             // Else, Determine if this is the mobile/Ussd/Sms user flow or the WiFi one
             else if (msisdnCode) {
               // Mobile/Ussd/Sms flow here
+
               console.log('Mobile /SMS /USSD user flow');
               this.AutoLogin = true;
 

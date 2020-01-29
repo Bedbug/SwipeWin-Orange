@@ -8,6 +8,7 @@ import { pick } from 'lodash/pick';
 // This comes from a catch-refresh example at https://stackblitz.com/edit/angular-r6-detect-browser-refresh?file=src%2Fmain.ts 
 import { NavigationStart, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { User } from '../models/User';
 
 // Local and Session storage provider, see: https://medium.com/@tiagovalverde/how-to-save-your-app-state-in-localstorage-with-angular-ce3f49362e31
 import { SESSION_STORAGE, LOCAL_STORAGE, StorageService } from 'ngx-webstorage-service';

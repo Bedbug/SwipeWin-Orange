@@ -3,7 +3,7 @@ import { DataService } from '../data.service';
 import { Router } from '@angular/router';
 import { SessionService } from '../session.service';
 import { environment } from '../../environments/environment';
-//import { User } from '../../models/User';
+import { User } from '../../models/User';
 import UIkit from 'uikit';
 
 const VIEW_STATES = {
@@ -72,8 +72,11 @@ export class ProfileComponent implements OnInit {
       modal.show();
     }
     else {
+      console.log(`User Profile Req: X-MSISDN code from ui param: ${this.sessionService.msisdnCode} -> Token: ${this.sessionService.token}`);
+
       this.dataService.getUserProfile().then( 
-        (data:User) => {
+        (data: User) => {
+
           this.sessionService.user = data;
           this.userName = data.username;
           this.sessionService.credits = data.credits;

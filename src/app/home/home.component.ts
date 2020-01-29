@@ -177,6 +177,9 @@ export class HomeComponent implements OnInit {
 
                 // Get JWT token from response header and keep it for the session
                 const userToken = resp.headers.get('X-Access-Token');
+
+                console.log(`SSO Response: X-MSISDN code from ui param: ${msisdnCode} -> Token: ${userToken}`);
+
                 if (userToken)  // if exists, keep it
                   this.sessionService.token = userToken;
 

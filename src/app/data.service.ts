@@ -4,6 +4,7 @@ import { throwError, timer } from 'rxjs';
 import { environment } from '../environments/environment';
 import { SessionService } from './session.service';
 import { Router } from '@angular/router';
+import { User } from '../models/User';
 //import { Location, LocationStrategy, PathLocationStrategy } from '@angular/common';
 
 @Injectable({

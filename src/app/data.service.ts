@@ -138,13 +138,14 @@ export class DataService {
     
     const url = `${environment.gameServerDomainUrl}/api/user`;
       
-    return this.http.get<User>(url, {
+    return this.http.get(url, {
       headers: { 
         'Accept': 'application/json', 
         'Access-Control-Allow-Origin': '*', 
         'X-Access-Token': this.session.token 
-      }
-    }).toPromise();
+      },
+      observe: 'response'
+    });
   }
   
   

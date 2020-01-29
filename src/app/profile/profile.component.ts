@@ -74,8 +74,12 @@ export class ProfileComponent implements OnInit {
     else {
       console.log(`User Profile Req: X-MSISDN code from ui param: ${this.sessionService.msisdnCode} -> Token: ${this.sessionService.token}`);
 
-      this.dataService.getUserProfile().then( 
-        (data: User) => {
+      this.dataService.getUserProfile().subscribe( 
+        (response: any) => {
+
+          console.log(`Profile response: ${JSON.stringify(response, null, 3)}`);
+
+          const data: any = response.body;
 
           this.sessionService.user = data;
           this.userName = data.username;

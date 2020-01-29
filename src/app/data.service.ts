@@ -41,7 +41,7 @@ export class DataService {
         'Accept': 'application/json', 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*'
       };
       if (this.session && this.session.token)
-        headers['X-Access-Token'] = this.session.token;
+        headers['x-access-token'] = this.session.token;
 
       return this.http.post(url, { msisdn: msisdn }, {
         headers: headers,
@@ -62,7 +62,7 @@ export class DataService {
         'Accept': 'application/json', 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*'
       };
       if (this.session && this.session.token)
-        headers['X-Access-Token'] = this.session.token;
+        headers['x-access-token'] = this.session.token;
 
       return this.http.post(url, { msisdn: msisdn, pin: pin }, {
         headers: headers,
@@ -142,7 +142,7 @@ export class DataService {
       headers: { 
         'Accept': 'application/json', 
         'Access-Control-Allow-Origin': '*', 
-        'X-Access-Token': this.session.token 
+        'x-access-token': this.session.token 
       },
       observe: 'response'
     });
@@ -163,13 +163,13 @@ export class DataService {
         headers: { 
           'Accept': 'application/json', 
           'Access-Control-Allow-Origin': '*', 
-          'X-Access-Token': this.session.token,
+          'x-access-token': this.session.token,
           'Content-Type': 'application/json', 
           },
         observe: 'response'
       }).toPromise().then( 
         res => {
-          const token = res.headers.get('X-Access-Token');
+          const token = res.headers.get('x-access-token');
           if (token)
             this.session.token = token;
           
@@ -195,7 +195,7 @@ export class DataService {
         headers: {
           'Accept': 'application/json',
           'Access-Control-Allow-Origin': '*',
-          'X-Access-Token': this.session.token
+          'x-access-token': this.session.token
         }
       });
   }
@@ -210,7 +210,7 @@ export class DataService {
         headers: {
           'Accept': 'application/json',
           'Access-Control-Allow-Origin': '*',
-          'X-Access-Token': this.session.token
+          'x-access-token': this.session.token
         }, observe: 'response'
       });
   }
@@ -230,13 +230,13 @@ export class DataService {
         headers: { 
           'Accept': 'application/json', 
           'Access-Control-Allow-Origin': '*', 
-          'X-Access-Token': this.session.token,
+          'x-access-token': this.session.token,
           'Content-Type': 'application/json', 
           },
         observe: 'response'
       }).toPromise().then( 
         res => {
-          const token = res.headers.get('X-Access-Token');
+          const token = res.headers.get('x-access-token');
           if (token)
             this.session.token = token;
           
@@ -265,12 +265,12 @@ export class DataService {
         headers: { 
           'Accept': 'application/json', 
           'Access-Control-Allow-Origin': '*', 
-          'X-Access-Token': this.session.token
+          'x-access-token': this.session.token
           },
         observe: 'response'
       }).toPromise().then( 
         res => {
-          const token = res.headers.get('X-Access-Token');
+          const token = res.headers.get('x-access-token');
           if (token)
             this.session.token = token;
           
@@ -299,14 +299,14 @@ export class DataService {
         headers: { 
           'Accept': 'application/json', 
           'Content-Type': 'application/json', 
-          'X-Access-Token': this.session.token || (new Date).getTime().toString(),
+          'x-access-token': this.session.token || (new Date).getTime().toString(),
           'Access-Control-Allow-Origin': '*'
           },
         observe: 'response'
       }).toPromise().then(
         res => { // Success
         
-          const token = res.headers.get('X-Access-Token');
+          const token = res.headers.get('x-access-token');
           if (token)
             this.session.token = token;
           
@@ -350,14 +350,14 @@ export class DataService {
         headers: { 
           'Accept': 'application/json', 
           'Content-Type': 'application/json', 
-          'X-Access-Token': this.session.token || (new Date).getTime().toString(),
+          'x-access-token': this.session.token || (new Date).getTime().toString(),
           'Access-Control-Allow-Origin': '*'
           },
         observe: 'response'
       }).toPromise().then(
         res => { // Success
         
-          const token = res.headers.get('X-Access-Token');
+          const token = res.headers.get('x-access-token');
           if (token)
             this.session.token = token;
           

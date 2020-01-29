@@ -179,7 +179,7 @@ export class HomeComponent implements OnInit {
               this.dataService.authenticateOrangeSSO(msisdnCode).subscribe((resp: any) => {
 
                 // Get JWT token from response header and keep it for the session
-                const userToken = resp.headers.get('X-Access-Token');
+                const userToken = resp.headers.get('x-access-token');
 
                 console.log(`SSO Response: X-MSISDN code from ui param: ${msisdnCode} -> Token: ${userToken}`);
 
@@ -305,7 +305,7 @@ export class HomeComponent implements OnInit {
       this.openVerify = true;
 
       // If present, Get JWT token from response header and keep it for the session
-      const userToken = resp.headers.get('X-Access-Token');
+      const userToken = resp.headers.get('x-access-token');
       if (userToken) { // if exists, keep it
         this.sessionService.token = userToken;
         this.sessionService.Serialize();
@@ -332,7 +332,7 @@ export class HomeComponent implements OnInit {
     this.dataService.authenticateVerify(this.sessionService.msisdn, pass).subscribe((resp: any) => {
 
       // Get JWT token from response header and keep it for the session
-      const userToken = resp.headers.get('X-Access-Token');
+      const userToken = resp.headers.get('x-access-token');
       if (userToken)  // if exists, keep it
         this.sessionService.token = userToken;
 
@@ -384,7 +384,7 @@ export class HomeComponent implements OnInit {
     this.dataService.authenticateVerify(this.sessionService.msisdn, pass).subscribe((resp: any) => {
 
       // Get JWT token from response header and keep it for the session
-      const userToken = resp.headers.get('X-Access-Token');
+      const userToken = resp.headers.get('x-access-token');
       if (userToken)  // if exists, keep it
         this.sessionService.token = userToken;
 

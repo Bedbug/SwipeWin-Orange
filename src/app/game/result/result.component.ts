@@ -120,7 +120,7 @@ export class ResultComponent implements OnInit {
     this.dataService.purchaseCredit(pass).subscribe((resp: any) => {
 
       // Get JWT token from response header and keep it for the session
-      const userToken = resp.headers.get('X-Access-Token');
+      const userToken = resp.headers.get('x-access-token');
       if (userToken)  // if exists, keep it
         this.session.token = userToken;
 

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { throwError, timer } from 'rxjs';
 import { environment } from '../environments/environment';
 import { SessionService } from './session.service';
@@ -137,15 +137,18 @@ export class DataService {
   getUserProfile() {
     
     const url = `${environment.gameServerDomainUrl}/api/user`;
-      
-    return this.http.get(url, {
-      headers: { 
-        'Accept': 'application/json', 
-        'Access-Control-Allow-Origin': '*', 
-        'x-access-token': this.session.token 
-      },
-      observe: 'response'
+
+    const headers: HttpHeaders = new HttpHeaders({
+      'Accept': 'application/json',
+      'Access-Control-Allow-Origin': '*',
+      'x-access-token': this.session.token
     });
+
+    const options = {
+      headers: headers
+    };
+      
+    return this.http.get(url, options);
   }
   
   

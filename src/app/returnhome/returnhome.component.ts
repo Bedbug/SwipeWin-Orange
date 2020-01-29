@@ -107,8 +107,10 @@ export class ReturnhomeComponent implements OnInit {
       // This resets the games played every time
       
       
-      this.dataService.getUserProfile().then( 
-        (data:User) => {
+      this.dataService.getUserProfile().subscribe( 
+        (response: any) => {
+
+          const data = response.body;
           this.sessionService.user = data;
           this._gamesPlayed = this.sessionService.gamesPlayed;
           

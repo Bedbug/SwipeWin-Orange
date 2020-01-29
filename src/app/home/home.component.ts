@@ -463,8 +463,10 @@ export class HomeComponent implements OnInit {
 
   PlayGame() {
     console.log("Burn One Credit, Play Game!");
-    this.dataService.getUserProfile().then( 
-      (data:User) => {
+    this.dataService.getUserProfile().subscribe( 
+      (response: any) => {
+
+        const data = response.body;
         this.sessionService.user = data;
         console.log("this.sessionService.gamesPlayed "+this.sessionService.gamesPlayed);
 
@@ -475,9 +477,7 @@ export class HomeComponent implements OnInit {
       },
       (err) => {
         
-      });
-
-      
+      });      
   }
   
 

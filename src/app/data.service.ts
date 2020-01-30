@@ -136,7 +136,7 @@ export class DataService {
 
   getUserProfile() {
     
-    const url = `${environment.gameServerDomainUrl}/api/user`;
+    const url = `${environment.gameServerDomainUrl}/api/user?d=${new Date().getTime()}`;
 
     const headers: HttpHeaders = new HttpHeaders({
       'Accept': 'application/json',

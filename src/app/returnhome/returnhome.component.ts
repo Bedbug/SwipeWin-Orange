@@ -109,13 +109,16 @@ export class ReturnhomeComponent implements OnInit {
       
       
       this.dataService.getUserProfile().subscribe( 
-        (response: any) => {
+        (data: any) => {
 
-          const data = response.body;
+          // console.log("response.body "+response.body);
+          // const data:User = response.body;
+          console.log("data "+ data);
           this.sessionService.user = data;
           this._gamesPlayed = this.sessionService.gamesPlayed;
 
           console.log("this.sessionService.user "+this.sessionService.user);
+          
           console.log("this._gamesPlayed "+this._gamesPlayed);
           console.log("this.sessionService.gamesPlayed "+this.sessionService.gamesPlayed);
 

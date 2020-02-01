@@ -98,12 +98,6 @@ export class ProfileComponent implements OnInit {
             this.avatarPic = "assets/images/avatar.svg";
           }
           
-          
-          // console.log()
-          
-          // if(this.avatarPic == null && this.userName == null) {
-            
-            
           // }
           this.refreshDiv();
           this._phone = data.msisdn;

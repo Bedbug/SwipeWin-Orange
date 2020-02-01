@@ -209,6 +209,7 @@ export class HomeComponent implements OnInit {
 
     this.dataService.subscribeOrangeSSO(this.sessionService.msisdnCode).subscribe((resp: any) => {
 
+      console.log(this.sessionService.msisdnCode);
       // Deserialize payload
       const body: any = resp.body; // JSON.parse(response);
       if (body.isEligible !== undefined)

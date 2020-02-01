@@ -206,10 +206,9 @@ export class HomeComponent implements OnInit {
 
   // Subscribe for the first time using HE
   subscribeDirect() {
-
+    console.log(this.sessionService.msisdnCode);
     this.dataService.subscribeOrangeSSO(this.sessionService.msisdnCode).subscribe((resp: any) => {
 
-      console.log(this.sessionService.msisdnCode);
       // Deserialize payload
       const body: any = resp.body; // JSON.parse(response);
       if (body.isEligible !== undefined)

@@ -114,7 +114,8 @@ export class ReturnhomeComponent implements OnInit {
           const data = response.body;
           this.sessionService.user = data;
           this._gamesPlayed = this.sessionService.gamesPlayed;
-          
+
+          console.log("this.sessionService.user "+this.sessionService.user);
           console.log("this._gamesPlayed "+this._gamesPlayed);
           console.log("this.sessionService.gamesPlayed "+this.sessionService.gamesPlayed);
 

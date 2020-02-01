@@ -118,7 +118,8 @@
 6. if not, alert that he has reached maximum. -->
 
 <!-- WI-FI LOGIN -->
-<div class="buttons-container uk-container uk-text-center" *ngIf="!AutoLogin && !openVerify && !loggedin" tabindex="-1">
+<!-- {{openHESub}} -->
+<div class="buttons-container uk-container uk-text-center" *ngIf="!AutoLogin && !openVerify && !loggedin && !openHESub" tabindex="-1">
  
   <div class="buttons-container uk-container uk-text-center"  >
     
@@ -130,15 +131,23 @@
               <input #number class="uk-input uk-border-rounded" type="text" (keyup)="onKey($event)" placeholder="{{ 'HOME.NUM' | translate }}"> 
           </div>
       </div>
-      
     </form>
-    
     <div class="buttons-container uk-container uk-text-center">
       <p *ngIf="alertNumber" style="font-size: 12px; color: white;">{{ 'HOME.WRONGNUM' | translate }}</p>
       <button class="uk-button uk-button-default play-button uk-width-1-1" (click)="submit(number.value)">{{ 'HOME.SUB-LOG' | translate }}</button> 
     </div>   
   </div>
+
+</div>
+<div class="buttons-container uk-container uk-text-center" *ngIf="openHESub" tabindex="-1">
+ 
+  <div class="buttons-container uk-container uk-text-center"  >
+    <div class="buttons-container uk-container uk-text-center">
+      <button class="uk-button uk-button-default play-button uk-width-1-1" (click)="subscribeDirect()">{{ 'HOME.SUB' | translate }}</button> 
+    </div>   
   </div>
+
+</div>
 <!--END OF WIFI LOGIN-->
 
 <!--OTP-->
@@ -160,11 +169,12 @@
       </div>
     </form>
     
-    <div class="buttons-container uk-container uk-text-center">
+    <div class="buttons-container uk-container uk-text-center" >
       <p *ngIf="verErrorMes" style="font-size: 12px; color: white;">{{ 'HOME.VERERROR' | translate }}</p>
       <button class="uk-button uk-button-default play-button uk-width-1-1" *ngIf="sessionService.isSubscribed" (click)="verifyDirect(pin.value)">{{ 'HOME.LOGIN' | translate }}</button> 
       <button class="uk-button uk-button-default play-button uk-width-1-1" *ngIf="!sessionService.isSubscribed" (click)="verify(pin.value)">{{ 'HOME.SUB' | translate }}</button>
     </div>
+    
     <div class="message-container" style="margin-top: 30px;">
       <p style="color:rgb(0, 0, 0); font-weight: bold; font-size: 20px;"><a (click)="resetPin()" style="color:rgb(255, 255, 255); text-decoration: underline;">{{ 'HOME.RESEND' | translate }}</a>
       </p>

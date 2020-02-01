@@ -24,6 +24,7 @@ export class HomeComponent implements OnInit {
   loginOn: number;
   AutoLogin: boolean;
   openVerify: boolean;
+  openHESub:boolean = false;
   lblShow:boolean = true;
   passType: string = "password";
   loggedin: boolean;
@@ -88,25 +89,6 @@ export class HomeComponent implements OnInit {
   
   ngOnInit() {
 
-    // this.activatedRoute.queryParams.subscribe(params => {
-    //   console.table(params);
-    //   this.lang = params["lang"];
-    //   if(this.lang != null)
-    //   this.translate.setDefaultLang(this.lang);
-    //   console.log("Language Selected: "+this.lang);
-    // })
-
-    // this.activatedRoute.queryParams
-    //   .subscribe(params => {
-    //     console.log(params); // {order: "popular"}
-
-    //     // this.order = params.order;
-    //     // console.log(this.order); // popular
-    //   });
-  
-
-    
-    
     
     // Get Login On From LocalStorage
     this.loginOn = 0;
@@ -114,23 +96,9 @@ export class HomeComponent implements OnInit {
     let errorCode = null;
     let msisdnCode = null;
 
-    // this.loginOn = +localStorage.getItem('loginOn');
-    
-    // if(this.loginOn != 1) console.log("Login is Off");
-    // if(this.loginOn == 1) {
-    //  this.showLogin = true;
-    //   console.log("Login is On");
-    // }
-    // // This Resets Every time the demo games played
-    // // localStorage.setItem('demoGamesPlayed', "0");
-    // this.lastDemoPlayed = new Date( (localStorage.getItem('lastDemoPlayed')) );
-    // console.log("Last Time Played: "+this.lastDemoPlayed);
-    // console.log("Now: "+this.now);
-      
-    // let hours = Math.abs((this.now.getTime() - this.lastDemoPlayed.getTime()) / 3600000)
-    // if( hours > 1) localStorage.setItem('demoGamesPlayed', "0");
-    
-    // console.log("Substract Dates: " + hours);
+    // TEST FOR HE SUBSCRIPTION
+    // this.openHESub = true;
+
     // Check if we have any errorCode in the url, coming from another angular state
     this.activatedRoute.queryParamMap.subscribe(
       (params: ParamMap) => {
@@ -209,7 +177,13 @@ export class HomeComponent implements OnInit {
                 this.loggedin = true;
                 this.openVerify = false;
 
-                this.router.navigate(['/returnhome']);
+                // If user is Subscribed to server continue as usual
+                if(this.sessionService.isSubscribed)
+                  this.router.navigate(['/returnhome']);
+                else{
+                  // Open the subscribe button
+                  this.openHESub = true;
+                }
               },
                 (err: any) => {
                   this.AutoLogin = false;
@@ -229,6 +203,42 @@ export class HomeComponent implements OnInit {
       this.openVerify = false;
       this.loggedin = false;
   }
+
+  // Subscribe for the first time using HE
+  subscribeDirect() {
+
+    this.dataService.subscribeOrangeSSO(this.sessionService.msisdnCode).subscribe((resp: any) => {
+
+      // Deserialize payload
+      const body: any = resp.body; // JSON.parse(response);
+      if (body.isEligible !== undefined)
+        this.sessionService.isEligible = body.isEligible;
+      if (body.isSubscribed != undefined)
+        this.sessionService.isSubscribed = body.isSubscribed;
+      if (body.gamesPlayedToday !== undefined)
+        this.sessionService.gamesPlayed = body.gamesPlayedToday;
+      if (body.credits > 0)
+        this.sessionService.credits = body.credits;
+
+      //this.sessionService.Serialize();
+
+      // Chage view state
+      this.openHESub = false;
+      this.loggedin = true;
+      this.openVerify = false;
+
+      // Goto the returnHome page
+      this.router.navigate(['/returnhome']);
+    
+    },
+      (err: any) => {
+        console.log("Error Direct Subscription!");
+        this.verErrorMes = true;
+      });
+
+    
+  }
+
   
   public playGame($event) {
     // console.log('button is clicked');

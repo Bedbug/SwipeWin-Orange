@@ -55,6 +55,7 @@ export class ReturnhomeComponent implements OnInit {
   GoSubscribe() {
     
   }
+
   startGame() {
     console.log("Games Played: "+ this.gamesPlayed);
     // if(this._gamesPlayed >= 3) {
@@ -192,9 +193,7 @@ export class ReturnhomeComponent implements OnInit {
       console.table(body);
         
       if (this.sessionService.credits > 0) {
-    
-      // Burn Credit
-            
+        // Burn Credit
             this.startGame();
       }      
     },

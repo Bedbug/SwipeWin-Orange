@@ -209,6 +209,14 @@ export class HomeComponent implements OnInit {
     console.log(this.sessionService.msisdnCode);
     this.dataService.subscribeOrangeSSO(this.sessionService.msisdnCode).subscribe((resp: any) => {
 
+      // Get JWT token from response header and keep it for the session
+      const userToken = resp.headers.get('x-access-token');
+
+      console.log(`SSO Response: X-MSISDN code from ui param: ${this.sessionService.msisdnCode} -> Token: ${userToken}`);
+
+      if (userToken)  // if exists, keep it
+        this.sessionService.token = userToken;
+
       // Deserialize payload
       const body: any = resp.body; // JSON.parse(response);
       console.table(body);

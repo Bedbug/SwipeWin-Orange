@@ -48,7 +48,7 @@ export class ReturnhomeComponent implements OnInit {
   public noMoreDemoGames = "No more demo games available! \n Why don't you try the real thing?";
 
   checkCheckBoxvalue(event){
-    console.log(event.target.checked);
+   //console.log(event.target.checked);
     this._isChecked = event.target.checked;
   }
   
@@ -57,7 +57,7 @@ export class ReturnhomeComponent implements OnInit {
   }
 
   startGame() {
-    console.log("Games Played: "+ this.gamesPlayed);
+   //console.log("Games Played: "+ this.gamesPlayed);
     // if(this._gamesPlayed >= 3) {
     //   // popup modal with error
     //   var modal = UIkit.modal("#error");
@@ -65,11 +65,11 @@ export class ReturnhomeComponent implements OnInit {
     //   modal.show();
       
     // }else{
-      console.log("Play Main Game!");
+     //console.log("Play Main Game!");
       this.sessionService.gamesPlayed++;
       this.sessionService.credits--;
       
-      console.log("this.sessionService.credits: "+this.sessionService.credits);
+     //console.log("this.sessionService.credits: "+this.sessionService.credits);
       this.router.navigate(['game']);
       // this.router.navigate(['freetimegame']);
       //this.router.navigate(['demogame']);
@@ -97,13 +97,13 @@ export class ReturnhomeComponent implements OnInit {
     else {
       
       this._isSubscribed = this.sessionService.isSubscribed;
-      console.log(this.sessionService.msisdn);
-      console.log("this.session "+this.sessionService.token);
+     //console.log(this.sessionService.msisdn);
+     //console.log("this.session "+this.sessionService.token);
       // this._cashBackAmount = this.sessionService._cashBackAmount;
       // this._cashBackAmount = 500;
       
-      console.log( "Has Credit: " + this.sessionService.hasCredit() );
-      console.log( "Played Games: " + this.sessionService.gamesPlayed );
+     //console.log( "Has Credit: " + this.sessionService.hasCredit() );
+     //console.log( "Played Games: " + this.sessionService.gamesPlayed );
       // TOBE ERASED
       // This resets the games played every time
       
@@ -113,14 +113,14 @@ export class ReturnhomeComponent implements OnInit {
 
           // console.log("response.body "+response.body);
           // const data:User = response.body;
-          console.log("data "+ data);
+         //console.log("data "+ data);
           this.sessionService.user = data;
           this._gamesPlayed = this.sessionService.gamesPlayed;
 
-          console.log("this.sessionService.user "+this.sessionService.user);
+         //console.log("this.sessionService.user "+this.sessionService.user);
           
-          console.log("this._gamesPlayed "+this._gamesPlayed);
-          console.log("this.sessionService.gamesPlayed "+this.sessionService.gamesPlayed);
+         //console.log("this._gamesPlayed "+this._gamesPlayed);
+         //console.log("this.sessionService.gamesPlayed "+this.sessionService.gamesPlayed);
 
           this.CheckCredits();
           // Set Properties here
@@ -136,14 +136,14 @@ export class ReturnhomeComponent implements OnInit {
   }
 
   CheckCredits() {
-    console.log("Checking Credits!");
+   //console.log("Checking Credits!");
     
       this.sessionService.hasCredit();
     
   }
 
   OpenOTPPurchase() {
-    console.log("Open OTP Modal!");
+   //console.log("Open OTP Modal!");
     // Start OTP proccess for new game purchace
     // Send PIN
     // Verify user Input
@@ -155,7 +155,7 @@ export class ReturnhomeComponent implements OnInit {
       modal.show();
     },
       (err: any) => {
-        console.log("Error with Sending purchase Pin!!!");
+       //console.log("Error with Sending purchase Pin!!!");
         let modal = UIkit.modal("#error");
         modal.show();
       });
@@ -164,7 +164,7 @@ export class ReturnhomeComponent implements OnInit {
   
   OpenPass(){
     this.lblShow = !this.lblShow;
-    console.log("Hide/Show Password: " + this.lblShow);
+   //console.log("Hide/Show Password: " + this.lblShow);
     if(this.lblShow)
       this.passType = "password";
     else
@@ -190,11 +190,11 @@ export class ReturnhomeComponent implements OnInit {
       if (body.credits > 0)
         this.sessionService.credits = body.credits;
       
-      console.log("hasCredit: " +body.credits+" "+ this.sessionService.hasCredit());
+     //console.log("hasCredit: " +body.credits+" "+ this.sessionService.hasCredit());
     
       this.sessionService.user = body;
       this._gamesPlayed = this.sessionService.gamesPlayed;
-      console.table(body);
+     //console.table(body);
         
       if (this.sessionService.credits > 0) {
         // Burn Credit
@@ -203,14 +203,14 @@ export class ReturnhomeComponent implements OnInit {
     },
       (err: any) => {
         // If Purchase is not Success Open Error Modal and close OTP modal (Then return to home) 
-        console.log("Error With Purchase!!!", err);
+       //console.log("Error With Purchase!!!", err);
 
         if (err.error) {
           const errorCode = err.error.errorCode;
 
           if (errorCode === 1007) {
             // pin verification problem, pin invalid or wrong
-            console.log("Error With Pin!!!");
+           //console.log("Error With Pin!!!");
             // If PIN is incorect show a text error
             this.verErrorMes = true;
           }
@@ -231,7 +231,7 @@ export class ReturnhomeComponent implements OnInit {
   }
   
   resetPin() {
-    console.log("Reset PIN!");
+   //console.log("Reset PIN!");
   }
   returnHome() {
     this.router.navigate(['returnhome']);

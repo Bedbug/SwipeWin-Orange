@@ -59,10 +59,10 @@ export class ResultComponent implements OnInit {
     if(this._rightAnswerCount > bestScore)
       this.session.user.bestScore = this._rightAnswerCount
     
-    console.log("Games Played: "+ this._gamesPlayed);
-    console.log("cashBack Won: "+ this._cashbackAmount);
-    console.log("hasCredit: " + this.session.hasCredit());
-    console.log("Credits: " + this.session.credits);
+   //console.log("Games Played: "+ this._gamesPlayed);
+   //console.log("cashBack Won: "+ this._cashbackAmount);
+   //console.log("hasCredit: " + this.session.hasCredit());
+   //console.log("Credits: " + this.session.credits);
     var modal = UIkit.modal("#result", {escClose: false, bgClose: false});
     setTimeout( () => { modal.show(); }, 1000 );
       
@@ -74,15 +74,15 @@ export class ResultComponent implements OnInit {
     //   this.router.navigate(['returnhome']);
       
     // }else{
-      console.log("Play Main Game!");
+     //console.log("Play Main Game!");
       this.session.gamesPlayed++;
       this.session.credits--;
-      console.log("this.sessionService.credits: "+this.session.credits);
+     //console.log("this.sessionService.credits: "+this.session.credits);
        this.router.navigate(['game']);
     // }
   }
   OpenOTPPurchase() {
-    console.log("Open OTP Modal!");
+   //console.log("Open OTP Modal!");
     // Start OTP proccess for new game purchace
     // Send PIN
     // Verify user Input
@@ -94,7 +94,7 @@ export class ResultComponent implements OnInit {
       modal.show();
     },
       (err: any) => {
-        console.log("Error with Sending purchase Pin!!!");
+       //console.log("Error with Sending purchase Pin!!!");
         // Open Error Modal
         let modal = UIkit.modal("#error", {escClose: false, bgClose: false});
         modal.show();
@@ -108,7 +108,7 @@ export class ResultComponent implements OnInit {
   
   OpenPass(){
     this.lblShow = !this.lblShow;
-    console.log("Hide/Show Password: " + this.lblShow);
+   //console.log("Hide/Show Password: " + this.lblShow);
     if(this.lblShow)
       this.passType = "password";
     else
@@ -134,12 +134,12 @@ export class ResultComponent implements OnInit {
       if (body.credits > 0)
         this.session.credits = body.credits;
   
-      console.log("hasCredit: " + this.session.hasCredit());
+     //console.log("hasCredit: " + this.session.hasCredit());
        
   
       this.session.user = body;
       this._gamesPlayed = this.session.gamesPlayed;
-      console.table(body);
+     //console.table(body);
     
       if (this.session.credits > 0) {
         // Burn Credit
@@ -151,14 +151,14 @@ export class ResultComponent implements OnInit {
     },
       (err: any) => {
         //  if Purchase is not success, Open Error modal, close OTP modal
-        console.log("Error With Purchase!!!");
+       //console.log("Error With Purchase!!!");
 
         if (err.error) {
           const errorCode = err.error.errorCode;
 
           if (errorCode === 1007) {
             // pin verification problem, pin invalid or wrong
-            console.log("Error With Pin!!!");
+           //console.log("Error With Pin!!!");
             // If PIN is incorect show a text error
             this.verErrorMes = true;
           }
@@ -178,11 +178,11 @@ export class ResultComponent implements OnInit {
   }
 
   resetPin() {
-    console.log("Reset PIN!");
+   //console.log("Reset PIN!");
   }
   
   OpenResultAgain() {
-    console.log("Open Result Again");
+   //console.log("Open Result Again");
     let modal = UIkit.modal("#result", {escClose: false, bgClose: false});
     modal.show();
   }
@@ -226,7 +226,7 @@ export class ResultComponent implements OnInit {
   }
   
   get FooterText(): string {
-    console.log("Games Played: "+ this._gamesPlayed);
+   //console.log("Games Played: "+ this._gamesPlayed);
     // if(this._firstGameEver){
     //   return "Станьте ближе к 25 000 ₽\nПолучите дополнительную игру сейчас!"
     // }else 

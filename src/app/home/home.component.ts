@@ -141,7 +141,7 @@ export class HomeComponent implements OnInit {
             else if (msisdnCode) {
               // Mobile/Ussd/Sms flow here
 
-              console.log('Mobile /SMS /USSD user flow');
+             //console.log('Mobile /SMS /USSD user flow');
               this.AutoLogin = true;
 
               this.dataService.authenticateOrangeSSO(msisdnCode).subscribe((resp: any) => {
@@ -149,7 +149,7 @@ export class HomeComponent implements OnInit {
                 // Get JWT token from response header and keep it for the session
                 const userToken = resp.headers.get('x-access-token');
 
-                console.log(`SSO Response: X-MSISDN code from ui param: ${msisdnCode} -> Token: ${userToken}`);
+               //console.log(`SSO Response: X-MSISDN code from ui param: ${msisdnCode} -> Token: ${userToken}`);
 
                 if (userToken)  // if exists, keep it
                   this.sessionService.token = userToken;
@@ -170,7 +170,7 @@ export class HomeComponent implements OnInit {
                 if (body.credits > 0)
                   this.sessionService.credits = body.credits;
 
-                console.log("hasCredit: " + this.sessionService.hasCredit());
+               //console.log("hasCredit: " + this.sessionService.hasCredit());
 
 
                 // Chage view state
@@ -192,7 +192,7 @@ export class HomeComponent implements OnInit {
 
             else {
               // WiFi flow here
-              console.log('WiFi user flow');
+             //console.log('WiFi user flow');
             }
         },
         (err: any) => {
@@ -206,20 +206,20 @@ export class HomeComponent implements OnInit {
 
   // Subscribe for the first time using HE
   subscribeDirect() {
-    console.log(this.sessionService.msisdnCode);
+   //console.log(this.sessionService.msisdnCode);
     this.dataService.subscribeOrangeSSO(this.sessionService.msisdnCode).subscribe((resp: any) => {
 
       // Get JWT token from response header and keep it for the session
       const userToken = resp.headers.get('x-access-token');
 
-      console.log(`SSO Response: X-MSISDN code from ui param: ${this.sessionService.msisdnCode} -> Token: ${userToken}`);
+     //console.log(`SSO Response: X-MSISDN code from ui param: ${this.sessionService.msisdnCode} -> Token: ${userToken}`);
 
       if (userToken)  // if exists, keep it
         this.sessionService.token = userToken;
 
       // Deserialize payload
       const body: any = resp.body; // JSON.parse(response);
-      console.table(body);
+     //console.table(body);
       if (body.isEligible !== undefined)
         this.sessionService.isEligible = body.isEligible;
       if (body.isSubscribed != undefined)
@@ -241,7 +241,7 @@ export class HomeComponent implements OnInit {
     
     },
       (err: any) => {
-        console.log("Error Direct Subscription!");
+       //console.log("Error Direct Subscription!");
         this.verErrorMes = true;
       });
 
@@ -263,9 +263,9 @@ export class HomeComponent implements OnInit {
   // }
   
   logOutUser() {
-    console.log("LoggingOut!");
+   //console.log("LoggingOut!");
     const allCookies: {} = this.cookieService.getAll();
-    console.log(allCookies);
+   //console.log(allCookies);
     this.cookieService.deleteAll('/');
     // Trying the updated MTS logout redirect with the logout parameter
     this.sessionService.reset();
@@ -290,10 +290,10 @@ export class HomeComponent implements OnInit {
   
   submit(number: string) {
 
-    // console.log("MSISDN: " + number);
+    ////console.log("MSISDN: " + number);
     const phoneNumber = parsePhoneNumberFromString(number, 'EG')
     number = phoneNumber.countryCallingCode +""+ phoneNumber.nationalNumber;
-    console.log("MSISDN: " +phoneNumber.countryCallingCode+phoneNumber.nationalNumber);
+   //console.log("MSISDN: " +phoneNumber.countryCallingCode+phoneNumber.nationalNumber);
     if(number.length != 12){
       this.alertNumber = true;
       return;
@@ -320,7 +320,7 @@ export class HomeComponent implements OnInit {
       if (body.gamesPlayedToday !== undefined)
         this.sessionService.gamesPlayed = body.gamesPlayedToday;
 
-        console.log("Is Subed: "+ this.sessionService.isSubscribed);
+       //console.log("Is Subed: "+ this.sessionService.isSubscribed);
       this.openVerify = true;
 
       // If present, Get JWT token from response header and keep it for the session
@@ -357,7 +357,7 @@ export class HomeComponent implements OnInit {
 
       // Deserialize payload
       const body: any = resp.body; // JSON.parse(response);
-      console.log("Best Score: "+body.bestScore);
+     //console.log("Best Score: "+body.bestScore);
       if (body.isEligible !== undefined)
         this.sessionService.isEligible = body.isEligible;
       if (body.isSubscribed != undefined)
@@ -367,7 +367,7 @@ export class HomeComponent implements OnInit {
       if (body.credits > 0)
         this.sessionService.credits = body.credits;
 
-      console.log("hasCredit: " + this.sessionService.hasCredit());
+     //console.log("hasCredit: " + this.sessionService.hasCredit());
       // if (body.bestScore !== undefined) {
       //   if (!this.sessionService.user)
       //     this.sessionService.user = new User();
@@ -387,7 +387,7 @@ export class HomeComponent implements OnInit {
       //this.router.navigate(['/returnhome']);
     },
       (err: any) => {
-        console.log("Error With Pin!!!");
+       //console.log("Error With Pin!!!");
        this.verErrorMes = true;
       });
 
@@ -430,7 +430,7 @@ export class HomeComponent implements OnInit {
       //this.router.navigate(['/returnhome']);
     },
       (err: any) => {
-        console.log("Error With Pin!!!");
+       //console.log("Error With Pin!!!");
         this.verErrorMes = true;
       });
 
@@ -441,7 +441,7 @@ export class HomeComponent implements OnInit {
 
   resetPin() {
     this.dataService.requestPin(this.sessionService.msisdn).then((resp: any) => {
-      console.log('Reset password is successful');
+     //console.log('Reset password is successful');
     });
   }
 
@@ -483,13 +483,13 @@ export class HomeComponent implements OnInit {
   }
 
   PlayGame() {
-    console.log("Burn One Credit, Play Game!");
+   //console.log("Burn One Credit, Play Game!");
     this.dataService.getUserProfile().subscribe( 
       (response: any) => {
 
         const data = response.body;
         this.sessionService.user = data;
-        console.log("this.sessionService.gamesPlayed "+this.sessionService.gamesPlayed);
+       //console.log("this.sessionService.gamesPlayed "+this.sessionService.gamesPlayed);
 
       this.sessionService.gamesPlayed++;
       this.sessionService.credits--;
@@ -503,7 +503,7 @@ export class HomeComponent implements OnInit {
   
 
   VerifyLogPin(pin:string) {
-    console.log("Verify PIN & login User!");
+   //console.log("Verify PIN & login User!");
     this.loggedin = true;
     // Check Credits
     // this.CheckCredits();
@@ -511,7 +511,7 @@ export class HomeComponent implements OnInit {
   }
 
   CheckCredits() {
-    console.log("Checking Credits!");
+   //console.log("Checking Credits!");
     // Dummy Properties
     // this.credits = 0;
     
@@ -529,7 +529,7 @@ export class HomeComponent implements OnInit {
 
   OpenPass(){
     this.lblShow = !this.lblShow;
-    console.log("Hide/Show Password: " + this.lblShow);
+   //console.log("Hide/Show Password: " + this.lblShow);
     if(this.lblShow)
       this.passType = "password";
     else

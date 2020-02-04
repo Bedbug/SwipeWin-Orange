@@ -206,6 +206,8 @@ export class HomeComponent implements OnInit {
 
   // Subscribe for the first time using HE
   subscribeDirect() {
+    // Close Button Immediately 
+    this.openHESub = false;
    //console.log(this.sessionService.msisdnCode);
     this.dataService.subscribeOrangeSSO(this.sessionService.msisdnCode).subscribe((resp: any) => {
 
@@ -241,7 +243,7 @@ export class HomeComponent implements OnInit {
     
     },
       (err: any) => {
-       //console.log("Error Direct Subscription!");
+        this.openHESub = true;
         this.verErrorMes = true;
       });
 

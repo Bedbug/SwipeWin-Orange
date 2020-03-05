@@ -52,12 +52,22 @@ export class ResultComponent implements OnInit {
     this._isInTop = this.session.lastGameResults.isTop100;
     
     // Check Best Score Today
-    var bestScore = this.session.user.bestScore;
-    var bestScoreToday = this.session.user.bestScoreToday;
-    if(this._rightAnswerCount > bestScoreToday)
+    var bestScore = 0;
+    var bestScoreToday = 0;
+    
+    if(this.session.user!=null) {
+      console.log(this.session.user);
+      bestScore = this.session.user.bestScore;
+      bestScoreToday = this.session.user.bestScoreToday;
+      if(this._rightAnswerCount > bestScoreToday)
       this.session.user.bestScoreToday = this._rightAnswerCount
-    if(this._rightAnswerCount > bestScore)
-      this.session.user.bestScore = this._rightAnswerCount
+      if(this._rightAnswerCount > bestScore)
+        this.session.user.bestScore = this._rightAnswerCount
+    }
+
+    // var bestScore = this.session.user.bestScore;
+    // var bestScoreToday = this.session.user.bestScoreToday;
+    
     
    //console.log("Games Played: "+ this._gamesPlayed);
    //console.log("cashBack Won: "+ this._cashbackAmount);

@@ -36,7 +36,7 @@
     "core-js": "^2.5.4",
     "firebase": "^5.8.3",
     "google-libphonenumber": "^3.2.5",
-    "jquery": "^3.4.1",
+    "jquery": "^3.5.0",
     "libphonenumber-js": "^1.7.25",
     "lodash": "^4.17.15",
     "ng-lottie": "^0.3.2",

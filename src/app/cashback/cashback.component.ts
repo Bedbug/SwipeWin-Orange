@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { DataService } from '../data.service';
 import { SessionService } from '../session.service';
 import { Router } from '@angular/router';
+import { User } from '../../models/User';
 import UIkit from 'uikit';
 
 const VIEW_STATES = {

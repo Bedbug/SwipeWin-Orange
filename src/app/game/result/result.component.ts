@@ -24,8 +24,10 @@ export class ResultComponent implements OnInit {
     return this._gamesPlayed;
   }
   
-  
-  
+  lblShow:boolean = true;
+  passType: string = "password";
+  verErrorMes: boolean = false;
+
   private _firstTime = false;
   public _gamesPlayed = 2;
   private _rightAnswerCount = 10;
@@ -36,7 +38,7 @@ export class ResultComponent implements OnInit {
   private _isInTop = true;
   private _bestWeekScore = 0;
   
-  constructor( private session: SessionService, private router: Router, private translate: TranslateService, private dataService: DataService  ) { }
+  constructor( public session: SessionService, private router: Router, private translate: TranslateService, private dataService: DataService  ) { }
 
   ngOnInit() {
     if (!this.session.lastGameResults)
@@ -50,17 +52,28 @@ export class ResultComponent implements OnInit {
     this._isInTop = this.session.lastGameResults.isTop100;
     
     // Check Best Score Today
-    var bestScore = this.session.user.bestScore;
-    var bestScoreToday = this.session.user.bestScoreToday;
-    if(this._rightAnswerCount > bestScoreToday)
+    var bestScore = 0;
+    var bestScoreToday = 0;
+    
+    if(this.session.user!=null) {
+      console.log(this.session.user);
+      bestScore = this.session.user.bestScore;
+      bestScoreToday = this.session.user.bestScoreToday;
+      if(this._rightAnswerCount > bestScoreToday)
       this.session.user.bestScoreToday = this._rightAnswerCount
-    if(this._rightAnswerCount > bestScore)
-      this.session.user.bestScore = this._rightAnswerCount
+      if(this._rightAnswerCount > bestScore)
+        this.session.user.bestScore = this._rightAnswerCount
+    }
+
+    // var bestScore = this.session.user.bestScore;
+    // var bestScoreToday = this.session.user.bestScoreToday;
     
-    console.log("Games Played: "+ this._gamesPlayed);
-    console.log("cashBack Won: "+ this._cashbackAmount);
     
-    var modal = UIkit.modal("#result");
+   //console.log("Games Played: "+ this._gamesPlayed);
+   //console.log("cashBack Won: "+ this._cashbackAmount);
+   //console.log("hasCredit: " + this.session.hasCredit());
+   //console.log("Credits: " + this.session.credits);
+    var modal = UIkit.modal("#result", {escClose: false, bgClose: false});
     setTimeout( () => { modal.show(); }, 1000 );
       
   }
@@ -71,32 +84,117 @@ export class ResultComponent implements OnInit {
     //   this.router.navigate(['returnhome']);
       
     // }else{
-      console.log("Play Main Game!");
+     //console.log("Play Main Game!");
       this.session.gamesPlayed++;
+      this.session.credits--;
+     //console.log("this.sessionService.credits: "+this.session.credits);
        this.router.navigate(['game']);
     // }
   }
+  OpenOTPPurchase() {
+   //console.log("Open OTP Modal!");
+    // Start OTP proccess for new game purchace
+    // Send PIN
+    // Verify user Input
+    // If success purchaceCredit
+    this.dataService.purchaseCreditRequest().subscribe((resp: any) => {
 
-  purchaseCredit() {
-    console.log("Attempting to purchase credits!");
-    this.dataService.purchaseCredit().then(
-      (data: User) => {
+      // Open Modal
+      let modal = UIkit.modal("#otp", {escClose: false, bgClose: false});
+      modal.show();
+    },
+      (err: any) => {
+       //console.log("Error with Sending purchase Pin!!!");
+        // Open Error Modal
+        let modal = UIkit.modal("#error", {escClose: false, bgClose: false});
+        modal.show();
+        // On Error Modal when closed open endModal
+        // THIS HAS TO BE REMOVED IN PRODUCTION!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        // let modal = UIkit.modal("#otp");
+        // modal.show();
+      });
+  }
 
-        this.session.user = data;
-        this._gamesPlayed = this.session.gamesPlayed;
-        console.table(data);
-        if(this.session.user.credits > 0){
-          this.startGame();
-          // Burn Credit
-        }
-          
-        // console.log("this._gamesPlayed " + this._gamesPlayed);
-        // console.log("this.sessionService.gamesPlayed " + this.sessionService.gamesPlayed);
-      },
-      (err) => {
+  
+  OpenPass(){
+    this.lblShow = !this.lblShow;
+   //console.log("Hide/Show Password: " + this.lblShow);
+    if(this.lblShow)
+      this.passType = "password";
+    else
+      this.passType = "test";
+  }
 
+  verify(pass: string) {
+
+    this.dataService.purchaseCredit(pass).subscribe((resp: any) => {
+
+      // Get JWT token from response header and keep it for the session
+      const userToken = resp.headers.get('x-access-token');
+      if (userToken)  // if exists, keep it
+        this.session.token = userToken;
+
+      // Deserialize payload
+      const body: any = resp.body; // JSON.parse(response);
+      
+      // Close the modal if pin & purchase are success
+      let modal = UIkit.modal("#otp");
+      modal.hide();
+      
+      if (body.credits > 0)
+        this.session.credits = body.credits;
+  
+     //console.log("hasCredit: " + this.session.hasCredit());
+       
+  
+      this.session.user = body;
+      this._gamesPlayed = this.session.gamesPlayed;
+     //console.table(body);
+    
+      if (this.session.credits > 0) {
+        // Burn Credit
+        // this.session.credits--;
+        this.startGame();
+      
       }
-    );
+
+    },
+      (err: any) => {
+        //  if Purchase is not success, Open Error modal, close OTP modal
+       //console.log("Error With Purchase!!!");
+
+        if (err.error) {
+          const errorCode = err.error.errorCode;
+
+          if (errorCode === 1007) {
+            // pin verification problem, pin invalid or wrong
+           //console.log("Error With Pin!!!");
+            // If PIN is incorect show a text error
+            this.verErrorMes = true;
+          }
+          else if (errorCode === 1004) {
+            // user is not eligible to buy credits
+          }
+          else {
+            // transaction could not be completed by the system, system error
+            let modal = UIkit.modal("#error");
+            modal.show();
+          }
+        } else {
+          let modal = UIkit.modal("#error");
+            modal.show();
+        }
+      });
+  }
+
+  resetPin() {
+   //console.log("Reset PIN!");
+  }
+  
+  OpenResultAgain() {
+   //console.log("Open Result Again");
+    let modal = UIkit.modal("#result", {escClose: false, bgClose: false});
+    modal.show();
   }
   
   returnHome() {
@@ -138,7 +236,7 @@ export class ResultComponent implements OnInit {
   }
   
   get FooterText(): string {
-    console.log("Games Played: "+ this._gamesPlayed);
+   //console.log("Games Played: "+ this._gamesPlayed);
     // if(this._firstGameEver){
     //   return "Станьте ближе к 25 000 ₽\nПолучите дополнительную игру сейчас!"
     // }else 

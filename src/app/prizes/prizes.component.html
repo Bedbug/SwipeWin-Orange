@@ -10,23 +10,23 @@
       <!-- <img class="icon" src="assets/icons/prize.png" alt=""/> -->
       <div class="item">
         <img src="assets/icons/daily_prize.png" alt="">
-        <h4>{{ 'HOME.CAR_01b' | translate }}</h4>
-        <p>{{ 'HOME.CAR_01' | translate }}</p>
+        <h4>{{ 'HOME.CAR_03' | translate }}</h4>
+        <p>{{ 'HOME.CAR_03b' | translate }}</p>
       </div>
       <div class="item">
         <img src="assets/icons/weekly_prize.png" alt="">
-        <h4>{{ 'HOME.CAR_01b' | translate }}</h4>
-        <p>{{ 'HOME.CAR_01' | translate }}</p>
+        <h4>{{ 'HOME.CAR_02' | translate }}</h4>
+        <p>{{ 'HOME.CAR_02b' | translate }}</p>
       </div>
       <div class="item">
         <img src="assets/icons/monthly_prize.png" alt="">
-        <h4>{{ 'HOME.CAR_01b' | translate }}</h4>
-        <p>{{ 'HOME.CAR_01' | translate }}</p>
+        <h4>{{ 'HOME.CAR_01' | translate }}</h4>
+        <p>{{ 'HOME.CAR_01b' | translate }}</p>
       </div>
       <div class="item">
         <img src="assets/icons/grand_prize.png" alt="">
-        <h4>{{ 'HOME.CAR_01b' | translate }}</h4>
-        <p>{{ 'HOME.CAR_01' | translate }}</p>
+        <h4 [innerHtml]="'HOME.CAR_04' | translate"></h4>
+        <p>{{ 'HOME.CAR_04b' | translate }}</p>
       </div>
     </div>
       <!-- <div class="item">
@@ -37,7 +37,7 @@
     </div> -->
 
     <div class="buttons-container uk-container uk-text-center">
-      <button class="uk-button uk-button-default play-button uk-width-1-1" *ngIf="isActive" (click)="goHome()">{{ 'PRIZES.BACK' | translate }}</button>
+      <button class="uk-button uk-button-default play-button uk-width-1-1"  (click)="goHome()">{{ 'PRIZES.BACK' | translate }}</button>
     </div>
     <!--<div class="main-footer uk-container" >-->
     <!--  Служба поддержки:  111777 (бесплатно) или отправьте письмо на support@gu-group.ru-->

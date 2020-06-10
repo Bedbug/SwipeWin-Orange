@@ -3,7 +3,7 @@ import { DataService } from '../data.service';
 import { Router } from '@angular/router';
 import { SessionService } from '../session.service';
 import { environment } from '../../environments/environment';
-//import { User } from '../../models/User';
+import { User } from '../../models/User';
 import UIkit from 'uikit';
 
 const VIEW_STATES = {
@@ -72,10 +72,15 @@ export class ProfileComponent implements OnInit {
       modal.show();
     }
     else {
-      this.dataService.getUserProfile().then( 
-        (data:User) => {
+      console.log(`User Profile Req: X-MSISDN code from ui param: ${this.sessionService.msisdnCode} -> Token: ${this.sessionService.token}`);
+
+      this.dataService.getUserProfile().subscribe( 
+        (data: any) => {
+
+
           this.sessionService.user = data;
           this.userName = data.username;
+          this.sessionService.credits = data.credits;
           this._totalGamesCount = data.gamesPlayed;
           this._bestResultAllTime = data.bestScore;
           this._bestResultToday = data.bestScoreToday;
@@ -93,12 +98,6 @@ export class ProfileComponent implements OnInit {
             this.avatarPic = "assets/images/avatar.svg";
           }
           
-          
-          // console.log()
-          
-          // if(this.avatarPic == null && this.userName == null) {
-            
-            
           // }
           this.refreshDiv();
           this._phone = data.msisdn;
@@ -130,7 +129,12 @@ export class ProfileComponent implements OnInit {
   }
   
   goHome() {
-    this.router.navigate(['home']);
+    if (!this.sessionService.token || !this.sessionService.isSubscribed || !this.sessionService.isEligible) {
+      this.router.navigate(['home']);
+    } else {
+      this.router.navigate(['/returnhome']);
+    }
+    
   }
     
 }

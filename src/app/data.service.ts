@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { throwError, timer } from 'rxjs';
 import { environment } from '../environments/environment';
 import { SessionService } from './session.service';
 import { Router } from '@angular/router';
+import { User } from '../models/User';
 //import { Location, LocationStrategy, PathLocationStrategy } from '@angular/common';
 
 @Injectable({
@@ -40,7 +41,7 @@ export class DataService {
         'Accept': 'application/json', 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*'
       };
       if (this.session && this.session.token)
-        headers['X-Access-Token'] = this.session.token;
+        headers['x-access-token'] = this.session.token;
 
       return this.http.post(url, { msisdn: msisdn }, {
         headers: headers,
@@ -61,7 +62,7 @@ export class DataService {
         'Accept': 'application/json', 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*'
       };
       if (this.session && this.session.token)
-        headers['X-Access-Token'] = this.session.token;
+        headers['x-access-token'] = this.session.token;
 
       return this.http.post(url, { msisdn: msisdn, pin: pin }, {
         headers: headers,
@@ -111,6 +112,26 @@ export class DataService {
     }
   }
 
+
+  subscribeOrangeSSO(msisdnCode) {
+
+    if (!this.session.gameSettings || !this.session.gameSettings.maintenance || this.session.gameSettings.maintenance.siteDown || this.session.gameSettings.maintenance.noGames) {
+      this.router.navigate(['/home']);
+      return throwError('Game is unavailable or under maintenance');
+    }
+    else {
+      const url = encodeURI(`${environment.gameServerDomainUrl}/api/user/subscribe`);
+      const headers = {
+        'Accept': 'application/json', 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*'
+      };
+
+      return this.http.post(url, { msisdnCode: msisdnCode }, {
+        headers: headers,
+        observe: 'response'
+      });
+    }
+  }
+
     
     
   fetchGameSettings() {
@@ -135,15 +156,19 @@ export class DataService {
 
   getUserProfile() {
     
-    const url = `${environment.gameServerDomainUrl}/api/user`;
+    const url = `${environment.gameServerDomainUrl}/api/user?d=${new Date().getTime()}`;
+
+    const headers: HttpHeaders = new HttpHeaders({
+      'Accept': 'application/json',
+      'Access-Control-Allow-Origin': '*',
+      'x-access-token': this.session.token
+    });
+
+    const options = {
+      headers: headers
+    };
       
-    return this.http.get<User>(url, {
-      headers: { 
-        'Accept': 'application/json', 
-        'Access-Control-Allow-Origin': '*', 
-        'X-Access-Token': this.session.token 
-      }
-    }).toPromise();
+    return this.http.get(url, options);
   }
   
   
@@ -161,13 +186,13 @@ export class DataService {
         headers: { 
           'Accept': 'application/json', 
           'Access-Control-Allow-Origin': '*', 
-          'X-Access-Token': this.session.token,
+          'x-access-token': this.session.token,
           'Content-Type': 'application/json', 
           },
         observe: 'response'
       }).toPromise().then( 
         res => {
-          const token = res.headers.get('X-Access-Token');
+          const token = res.headers.get('x-access-token');
           if (token)
             this.session.token = token;
           
@@ -183,21 +208,35 @@ export class DataService {
   }
   
 
-  purchaseCredit = function () {
+  purchaseCreditRequest = function () {
 
     const url = `${environment.gameServerDomainUrl}/api/user/credit`;
 
     return this.http.post(url,
-      {},
+      { },
       {
         headers: {
           'Accept': 'application/json',
           'Access-Control-Allow-Origin': '*',
-          'X-Access-Token': this.session.token
+          'x-access-token': this.session.token
         }
-      }).toPromise();
-  };
+      });
+  }
 
+  purchaseCredit = function (pin) {
+
+    const url = `${environment.gameServerDomainUrl}/api/user/credit`;
+
+    return this.http.put(url,
+      { pin: pin },
+      {
+        headers: {
+          'Accept': 'application/json',
+          'Access-Control-Allow-Origin': '*',
+          'x-access-token': this.session.token
+        }, observe: 'response'
+      });
+  }
 
 
   transferCashback() {
@@ -214,13 +253,13 @@ export class DataService {
         headers: { 
           'Accept': 'application/json', 
           'Access-Control-Allow-Origin': '*', 
-          'X-Access-Token': this.session.token,
+          'x-access-token': this.session.token,
           'Content-Type': 'application/json', 
           },
         observe: 'response'
       }).toPromise().then( 
         res => {
-          const token = res.headers.get('X-Access-Token');
+          const token = res.headers.get('x-access-token');
           if (token)
             this.session.token = token;
           
@@ -249,12 +288,12 @@ export class DataService {
         headers: { 
           'Accept': 'application/json', 
           'Access-Control-Allow-Origin': '*', 
-          'X-Access-Token': this.session.token
+          'x-access-token': this.session.token
           },
         observe: 'response'
       }).toPromise().then( 
         res => {
-          const token = res.headers.get('X-Access-Token');
+          const token = res.headers.get('x-access-token');
           if (token)
             this.session.token = token;
           
@@ -283,14 +322,14 @@ export class DataService {
         headers: { 
           'Accept': 'application/json', 
           'Content-Type': 'application/json', 
-          'X-Access-Token': this.session.token || (new Date).getTime().toString(),
+          'x-access-token': this.session.token || (new Date).getTime().toString(),
           'Access-Control-Allow-Origin': '*'
           },
         observe: 'response'
       }).toPromise().then(
         res => { // Success
         
-          const token = res.headers.get('X-Access-Token');
+          const token = res.headers.get('x-access-token');
           if (token)
             this.session.token = token;
           
@@ -334,14 +373,14 @@ export class DataService {
         headers: { 
           'Accept': 'application/json', 
           'Content-Type': 'application/json', 
-          'X-Access-Token': this.session.token || (new Date).getTime().toString(),
+          'x-access-token': this.session.token || (new Date).getTime().toString(),
           'Access-Control-Allow-Origin': '*'
           },
         observe: 'response'
       }).toPromise().then(
         res => { // Success
         
-          const token = res.headers.get('X-Access-Token');
+          const token = res.headers.get('x-access-token');
           if (token)
             this.session.token = token;
           

@@ -2,13 +2,15 @@ import { Component, OnInit } from '@angular/core';
 import { DataService } from '../data.service';
 import { SessionService } from '../session.service';
 import { LocalizationService } from '../localization.service';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import UIkit from 'uikit';
 import { createPipeInstance } from '@angular/core/src/view/provider';
 import { debug } from 'util';
 import { TranslateService } from '@ngx-translate/core';
 import { parsePhoneNumberFromString } from 'libphonenumber-js'
+import { skip } from 'rxjs/operators';
+import { User } from '../../models/User';
 
 
 // import * as libphonenumber from 'google-libphonenumber';
@@ -22,6 +24,7 @@ export class HomeComponent implements OnInit {
   loginOn: number;
   AutoLogin: boolean;
   openVerify: boolean;
+  openHESub:boolean = false;
   lblShow:boolean = true;
   passType: string = "password";
   loggedin: boolean;
@@ -36,6 +39,9 @@ export class HomeComponent implements OnInit {
     return this._isHasCashback;
   }
   
+  get GetWindow(){
+    return window;
+  }
   // get this form the User objectusername
   get isSubscribed(): boolean {
     return this._isSubscribed;
@@ -83,78 +89,111 @@ export class HomeComponent implements OnInit {
   
   ngOnInit() {
 
-    // this.activatedRoute.queryParams.subscribe(params => {
-    //   console.table(params);
-    //   this.lang = params["lang"];
-    //   if(this.lang != null)
-    //   this.translate.setDefaultLang(this.lang);
-    //   console.log("Language Selected: "+this.lang);
-    // })
-
-    // this.activatedRoute.queryParams
-    //   .subscribe(params => {
-    //     console.log(params); // {order: "popular"}
-
-    //     // this.order = params.order;
-    //     // console.log(this.order); // popular
-    //   });
-  
-
-    
-    
     
     // Get Login On From LocalStorage
     this.loginOn = 0;
     this.openSubSuccess = false;
+    let errorCode = null;
+    let msisdnCode = null;
 
-    // this.loginOn = +localStorage.getItem('loginOn');
-    
-    // if(this.loginOn != 1) console.log("Login is Off");
-    // if(this.loginOn == 1) {
-    //  this.showLogin = true;
-    //   console.log("Login is On");
-    // }
-    // // This Resets Every time the demo games played
-    // // localStorage.setItem('demoGamesPlayed', "0");
-    // this.lastDemoPlayed = new Date( (localStorage.getItem('lastDemoPlayed')) );
-    // console.log("Last Time Played: "+this.lastDemoPlayed);
-    // console.log("Now: "+this.now);
-      
-    // let hours = Math.abs((this.now.getTime() - this.lastDemoPlayed.getTime()) / 3600000)
-    // if( hours > 1) localStorage.setItem('demoGamesPlayed', "0");
-    
-    // console.log("Substract Dates: " + hours);
+    // TEST FOR HE SUBSCRIPTION
+    // this.openHESub = true;
+
     // Check if we have any errorCode in the url, coming from another angular state
-    this.activatedRoute.queryParams.subscribe(params => {
-          const errorCode = params["errorCode"];
-          let modal = UIkit.modal("#error");
-          
-          if (errorCode) {
-            switch(errorCode) {
-              case '401': this.errorMsg = this.authError; this.logOutBtn = true; this.gotofaqBtn = true; console.log('401'); break;
-              case '1010': this.errorMsg = this.authError; this.logOutBtn = true; this.gotofaqBtn = true; console.log('1010');  break;
-              case '1026': this.errorMsg = this.blackListed; this.logOutBtn = true; this.gotofaqBtn = true; console.log('1026'); break;
-              case '1023': this.errorMsg = this.noMoreRealGames; this.gotofaqBtn = false;this.logOutBtn = false; break;
-              case '1021': this.errorMsg = this.noCredits; this.gotofaqBtn = false; this.logOutBtn = false; break;
-              case '1025': this.errorMsg =  this.noCredits; this.gotofaqBtn = false; this.logOutBtn = false; break;
-            }
-            
-            if (this.sessionService.user)
-              this.sessionService.reset();
-            
-            if (this.errorMsg !== '' &&  modal != null) {
-                modal.show();
-            }
-             
-          }
+    this.activatedRoute.queryParamMap.subscribe(
+      (params: ParamMap) => {
+        errorCode = params.get("errorCode");
+        msisdnCode = params.get("ui");
+        this.sessionService.msisdnCode = msisdnCode;
+        //console.log('Discovered ui= ' + msisdnCode);
       });
-    
+
     
       // Load the game settings
       this.dataService.fetchGameSettings().then(
         (data: any) => {
           this.sessionService.gameSettings = data;
           this.localizationService.init(this.sessionService.gameSettings.localization);
+
+            let modal = UIkit.modal("#error");
+
+            // Determine if an error code sent navigation to this state, then display the appropriate message
+            if (errorCode) {
+              switch (errorCode) {
+                case '401': this.errorMsg = this.authError; this.logOutBtn = true; this.gotofaqBtn = true; console.log('401'); break;
+                case '1010': this.errorMsg = this.authError; this.logOutBtn = true; this.gotofaqBtn = true; console.log('1010'); break;
+                case '1026': this.errorMsg = this.blackListed; this.logOutBtn = true; this.gotofaqBtn = true; console.log('1026'); break;
+                case '1023': this.errorMsg = this.noMoreRealGames; this.gotofaqBtn = false; this.logOutBtn = false; break;
+                case '1021': this.errorMsg = this.noCredits; this.gotofaqBtn = false; this.logOutBtn = false; break;
+                case '1025': this.errorMsg = this.noCredits; this.gotofaqBtn = false; this.logOutBtn = false; break;
+              }
+
+              if (this.sessionService.user)
+                this.sessionService.reset();
+
+              if (this.errorMsg !== '' && modal != null) {
+                modal.show();
+              }
+
+            }
+
+            // Else, Determine if this is the mobile/Ussd/Sms user flow or the WiFi one
+            else if (msisdnCode) {
+              // Mobile/Ussd/Sms flow here
+
+             //console.log('Mobile /SMS /USSD user flow');
+              this.AutoLogin = true;
+
+              this.dataService.authenticateOrangeSSO(msisdnCode).subscribe((resp: any) => {
+
+                // Get JWT token from response header and keep it for the session
+                const userToken = resp.headers.get('x-access-token');
+
+               //console.log(`SSO Response: X-MSISDN code from ui param: ${msisdnCode} -> Token: ${userToken}`);
+
+                if (userToken)  // if exists, keep it
+                  this.sessionService.token = userToken;
+
+                // Deserialize payload
+                const body: any = resp.body; // JSON.parse(response);
+                if (body.isEligible !== undefined)
+                  this.sessionService.isEligible = body.isEligible;
+                if (body.isSubscribed != undefined)
+                  this.sessionService.isSubscribed = body.isSubscribed;
+                if (body.gamesPlayedToday !== undefined)
+                  this.sessionService.gamesPlayed = body.gamesPlayedToday;
+                //if (body.bestScore !== undefined) {
+                //  if (!this.sessionService.user)
+                //    this.sessionService.user = new User();
+                //  this.sessionService.user.bestScore = body.bestScore;
+                //}
+                if (body.credits > 0)
+                  this.sessionService.credits = body.credits;
+
+               //console.log("hasCredit: " + this.sessionService.hasCredit());
+
+
+                // Chage view state
+                this.loggedin = true;
+                this.openVerify = false;
+
+                // If user is Subscribed to server continue as usual
+                if(this.sessionService.isSubscribed)
+                  this.router.navigate(['/returnhome']);
+                else{
+                  // Open the subscribe button
+                  this.openHESub = true;
+                }
+              },
+                (err: any) => {
+                  this.AutoLogin = false;
+                });
+            }
+
+            else {
+              // WiFi flow here
+             //console.log('WiFi user flow');
+            }
         },
         (err: any) => {
         });
@@ -163,54 +202,54 @@ export class HomeComponent implements OnInit {
       this.AutoLogin = false;
       this.openVerify = false;
       this.loggedin = false;
-
-    // Determine if this is the mobile/Ussd/Sms user flow or the WiFi one
-    if (!this.sessionService.msisdnCode) {
-      // WiFi flow here
-      console.log('WiFi user flow');
-
-
-    }
-    else {
-      // Mobile/Ussd/Sms flow here
-      console.log('Mobile /SMS /USSD user flow');
-      this.AutoLogin = true;
-
-      this.dataService.authenticateOrangeSSO(this.sessionService.msisdnCode).subscribe((resp: any) => {
-
-        // Get JWT token from response header and keep it for the session
-        const userToken = resp.headers.get('X-Access-Token');
-        if (userToken)  // if exists, keep it
-          this.sessionService.token = userToken;
-
-        // Deserialize payload
-        const body: any = resp.body; // JSON.parse(response);
-        if (body.isEligible !== undefined)
-          this.sessionService.isEligible = body.isEligible;
-        if (body.isSubscribed != undefined)
-          this.sessionService.isSubscribed = body.isSubscribed;
-        if (body.gamesPlayedToday !== undefined)
-          this.sessionService.gamesPlayed = body.gamesPlayedToday;
-        if (body.bestScore !== undefined) {
-          if (!this.sessionService.user)
-            this.sessionService.user = new User();
-          this.sessionService.user.bestScore = body.bestScore;
-        }
-
-        console.log("User Best Score: "+this.sessionService.user.bestScore);
-        this.sessionService.Serialize();
-
-        // Goto the returnHome page if user is subscribed
-        if(this.sessionService.isSubscribed)
-          this.router.navigate(['/returnhome']);
-
-        // this.openSubSuccess = true;
-      },
-        (err: any) => {
-          this.router.navigate(['/home']);
-        });
-    }
   }
+
+  // Subscribe for the first time using HE
+  subscribeDirect() {
+    // Close Button Immediately 
+    this.openHESub = false;
+   //console.log(this.sessionService.msisdnCode);
+    this.dataService.subscribeOrangeSSO(this.sessionService.msisdnCode).subscribe((resp: any) => {
+
+      // Get JWT token from response header and keep it for the session
+      const userToken = resp.headers.get('x-access-token');
+
+     //console.log(`SSO Response: X-MSISDN code from ui param: ${this.sessionService.msisdnCode} -> Token: ${userToken}`);
+
+      if (userToken)  // if exists, keep it
+        this.sessionService.token = userToken;
+
+      // Deserialize payload
+      const body: any = resp.body; // JSON.parse(response);
+     //console.table(body);
+      if (body.isEligible !== undefined)
+        this.sessionService.isEligible = body.isEligible;
+      if (body.isSubscribed != undefined)
+        this.sessionService.isSubscribed = body.isSubscribed;
+      if (body.gamesPlayedToday !== undefined)
+        this.sessionService.gamesPlayed = body.gamesPlayedToday;
+      if (body.credits > 0)
+        this.sessionService.credits = body.credits;
+
+      //this.sessionService.Serialize();
+
+      // Chage view state
+      this.openHESub = false;
+      this.loggedin = true;
+      this.openVerify = false;
+
+      // Goto the returnHome page
+      this.router.navigate(['/returnhome']);
+    
+    },
+      (err: any) => {
+        this.openHESub = true;
+        this.verErrorMes = true;
+      });
+
+    
+  }
+
   
   public playGame($event) {
     // console.log('button is clicked');
@@ -226,9 +265,9 @@ export class HomeComponent implements OnInit {
   // }
   
   logOutUser() {
-    console.log("LoggingOut!");
+   //console.log("LoggingOut!");
     const allCookies: {} = this.cookieService.getAll();
-    console.log(allCookies);
+   //console.log(allCookies);
     this.cookieService.deleteAll('/');
     // Trying the updated MTS logout redirect with the logout parameter
     this.sessionService.reset();
@@ -253,11 +292,11 @@ export class HomeComponent implements OnInit {
   
   submit(number: string) {
 
-    // console.log("MSISDN: " + number);
+    ////console.log("MSISDN: " + number);
     const phoneNumber = parsePhoneNumberFromString(number, 'EG')
     number = phoneNumber.countryCallingCode +""+ phoneNumber.nationalNumber;
-    console.log("MSISDN: " +phoneNumber.countryCallingCode+phoneNumber.nationalNumber);
-    if(number.length != 11){
+   //console.log("MSISDN: " +phoneNumber.countryCallingCode+phoneNumber.nationalNumber);
+    if(number.length != 12){
       this.alertNumber = true;
       return;
     }
@@ -283,11 +322,11 @@ export class HomeComponent implements OnInit {
       if (body.gamesPlayedToday !== undefined)
         this.sessionService.gamesPlayed = body.gamesPlayedToday;
 
-        console.log("Is Subed: "+ this.sessionService.isSubscribed);
+       //console.log("Is Subed: "+ this.sessionService.isSubscribed);
       this.openVerify = true;
 
       // If present, Get JWT token from response header and keep it for the session
-      const userToken = resp.headers.get('X-Access-Token');
+      const userToken = resp.headers.get('x-access-token');
       if (userToken) { // if exists, keep it
         this.sessionService.token = userToken;
         this.sessionService.Serialize();
@@ -308,19 +347,19 @@ export class HomeComponent implements OnInit {
 
   verify(pass: string) {
 
-    console.log("username: " + this.sessionService.msisdn);
-    console.log("password: " + pass);
+    // console.log("username: " + this.sessionService.msisdn);
+    // console.log("password: " + pass);
 
     this.dataService.authenticateVerify(this.sessionService.msisdn, pass).subscribe((resp: any) => {
 
       // Get JWT token from response header and keep it for the session
-      const userToken = resp.headers.get('X-Access-Token');
+      const userToken = resp.headers.get('x-access-token');
       if (userToken)  // if exists, keep it
         this.sessionService.token = userToken;
 
       // Deserialize payload
       const body: any = resp.body; // JSON.parse(response);
-      console.log("Best Score: "+body.bestScore);
+     //console.log("Best Score: "+body.bestScore);
       if (body.isEligible !== undefined)
         this.sessionService.isEligible = body.isEligible;
       if (body.isSubscribed != undefined)
@@ -330,7 +369,7 @@ export class HomeComponent implements OnInit {
       if (body.credits > 0)
         this.sessionService.credits = body.credits;
 
-      console.log("hasCredit: " + this.sessionService.hasCredit());
+     //console.log("hasCredit: " + this.sessionService.hasCredit());
       // if (body.bestScore !== undefined) {
       //   if (!this.sessionService.user)
       //     this.sessionService.user = new User();
@@ -350,7 +389,7 @@ export class HomeComponent implements OnInit {
       //this.router.navigate(['/returnhome']);
     },
       (err: any) => {
-        console.log("Error With Pin!!!");
+       //console.log("Error With Pin!!!");
        this.verErrorMes = true;
       });
 
@@ -360,13 +399,13 @@ export class HomeComponent implements OnInit {
 
   verifyDirect(pass: string) {
 
-    console.log("username: " + this.sessionService.msisdn);
-    console.log("password: " + pass);
+    // console.log("username: " + this.sessionService.msisdn);
+    // console.log("password: " + pass);
 
     this.dataService.authenticateVerify(this.sessionService.msisdn, pass).subscribe((resp: any) => {
 
       // Get JWT token from response header and keep it for the session
-      const userToken = resp.headers.get('X-Access-Token');
+      const userToken = resp.headers.get('x-access-token');
       if (userToken)  // if exists, keep it
         this.sessionService.token = userToken;
 
@@ -393,7 +432,8 @@ export class HomeComponent implements OnInit {
       //this.router.navigate(['/returnhome']);
     },
       (err: any) => {
-        this.router.navigate(['/home']);
+       //console.log("Error With Pin!!!");
+        this.verErrorMes = true;
       });
 
     // Run or Go to returnHome
@@ -403,7 +443,7 @@ export class HomeComponent implements OnInit {
 
   resetPin() {
     this.dataService.requestPin(this.sessionService.msisdn).then((resp: any) => {
-      console.log('Reset password is successful');
+     //console.log('Reset password is successful');
     });
   }
 
@@ -445,26 +485,27 @@ export class HomeComponent implements OnInit {
   }
 
   PlayGame() {
-    console.log("Burn One Credit, Play Game!");
-    this.dataService.getUserProfile().then( 
-      (data:User) => {
+   //console.log("Burn One Credit, Play Game!");
+    this.dataService.getUserProfile().subscribe( 
+      (response: any) => {
+
+        const data = response.body;
         this.sessionService.user = data;
-        console.log("this.sessionService.gamesPlayed "+this.sessionService.gamesPlayed);
+       //console.log("this.sessionService.gamesPlayed "+this.sessionService.gamesPlayed);
 
       this.sessionService.gamesPlayed++;
+      this.sessionService.credits--;
       this.router.navigate(['game']);
         
       },
       (err) => {
         
-      });
-
-      
+      });      
   }
   
 
   VerifyLogPin(pin:string) {
-    console.log("Verify PIN & login User!");
+   //console.log("Verify PIN & login User!");
     this.loggedin = true;
     // Check Credits
     // this.CheckCredits();
@@ -472,7 +513,7 @@ export class HomeComponent implements OnInit {
   }
 
   CheckCredits() {
-    console.log("Checking Credits!");
+   //console.log("Checking Credits!");
     // Dummy Properties
     // this.credits = 0;
     
@@ -490,7 +531,7 @@ export class HomeComponent implements OnInit {
 
   OpenPass(){
     this.lblShow = !this.lblShow;
-    console.log("Hide/Show Password: " + this.lblShow);
+   //console.log("Hide/Show Password: " + this.lblShow);
     if(this.lblShow)
       this.passType = "password";
     else

@@ -7,6 +7,7 @@ import {formatDate} from '@angular/common';
 import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import UIkit from 'uikit';
+import { User } from '../../../models/User';
 
 @Component({
   selector: 'app-settings',

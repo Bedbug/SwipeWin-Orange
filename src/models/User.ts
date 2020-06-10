@@ -1,4 +1,4 @@
-class User {
+export class User {
   id: string = null;
   msisdnCode: string = null;
   msisdn: string = null;

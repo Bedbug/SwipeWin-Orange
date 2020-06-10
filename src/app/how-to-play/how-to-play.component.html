@@ -21,7 +21,7 @@
 </div>
 <div class="buttons-container uk-container uk-text-center">
  
-  <button class="uk-button uk-button-default play-button uk-width-1-1" *ngIf="isActive" (click)="goHome()">{{ 'HOW.BACK' | translate }}</button>
+  <button class="uk-button uk-button-default play-button uk-width-1-1" (click)="goHome()">{{ 'HOW.BACK' | translate }}</button>
   <!--<button class="uk-button uk-button-default play-button uk-width-1-1" style="background-image: linear-gradient(to bottom, #ffffff, #c3c3c3 16%, #acacac 84%, #c5c5c5);" *ngIf="!isActive" >Подписаться</button>-->
   <!-- <button *ngIf="_gamesPlayed >= 3 && !isActive" class="uk-button uk-button-default play-button uk-width-1-1" (click)="startGame()">Play for 0.50$</button>
   <button *ngIf="_gamesPlayed > 0 && _gamesPlayed < 3  && !isActive" class="uk-button uk-button-default play-button uk-width-1-1" (click)="startGame()" >Play for 0.50$</button>

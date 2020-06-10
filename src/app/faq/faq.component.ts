@@ -72,5 +72,12 @@ export class FaqComponent implements OnInit {
     localStorage.setItem('loginOn', "1");
     this.router.navigate(['home']);
   }
+  goHome() {
+    if (!this.sessionService.token || !this.sessionService.isSubscribed || !this.sessionService.isEligible) {
+      this.router.navigate(['home']);
+    } else {
+      this.router.navigate(['/returnhome']);
+    }
+  }
   
 }

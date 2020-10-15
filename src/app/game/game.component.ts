@@ -92,18 +92,17 @@ export class GameComponent implements OnInit {
       this.router.navigate(['/home'], { queryParams: { errorCode: 401 } });
     }else {
        // TO BE ERASED
-      // localStorage.setItem('firstTime','yes');
-      
-      
+      localStorage.setItem('firstTime', 'yes');
+
+
       //check if first time and open tutorial
-      // var isFirst = localStorage.getItem('firstTime');
-      // if(isFirst != "no"){
-      //   this.globals.isFirstDemo = true
-      //   localStorage.setItem('firstTime','no');
-      // }else {
-      //   this.globals.isFirstDemo = false;
-      // }
-      this.globals.isFirstDemo = false;
+      var isFirst = localStorage.getItem('firstTime');
+      if (isFirst != "no") {
+        this.globals.isFirstDemo = true
+        localStorage.setItem('firstTime', 'no');
+      } else {
+        this.globals.isFirstDemo = false;
+      }
     }
   }
 
